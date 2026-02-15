@@ -21,7 +21,7 @@ The topics:
 - Open source - contributing to projects like Freshell and releasing things like CEOS
 - The craft of AI-assisted software development - what works, what doesn't, what I'm still figuring out
 
-I've been writing code for over 40 years. I've never been this excited about a tool. Not because it writes code for me - because it changes how I think about what's possible to build.
+While I've played around with writing software for the past 45 years, I haven't written production code since 1992. That changed a little over a year ago when I wrote [Dinostroids](https://dinostroids.com/). While I still have plenty of investing responsibilities, my current obsession is understanding - by doing - the extremely rapid evolution of contemporary software development.
 
 ---
 
