@@ -1,0 +1,68 @@
+baseURL = "https://adventuresinclaude.ai/"
+languageCode = "en-us"
+title = "Adventures in Claude"
+theme = "PaperMod"
+paginate = 10
+
+[params]
+  env = "production"
+  description = "Building with AI - Claude Code, CompanyOS, and the future of software development"
+  author = "Brad Feld"
+  defaultTheme = "auto"
+  ShowReadingTime = true
+  ShowShareButtons = false
+  ShowPostNavLinks = true
+  ShowBreadCrumbs = true
+  ShowCodeCopyButtons = true
+  ShowRssButtonInSectionTermList = true
+  ShowFullTextinRSS = true
+
+  [params.homeInfoParams]
+    Title = "Adventures in Claude"
+    Content = "Notes from building with AI - Claude Code, CompanyOS, open source, and the craft of software development."
+
+  [[params.socialIcons]]
+    name = "rss"
+    url = "/index.xml"
+
+  [[params.socialIcons]]
+    name = "github"
+    url = "https://github.com/bradfeld"
+
+  [[params.socialIcons]]
+    name = "x"
+    url = "https://x.com/bfeld"
+
+  [params.fuseOpts]
+    isCaseSensitive = false
+    shouldSort = true
+    location = 0
+    distance = 1000
+    threshold = 0.4
+    minMatchCharLength = 0
+    keys = ["title", "permalink", "summary", "content"]
+
+[menu]
+  [[menu.main]]
+    identifier = "posts"
+    name = "Posts"
+    url = "/posts/"
+    weight = 10
+  [[menu.main]]
+    identifier = "tags"
+    name = "Tags"
+    url = "/tags/"
+    weight = 20
+  [[menu.main]]
+    identifier = "search"
+    name = "Search"
+    url = "/search/"
+    weight = 30
+  [[menu.main]]
+    identifier = "about"
+    name = "About"
+    url = "/about/"
+    weight = 40
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
