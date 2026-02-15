@@ -6,13 +6,9 @@ description: "Why this site exists and what you'll find here"
 draft: false
 ---
 
-A friend sent me a message today. He'd seen my post about using Claude to update WordPress and told me he'd just had Claude move his entire food blog off WordPress onto a Hugo static site hosted on GitHub Pages. "Literally just plan mode and say 'get me off WordPress and onto a Hugo static site,'" he said. "And the new site is insanely fast."
+I've been writing about Claude Code and AI development on [feld.com](https://feld.com) for the past few weeks. The Claude content kept growing - [CEOS](https://feld.com/archives/2026/02/streamline-workflow-with-ceos-claude-meets-eos/), [Freshell](https://feld.com/archives/2026/02/freshell-contributing-to-open-source/), [posting to WordPress with Claude](https://feld.com/archives/2026/02/claude-code-now-posts-to-this-blog/), [what I'm obsessed with](https://feld.com/archives/2026/02/tech-im-obsessed-with/). It needed its own place.
 
-I've been writing about Claude Code and AI development on [feld.com](https://feld.com) for the past few weeks. Four of my last five posts were about this stuff. It deserved its own home.
-
----
-
-So here we are. This site is built with Hugo and PaperMod, deployed on Vercel, and the entire content pipeline - from capturing notes during development to publishing posts - runs through Claude Code.
+This is that place. Built with Hugo, deployed on Vercel, content pipeline powered entirely by Claude Code. You can read [how it all came together](/posts/2026-02-14-building-this-site/) if you're curious about the process.
 
 The topics:
 
