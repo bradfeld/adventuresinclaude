@@ -2,13 +2,11 @@
 title: "Sixteen Commits and a Unicorn"
 date: 2026-02-15T15:00:00-07:00
 tags: ["claude-code", "themes", "workflow", "shipping"]
-description: "A Sunday of building across six repos and eight worktrees - from disaster recovery to pastel unicorns"
+description: "Sunday: From disaster recovery to pastel unicorns"
 draft: true
 ---
 
 Today was one of those days where you look up and realize you've been shipping across six different repositories all Sunday. Sixteen commits just to this blog. Thirty-plus across everything else. And somewhere in the middle, a theme called Unicorn got pastel pink cherry blossoms.
-
-Let me try to reconstruct what happened.
 
 ---
 
@@ -33,8 +31,6 @@ Three AuthorMagic tickets shipped to staging:
 - **AUTM-1084**: Added a daily price history sync cron job. Books now track their Amazon price over time automatically.
 
 Plus an AI sentiment analysis feature for media mention imports - when you paste a URL, the system now extracts the article, runs sentiment analysis, and auto-populates the mention metadata.
-
-All four features went through the staging pipeline: `/start` to pick up the ticket, implement, `/commit` with auto-review triage, then `/staging` to batch-merge into preview.
 
 ---
 
