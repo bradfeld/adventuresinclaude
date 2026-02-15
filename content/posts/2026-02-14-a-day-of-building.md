@@ -1,5 +1,5 @@
 ---
-title: "A Day of Building"
+title: "Valentines Day with Claude Code"
 date: 2026-02-14T23:00:00-07:00
 tags: ["claude-code", "workflow", "meta"]
 description: "63 commits across 5 repositories - what a full day of building with Claude Code actually looks like"
