@@ -1,0 +1,17 @@
+{{ if .IsPage }}
+<div class="reading-progress" id="reading-progress"></div>
+<script>
+(function() {
+  var bar = document.getElementById('reading-progress');
+  if (!bar) return;
+  window.addEventListener('scroll', function() {
+    var h = document.documentElement;
+    var scrollTop = h.scrollTop || document.body.scrollTop;
+    var scrollHeight = h.scrollHeight - h.clientHeight;
+    if (scrollHeight > 0) {
+      bar.style.width = (scrollTop / scrollHeight * 100) + '%';
+    }
+  });
+})();
+</script>
+{{ end }}
