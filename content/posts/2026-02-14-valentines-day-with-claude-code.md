@@ -43,7 +43,7 @@ Plus a production release wrapping everything from the past few days, a fix for 
 
 ## CEOS: Five New Skills
 
-[CEOS](https://github.com/IntensityMagic/ceos) — the Claude EOS (Entrepreneurial Operating System) implementation — got five new skills today:
+[CEOS](https://github.com/bradfeld/ceos) — the Claude EOS (Entrepreneurial Operating System) implementation — got five new skills today:
 
 - **ceos-kickoff** — structured EOS implementation sequencing
 - **ceos-clarity** — the Clarity Break, a leadership reflection exercise
