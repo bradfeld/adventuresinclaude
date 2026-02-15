@@ -1,17 +1,18 @@
 <script>
 (function() {
-  var el = document.querySelector('.post-content p, .entry-content p, .page-content p');
-  if (!el) return;
-  var info = document.querySelector('.first-entry .entry-content');
-  if (!info) return;
   fetch('/api/subscribers')
     .then(function(r) { return r.json(); })
     .then(function(d) {
       if (d.count > 0) {
-        var p = document.createElement('p');
-        p.style.cssText = 'margin-top:0.5em;font-size:0.9em;opacity:0.7;';
-        p.textContent = 'Join ' + d.count + (d.count === 1 ? ' subscriber' : ' subscribers') + ' getting new posts by email.';
-        info.appendChild(p);
+        var links = document.querySelectorAll('.social-icons a');
+        links.forEach(function(a) {
+          if (a.href && a.href.indexOf('kit.com') !== -1) {
+            var span = document.createElement('span');
+            span.style.cssText = 'font-size:0.85em;opacity:0.7;margin-left:4px;';
+            span.textContent = '(' + d.count + ')';
+            a.parentNode.insertBefore(span, a.nextSibling);
+          }
+        });
       }
     })
     .catch(function() {});

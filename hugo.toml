@@ -32,11 +32,7 @@ theme = "PaperMod"
 
   [params.homeInfoParams]
     Title = "Adventures in Claude"
-    Content = "Notes from building with AI - Claude Code, CompanyOS, open source, and the craft of software development."
-
-  [[params.socialIcons]]
-    name = "email"
-    url = "https://adventuresinclaude.kit.com/cdea0d078b"
+    Content = "Notes from my adventures with Claude Code"
 
   [[params.socialIcons]]
     name = "rss"
@@ -53,6 +49,10 @@ theme = "PaperMod"
   [[params.socialIcons]]
     name = "linkedin"
     url = "https://www.linkedin.com/in/bfeld"
+
+  [[params.socialIcons]]
+    name = "email"
+    url = "https://adventuresinclaude.kit.com/cdea0d078b"
 
   [params.fuseOpts]
     isCaseSensitive = false
