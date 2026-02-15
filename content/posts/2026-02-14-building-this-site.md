@@ -3,7 +3,7 @@ title: "Building This Site with Claude Code"
 date: 2026-02-14T18:00:00-07:00
 tags: ["claude-code", "hugo", "meta", "workflow"]
 description: "How Claude Code and I built adventuresinclaude.ai in a single conversation - from brainstorming to live site"
-draft: true
+draft: false
 ---
 
 [Michael Natkin](https://www.herbivoracious.com) texted me this morning. He'd seen my [post about using Claude to update WordPress](https://feld.com/archives/2026/02/claude-code-now-posts-to-this-blog/) and told me he'd just had Claude move his entire food blog off WordPress onto a Hugo static site hosted on GitHub Pages. "Literally just plan mode and say 'get me off WordPress and onto a Hugo static site,'" he said. "And the new site is insanely fast."
