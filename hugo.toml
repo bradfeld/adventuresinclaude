@@ -9,7 +9,6 @@ theme = "PaperMod"
   env = "production"
   description = "Building with AI - Claude Code, CompanyOS, and the future of software development"
   author = "Brad Feld"
-  favicon = "/favicon.svg"
   defaultTheme = "auto"
   ShowReadingTime = true
   ShowShareButtons = false
@@ -20,7 +19,10 @@ theme = "PaperMod"
   ShowFullTextinRSS = true
 
   [params.label]
-    iconSVG = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="28" height="28" style="vertical-align: middle; margin-left: 6px;"><rect width="32" height="32" rx="6" fill="#1a1a2e"/><text x="3" y="24" font-family="SF Mono,Fira Code,Consolas,monospace" font-size="18" font-weight="700" fill="#e0e0e0">A</text><text x="16" y="24" font-family="SF Mono,Fira Code,Consolas,monospace" font-size="18" font-weight="700" fill="#d4a574">{</text><rect x="24" y="20" width="2" height="4" fill="#d4a574"/></svg>'
+    iconSVG = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="28" height="28" style="vertical-align: middle; margin-right: 6px;"><rect width="32" height="32" rx="6" fill="#1a1a2e"/><text x="3" y="24" font-family="SF Mono,Fira Code,Consolas,monospace" font-size="18" font-weight="700" fill="#e0e0e0">A</text><text x="16" y="24" font-family="SF Mono,Fira Code,Consolas,monospace" font-size="18" font-weight="700" fill="#d4a574">{</text><rect x="24" y="20" width="2" height="4" fill="#d4a574"/></svg>'
+
+  [params.assets]
+    favicon = "/favicon.svg"
 
   [params.homeInfoParams]
     Title = "Adventures in Claude"
