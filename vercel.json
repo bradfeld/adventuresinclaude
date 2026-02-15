@@ -2,6 +2,5 @@
   "buildCommand": "hugo --minify",
   "outputDirectory": "public",
   "installCommand": "",
-  "framework": "hugo",
-  "cleanUrls": true
+  "framework": "hugo"
 }
