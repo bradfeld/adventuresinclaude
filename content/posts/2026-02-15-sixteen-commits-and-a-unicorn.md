@@ -2,11 +2,11 @@
 title: "Sixteen Commits and a Unicorn"
 date: 2026-02-15T15:00:00-07:00
 tags: ["claude-code", "themes", "workflow", "shipping"]
-description: "A Saturday of building across six repos and eight worktrees - from disaster recovery to pastel unicorns"
+description: "A Sunday of building across six repos and eight worktrees - from disaster recovery to pastel unicorns"
 draft: true
 ---
 
-Today was one of those days where you look up and realize you've been shipping across six different repositories for twelve hours straight. Sixteen commits just to this blog. Thirty-plus across everything else. And somewhere in the middle, a theme called Unicorn got pastel pink cherry blossoms.
+Today was one of those days where you look up and realize you've been shipping across six different repositories all Sunday. Sixteen commits just to this blog. Thirty-plus across everything else. And somewhere in the middle, a theme called Unicorn got pastel pink cherry blossoms.
 
 Let me try to reconstruct what happened.
 
@@ -92,7 +92,7 @@ The whole system is togglable because sometimes you want the clean monochrome lo
 
 ## The Numbers
 
-By the end of Saturday:
+By the end of Sunday:
 
 | Repo | Commits | Highlights |
 |------|---------|------------|
