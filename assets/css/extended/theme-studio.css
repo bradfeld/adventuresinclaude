@@ -424,3 +424,95 @@
   padding-inline-start: 0;
   font-style: italic;
 }
+
+/* ============================================
+   Color Accents — uses --accent-1..4 from themes.css
+   Applies theme-specific accent colors to UI elements
+   ============================================ */
+
+/* Post entry cards: colored left border using accent-1 */
+.effect-color-accents .post-entry,
+.effect-color-accents .preview-post-entry {
+  border-left: 3px solid var(--accent-1);
+}
+
+/* Tag pills: rotating accent colors */
+.effect-color-accents .tag-link:nth-child(4n+1),
+.effect-color-accents .post-tags a:nth-child(4n+1),
+.effect-color-accents .terms-tags a:nth-child(4n+1) {
+  border-color: var(--accent-1);
+  color: var(--accent-1);
+}
+.effect-color-accents .tag-link:nth-child(4n+2),
+.effect-color-accents .post-tags a:nth-child(4n+2),
+.effect-color-accents .terms-tags a:nth-child(4n+2) {
+  border-color: var(--accent-2);
+  color: var(--accent-2);
+}
+.effect-color-accents .tag-link:nth-child(4n+3),
+.effect-color-accents .post-tags a:nth-child(4n+3),
+.effect-color-accents .terms-tags a:nth-child(4n+3) {
+  border-color: var(--accent-3);
+  color: var(--accent-3);
+}
+.effect-color-accents .tag-link:nth-child(4n+4),
+.effect-color-accents .post-tags a:nth-child(4n+4),
+.effect-color-accents .terms-tags a:nth-child(4n+4) {
+  border-color: var(--accent-4);
+  color: var(--accent-4);
+}
+
+/* Blockquote: accent-2 left border */
+.effect-color-accents blockquote {
+  border-inline-start-color: var(--accent-2);
+}
+
+/* Horizontal rules / section breaks: accent gradient */
+.effect-color-accents .post-content hr,
+.effect-color-accents .preview-content hr {
+  border: none;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent-1), var(--accent-2), var(--accent-3), var(--accent-4));
+}
+
+/* Reading progress bar: accent-1 */
+.effect-color-accents .reading-progress {
+  background: var(--accent-1);
+}
+
+/* Code block: accent-3 left border accent */
+.effect-color-accents pre,
+.effect-color-accents .highlight pre {
+  border-left: 3px solid var(--accent-3);
+}
+
+/* Links: accent-1 color */
+.effect-color-accents .post-content a,
+.effect-color-accents .preview-content a {
+  color: var(--accent-1);
+}
+.effect-color-accents .post-content a:hover,
+.effect-color-accents .preview-content a:hover {
+  color: var(--accent-2);
+}
+
+/* Nav hover: accent-1 underline */
+.effect-color-accents .menu a:hover,
+.effect-color-accents .menu .active {
+  color: var(--accent-1);
+}
+
+/* Post title hover: accent-1 */
+.effect-color-accents .post-entry .entry-header h2 a:hover {
+  color: var(--accent-1);
+}
+
+/* Headings: subtle accent-1 color for h2, h3 */
+.effect-color-accents .post-content h2,
+.effect-color-accents .preview-content h2 {
+  color: var(--accent-1);
+}
+.effect-color-accents .post-content h3,
+.effect-color-accents .preview-content h3 {
+  color: var(--accent-2);
+}

@@ -5,6 +5,20 @@
 
 /* Default theme: no overrides needed — PaperMod's theme-vars.css is the baseline */
 
+/* Default accent colors (overridden per theme below) */
+:root {
+  --accent-1: #3b82f6;
+  --accent-2: #10b981;
+  --accent-3: #f59e0b;
+  --accent-4: #ef4444;
+}
+:root[data-theme="dark"] {
+  --accent-1: #60a5fa;
+  --accent-2: #34d399;
+  --accent-3: #fbbf24;
+  --accent-4: #f87171;
+}
+
 /* ============================================
    Theme: Terminal
    Monospace, green phosphor CRT aesthetic
@@ -1023,6 +1037,56 @@
 [data-full-theme="unicorn"] .callout-tip { border-left-color: #C3EDBF; }
 [data-full-theme="unicorn"] .callout-warning { border-left-color: #FDD0B1; }
 [data-full-theme="unicorn"] .callout-important { border-left-color: #FBB9C5; }
+
+/* ============================================
+   Accent Color System
+   Per-theme palettes for polychromatic mode
+   Toggle on/off via .effect-color-accents class
+   ============================================ */
+
+/* Terminal */
+[data-full-theme="terminal"][data-theme="light"] { --accent-1: #2d8a2d; --accent-2: #1a6b5a; --accent-3: #4a8a2d; --accent-4: #2d6a4a; }
+[data-full-theme="terminal"][data-theme="dark"]  { --accent-1: #33ff33; --accent-2: #00ddaa; --accent-3: #88ff44; --accent-4: #44ffcc; }
+
+/* Manuscript */
+[data-full-theme="manuscript"][data-theme="light"] { --accent-1: #8b4513; --accent-2: #b22222; --accent-3: #2e4057; --accent-4: #6b5f4f; }
+[data-full-theme="manuscript"][data-theme="dark"]  { --accent-1: #d4a574; --accent-2: #e07060; --accent-3: #7090b0; --accent-4: #b0a090; }
+
+/* Blueprint */
+[data-full-theme="blueprint"][data-theme="light"] { --accent-1: #2060c0; --accent-2: #e05020; --accent-3: #1a8050; --accent-4: #7040a0; }
+[data-full-theme="blueprint"][data-theme="dark"]  { --accent-1: #60a0f0; --accent-2: #ff8050; --accent-3: #40c080; --accent-4: #b080e0; }
+
+/* Amber */
+[data-full-theme="amber"][data-theme="light"] { --accent-1: #c07818; --accent-2: #a05010; --accent-3: #806020; --accent-4: #604828; }
+[data-full-theme="amber"][data-theme="dark"]  { --accent-1: #ffb830; --accent-2: #e08828; --accent-3: #c09020; --accent-4: #f0a030; }
+
+/* Claude */
+[data-full-theme="claude"][data-theme="light"] { --accent-1: #c4704a; --accent-2: #6a8a6a; --accent-3: #5878a0; --accent-4: #a07050; }
+[data-full-theme="claude"][data-theme="dark"]  { --accent-1: #e8906a; --accent-2: #8ab08a; --accent-3: #7098c0; --accent-4: #c09070; }
+
+/* Magazine */
+[data-full-theme="magazine"][data-theme="light"] { --accent-1: #b8860b; --accent-2: #cc3333; --accent-3: #2e4057; --accent-4: #555555; }
+[data-full-theme="magazine"][data-theme="dark"]  { --accent-1: #daa520; --accent-2: #ff6060; --accent-3: #6090c0; --accent-4: #999999; }
+
+/* Brutalist */
+[data-full-theme="brutalist"][data-theme="light"] { --accent-1: #cc0000; --accent-2: #0000cc; --accent-3: #006600; --accent-4: #cc6600; }
+[data-full-theme="brutalist"][data-theme="dark"]  { --accent-1: #ffdd00; --accent-2: #ff4444; --accent-3: #44ff44; --accent-4: #4488ff; }
+
+/* E-ink — stays muted to respect the theme identity */
+[data-full-theme="e-ink"][data-theme="light"] { --accent-1: #444444; --accent-2: #777777; --accent-3: #333333; --accent-4: #999999; }
+[data-full-theme="e-ink"][data-theme="dark"]  { --accent-1: #aaaaaa; --accent-2: #888888; --accent-3: #bbbbbb; --accent-4: #666666; }
+
+/* Cyberpunk */
+[data-full-theme="cyberpunk"][data-theme="light"] { --accent-1: #9b1b6b; --accent-2: #1a6080; --accent-3: #6040a0; --accent-4: #806020; }
+[data-full-theme="cyberpunk"][data-theme="dark"]  { --accent-1: #00ffff; --accent-2: #ff2daa; --accent-3: #8800ff; --accent-4: #ffdd00; }
+
+/* Colorful */
+[data-full-theme="colorful"][data-theme="light"] { --accent-1: #6a1b9a; --accent-2: #0d47a1; --accent-3: #00796b; --accent-4: #d04800; }
+[data-full-theme="colorful"][data-theme="dark"]  { --accent-1: #ce93d8; --accent-2: #64b5f6; --accent-3: #4db6ac; --accent-4: #ff8040; }
+
+/* Unicorn */
+[data-full-theme="unicorn"][data-theme="light"] { --accent-1: #e8a0b0; --accent-2: #90c8a0; --accent-3: #90c0d0; --accent-4: #a898c0; }
+[data-full-theme="unicorn"][data-theme="dark"]  { --accent-1: #FBB9C5; --accent-2: #C3EDBF; --accent-3: #B8DFE6; --accent-4: #C5BBDE; }
 
 /* ============================================
    Theme Picker Component
