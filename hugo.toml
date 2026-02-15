@@ -27,8 +27,26 @@ theme = "PaperMod"
 
   images = ["/og-default.png"]
 
+  keywords = ["claude code", "AI", "software development", "anthropic", "claude"]
+
   [params.assets]
     favicon = "/favicon.svg"
+    favicon16x16 = "/favicon-16x16.png"
+    favicon32x32 = "/favicon-32x32.png"
+    apple_touch_icon = "/apple-touch-icon.png"
+    theme_color = "#1a1a2e"
+    msapplication_TileColor = "#1a1a2e"
+
+  [params.schema]
+    publisherType = "Person"
+    sameAs = ["https://x.com/bfeld", "https://www.linkedin.com/in/bfeld", "https://github.com/bradfeld"]
+
+  [params.cover]
+    linkFullImages = true
+    responsiveImages = true
+
+  [params.footer]
+    text = "Built with Claude Code"
 
   [params.homeInfoParams]
     Title = "Adventures in Claude"
