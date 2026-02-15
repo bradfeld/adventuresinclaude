@@ -12,7 +12,8 @@
     { name: 'magazine', label: 'Magazine', light: '#ffffff', dark: '#111111' },
     { name: 'brutalist', label: 'Brutalist', light: '#ffffff', dark: '#0a0a0a' },
     { name: 'e-ink', label: 'E-ink', light: '#f9f9f6', dark: '#1a1a18' },
-    { name: 'cyberpunk', label: 'Cyberpunk', light: '#e8eaf0', dark: '#0a0a14' }
+    { name: 'cyberpunk', label: 'Cyberpunk', light: '#e8eaf0', dark: '#0a0a14' },
+    { name: 'colorful', label: 'Colorful', light: '#fffbf5', dark: '#110e20' }
   ];
 
   // Default color palettes per preset (for color picker initialization)
@@ -56,6 +57,10 @@
     'cyberpunk': {
       light: { theme:'#e8eaf0', entry:'#dde0e8', primary:'#1a1030', secondary:'#4a3a6a', tertiary:'#c0bcd0', content:'#221840', 'code-bg':'#d0cce0', border:'#8080aa' },
       dark:  { theme:'#0a0a14', entry:'#0e0e1e', primary:'#e0e0ff', secondary:'#8888cc', tertiary:'#1a1a2e', content:'#d0d0ee', 'code-bg':'#12121e', border:'#00ffff' }
+    },
+    'colorful': {
+      light: { theme:'#fffbf5', entry:'#fff5eb', primary:'#1e1040', secondary:'#6b4c9a', tertiary:'#ede4f7', content:'#2a1a50', 'code-bg':'#f3ecff', border:'#e0d0f0' },
+      dark:  { theme:'#110e20', entry:'#1a1630', primary:'#f0e8ff', secondary:'#a890d0', tertiary:'#2a2244', content:'#e0d4f0', 'code-bg':'#1e1a30', border:'#332a50' }
     }
   };
 
@@ -70,7 +75,8 @@
     'magazine':   { bodyFont: "'Inter', 'Helvetica Neue', sans-serif", headingFont: "'Playfair Display', 'Georgia', serif", codeFont: "'JetBrains Mono', monospace", bodySize: 17, lineHeight: 1.7, headingWeight: 700, mainWidth: 820, gap: 32, contentGap: 28, radius: 2 },
     'brutalist':  { bodyFont: "'Space Grotesk', 'Arial', sans-serif", headingFont: "'Space Grotesk', 'Arial', sans-serif", codeFont: "'JetBrains Mono', monospace", bodySize: 17, lineHeight: 1.6, headingWeight: 700, mainWidth: 780, gap: 20, contentGap: 16, radius: 0 },
     'e-ink':      { bodyFont: "'Lora', 'Georgia', serif", headingFont: "'Lora', 'Georgia', serif", codeFont: "'JetBrains Mono', monospace", bodySize: 20, lineHeight: 1.9, headingWeight: 600, mainWidth: 600, gap: 24, contentGap: 20, radius: 0 },
-    'cyberpunk':  { bodyFont: "'JetBrains Mono', 'Fira Code', monospace", headingFont: "'Space Grotesk', sans-serif", codeFont: "'JetBrains Mono', monospace", bodySize: 15, lineHeight: 1.7, headingWeight: 700, mainWidth: 760, gap: 20, contentGap: 18, radius: 0 }
+    'cyberpunk':  { bodyFont: "'JetBrains Mono', 'Fira Code', monospace", headingFont: "'Space Grotesk', sans-serif", codeFont: "'JetBrains Mono', monospace", bodySize: 15, lineHeight: 1.7, headingWeight: 700, mainWidth: 760, gap: 20, contentGap: 18, radius: 0 },
+    'colorful':   { bodyFont: "'DM Sans', 'Helvetica Neue', sans-serif", headingFont: "'Space Grotesk', sans-serif", codeFont: "'JetBrains Mono', monospace", bodySize: 17, lineHeight: 1.7, headingWeight: 700, mainWidth: 720, gap: 24, contentGap: 20, radius: 12 }
   };
 
   // ── State ────────────────────────────────────────────────────────

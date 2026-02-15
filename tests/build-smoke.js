@@ -122,7 +122,7 @@ if (cssFiles.length > 0) {
 
   const THEMES_IN_CSS = [
     'terminal', 'manuscript', 'blueprint', 'amber', 'claude',
-    'magazine', 'brutalist', 'e-ink', 'cyberpunk'
+    'magazine', 'brutalist', 'e-ink', 'cyberpunk', 'colorful'
   ];
 
   for (const theme of THEMES_IN_CSS) {

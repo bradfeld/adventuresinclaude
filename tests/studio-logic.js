@@ -347,7 +347,7 @@ console.log('\n5. Source Data Integrity');
 
 test('PRESET_COLORS has light and dark for every theme', () => {
   const ALL_THEMES = ['default', 'terminal', 'manuscript', 'blueprint', 'amber', 'claude',
-    'magazine', 'brutalist', 'e-ink', 'cyberpunk'];
+    'magazine', 'brutalist', 'e-ink', 'cyberpunk', 'colorful'];
   // Extract just the PRESET_COLORS section for testing
   const colorSection = STUDIO_JS.substring(
     STUDIO_JS.indexOf('var PRESET_COLORS'),

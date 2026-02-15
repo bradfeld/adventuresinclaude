@@ -21,7 +21,7 @@ const FOOTER_HTML = path.join(ROOT, 'layouts/partials/extend_footer.html');
 // "default" theme uses PaperMod's built-in vars, so it has no [data-full-theme] block
 const THEMES_WITH_CSS = [
   'terminal', 'manuscript', 'blueprint', 'amber', 'claude',
-  'magazine', 'brutalist', 'e-ink', 'cyberpunk'
+  'magazine', 'brutalist', 'e-ink', 'cyberpunk', 'colorful'
 ];
 
 const ALL_THEMES = ['default', ...THEMES_WITH_CSS];

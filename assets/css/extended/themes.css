@@ -713,6 +713,121 @@
 }
 
 /* ============================================
+   Theme: Colorful
+   Vibrant, polychromatic, playful
+   ============================================ */
+[data-full-theme="colorful"] {
+  --radius: 12px;
+  --gap: 24px;
+  --content-gap: 20px;
+  --main-width: 720px;
+}
+[data-full-theme="colorful"] body,
+[data-full-theme="colorful"] .post-content {
+  font-family: 'DM Sans', 'Helvetica Neue', sans-serif;
+  font-size: 17px;
+  line-height: 1.7;
+}
+[data-full-theme="colorful"] h1,
+[data-full-theme="colorful"] h2,
+[data-full-theme="colorful"] h3,
+[data-full-theme="colorful"] h4,
+[data-full-theme="colorful"] h5,
+[data-full-theme="colorful"] h6,
+[data-full-theme="colorful"] .logo a,
+[data-full-theme="colorful"] .post-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+}
+[data-full-theme="colorful"] code,
+[data-full-theme="colorful"] pre code {
+  font-family: 'JetBrains Mono', monospace;
+}
+[data-full-theme="colorful"][data-theme="light"] {
+  --theme: #fffbf5;
+  --entry: #fff5eb;
+  --primary: #1e1040;
+  --secondary: #6b4c9a;
+  --tertiary: #ede4f7;
+  --content: #2a1a50;
+  --code-block-bg: #1e1040;
+  --code-bg: #f3ecff;
+  --border: #e0d0f0;
+}
+[data-full-theme="colorful"][data-theme="dark"] {
+  --theme: #110e20;
+  --entry: #1a1630;
+  --primary: #f0e8ff;
+  --secondary: #a890d0;
+  --tertiary: #2a2244;
+  --content: #e0d4f0;
+  --code-block-bg: #0e0a1a;
+  --code-bg: #1e1a30;
+  --border: #332a50;
+}
+/* Colorful links — warm orange */
+[data-full-theme="colorful"][data-theme="light"] .post-content a {
+  color: #d04800;
+  box-shadow: 0 1.5px 0 #d04800;
+}
+[data-full-theme="colorful"][data-theme="dark"] .post-content a {
+  color: #ff8040;
+  box-shadow: 0 1.5px 0 #ff8040;
+}
+/* Colorful headings — different hues per level */
+[data-full-theme="colorful"][data-theme="light"] h1 { color: #6a1b9a; }
+[data-full-theme="colorful"][data-theme="light"] h2 { color: #0d47a1; }
+[data-full-theme="colorful"][data-theme="light"] h3 { color: #00796b; }
+[data-full-theme="colorful"][data-theme="dark"] h1 { color: #ce93d8; }
+[data-full-theme="colorful"][data-theme="dark"] h2 { color: #64b5f6; }
+[data-full-theme="colorful"][data-theme="dark"] h3 { color: #4db6ac; }
+/* Gradient border on post entries */
+[data-full-theme="colorful"] .post-entry {
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  position: relative;
+}
+[data-full-theme="colorful"] .post-entry::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: calc(var(--radius) + 2px);
+  background: linear-gradient(135deg, #6a1b9a, #0d47a1, #00796b, #d04800);
+  z-index: -1;
+}
+/* Rainbow reading progress bar */
+[data-full-theme="colorful"] .reading-progress {
+  background: linear-gradient(90deg, #6a1b9a, #0d47a1, #00796b, #d04800, #c62828);
+}
+/* Colorful blockquote accent */
+[data-full-theme="colorful"][data-theme="light"] blockquote {
+  border-image: linear-gradient(180deg, #6a1b9a, #0d47a1) 1;
+  border-inline-start-width: 4px;
+  border-inline-start-style: solid;
+}
+[data-full-theme="colorful"][data-theme="dark"] blockquote {
+  border-image: linear-gradient(180deg, #ce93d8, #64b5f6) 1;
+  border-inline-start-width: 4px;
+  border-inline-start-style: solid;
+}
+/* Colorful code block accent */
+[data-full-theme="colorful"] .highlight {
+  border-left: 3px solid #6a1b9a;
+}
+[data-full-theme="colorful"][data-theme="dark"] .highlight {
+  border-left-color: #ce93d8;
+}
+/* Colorful tag pills */
+[data-full-theme="colorful"] .post-tags a {
+  background: linear-gradient(135deg, #f3ecff, #ebf5ff);
+  border-color: #d0c0f0;
+}
+[data-full-theme="colorful"][data-theme="dark"] .post-tags a {
+  background: linear-gradient(135deg, #1e1a30, #1a1e30);
+  border-color: #332a50;
+}
+
+/* ============================================
    Theme Picker Component
    ============================================ */
 .theme-picker-wrapper {
