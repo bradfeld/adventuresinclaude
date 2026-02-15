@@ -320,6 +320,399 @@
 }
 
 /* ============================================
+   Theme: Magazine
+   Editorial, print-inspired, wide content
+   ============================================ */
+[data-full-theme="magazine"] {
+  --radius: 2px;
+  --gap: 32px;
+  --content-gap: 28px;
+  --main-width: 820px;
+}
+[data-full-theme="magazine"] body,
+[data-full-theme="magazine"] .post-content {
+  font-family: 'Inter', 'Helvetica Neue', sans-serif;
+  font-size: 17px;
+  line-height: 1.7;
+}
+[data-full-theme="magazine"] h1 {
+  font-family: 'Playfair Display', 'Georgia', serif;
+  font-size: 52px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+[data-full-theme="magazine"] h2,
+[data-full-theme="magazine"] h3,
+[data-full-theme="magazine"] h4,
+[data-full-theme="magazine"] h5,
+[data-full-theme="magazine"] h6,
+[data-full-theme="magazine"] .logo a,
+[data-full-theme="magazine"] .post-title {
+  font-family: 'Playfair Display', 'Georgia', serif;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+[data-full-theme="magazine"][data-theme="light"] {
+  --theme: #ffffff;
+  --entry: #f8f8f8;
+  --primary: #111111;
+  --secondary: #555555;
+  --tertiary: #e0e0e0;
+  --content: #222222;
+  --code-block-bg: #1a1a1a;
+  --code-bg: #f0f0f0;
+  --border: #d0d0d0;
+}
+[data-full-theme="magazine"][data-theme="dark"] {
+  --theme: #111111;
+  --entry: #1a1a1a;
+  --primary: #f0f0f0;
+  --secondary: #999999;
+  --tertiary: #2a2a2a;
+  --content: #e0e0e0;
+  --code-block-bg: #0a0a0a;
+  --code-bg: #1e1e1e;
+  --border: #333333;
+}
+/* Lede paragraph */
+[data-full-theme="magazine"] .post-content > p:first-of-type {
+  font-size: 20px;
+  line-height: 1.6;
+  color: var(--primary);
+}
+/* Pull-quote blockquotes */
+[data-full-theme="magazine"] blockquote {
+  border-inline-start: none;
+  border-top: 3px solid var(--primary);
+  border-bottom: 3px solid var(--primary);
+  padding: 1.5em 0;
+  margin: 2em 0;
+  font-family: 'Playfair Display', 'Georgia', serif;
+  font-size: 1.3em;
+  font-style: italic;
+  line-height: 1.4;
+  text-align: center;
+}
+/* Gold accent links */
+[data-full-theme="magazine"][data-theme="light"] .post-content a {
+  color: #b8860b;
+  box-shadow: 0 1px 0 #b8860b;
+}
+[data-full-theme="magazine"][data-theme="dark"] .post-content a {
+  color: #daa520;
+  box-shadow: 0 1px 0 #daa520;
+}
+/* Bleed-width images */
+[data-full-theme="magazine"] .post-content img {
+  margin-left: -40px;
+  margin-right: -40px;
+  max-width: calc(100% + 80px);
+  width: calc(100% + 80px);
+}
+@media screen and (max-width: 768px) {
+  [data-full-theme="magazine"] .post-content img {
+    margin-left: -16px;
+    margin-right: -16px;
+    max-width: calc(100% + 32px);
+    width: calc(100% + 32px);
+  }
+}
+/* Thin rule between post entries */
+[data-full-theme="magazine"] .post-entry {
+  border: none;
+  border-bottom: 1px solid var(--border);
+  border-radius: 0;
+}
+
+/* ============================================
+   Theme: Brutalist
+   Raw, anti-design, bold and loud
+   ============================================ */
+[data-full-theme="brutalist"] {
+  --radius: 0px;
+  --gap: 20px;
+  --content-gap: 16px;
+  --main-width: 780px;
+}
+[data-full-theme="brutalist"] body,
+[data-full-theme="brutalist"] .post-content {
+  font-family: 'Space Grotesk', 'Arial', sans-serif;
+  font-size: 17px;
+  line-height: 1.6;
+}
+[data-full-theme="brutalist"] h1,
+[data-full-theme="brutalist"] h2,
+[data-full-theme="brutalist"] h3,
+[data-full-theme="brutalist"] h4,
+[data-full-theme="brutalist"] h5,
+[data-full-theme="brutalist"] h6,
+[data-full-theme="brutalist"] .logo a,
+[data-full-theme="brutalist"] .post-title {
+  font-family: 'Space Grotesk', 'Arial', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+[data-full-theme="brutalist"][data-theme="light"] {
+  --theme: #ffffff;
+  --entry: #ffffff;
+  --primary: #000000;
+  --secondary: #333333;
+  --tertiary: #e0e0e0;
+  --content: #111111;
+  --code-block-bg: #000000;
+  --code-bg: #f0f0f0;
+  --border: #000000;
+}
+[data-full-theme="brutalist"][data-theme="dark"] {
+  --theme: #0a0a0a;
+  --entry: #0a0a0a;
+  --primary: #ffffff;
+  --secondary: #cccccc;
+  --tertiary: #222222;
+  --content: #eeeeee;
+  --code-block-bg: #000000;
+  --code-bg: #1a1a1a;
+  --border: #ffffff;
+}
+/* Thick borders everywhere */
+[data-full-theme="brutalist"] .post-entry {
+  border: 3px solid var(--border);
+  box-shadow: 6px 6px 0 var(--border);
+}
+[data-full-theme="brutalist"] .post-entry:hover {
+  box-shadow: 8px 8px 0 var(--border);
+}
+[data-full-theme="brutalist"] blockquote {
+  border-inline-start: 6px solid var(--border);
+}
+[data-full-theme="brutalist"] .post-content hr {
+  border: none;
+  height: 8px;
+  background: var(--primary);
+  margin: 2em 0;
+}
+/* Red accents in light mode */
+[data-full-theme="brutalist"][data-theme="light"] .post-content a {
+  color: #cc0000;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+  box-shadow: none;
+}
+/* Yellow accents in dark mode */
+[data-full-theme="brutalist"][data-theme="dark"] .post-content a {
+  color: #ffdd00;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+  box-shadow: none;
+}
+/* No transitions — everything snaps */
+[data-full-theme="brutalist"],
+[data-full-theme="brutalist"] * {
+  transition: none !important;
+}
+/* Thick code block borders */
+[data-full-theme="brutalist"] .highlight,
+[data-full-theme="brutalist"] pre {
+  border: 3px solid var(--border);
+}
+
+/* ============================================
+   Theme: E-ink
+   Ultra-minimal, reader-focused
+   ============================================ */
+[data-full-theme="e-ink"] {
+  --radius: 0px;
+  --gap: 24px;
+  --content-gap: 20px;
+  --main-width: 600px;
+}
+[data-full-theme="e-ink"] body,
+[data-full-theme="e-ink"] .post-content {
+  font-family: 'Lora', 'Georgia', serif;
+  font-size: 20px;
+  line-height: 1.9;
+}
+[data-full-theme="e-ink"] h1,
+[data-full-theme="e-ink"] h2,
+[data-full-theme="e-ink"] h3,
+[data-full-theme="e-ink"] h4,
+[data-full-theme="e-ink"] h5,
+[data-full-theme="e-ink"] h6,
+[data-full-theme="e-ink"] .logo a,
+[data-full-theme="e-ink"] .post-title {
+  font-family: 'Lora', 'Georgia', serif;
+  font-weight: 600;
+}
+[data-full-theme="e-ink"][data-theme="light"] {
+  --theme: #f9f9f6;
+  --entry: #f4f4f0;
+  --primary: #222222;
+  --secondary: #666666;
+  --tertiary: #e0e0dc;
+  --content: #333333;
+  --code-block-bg: #222222;
+  --code-bg: #eeeeea;
+  --border: #cccccc;
+}
+[data-full-theme="e-ink"][data-theme="dark"] {
+  --theme: #1a1a18;
+  --entry: #222220;
+  --primary: #d4d4d0;
+  --secondary: #888884;
+  --tertiary: #2e2e2c;
+  --content: #c0c0bc;
+  --code-block-bg: #141412;
+  --code-bg: #282826;
+  --border: #3a3a38;
+}
+/* Grayscale images */
+[data-full-theme="e-ink"] img {
+  filter: grayscale(100%);
+}
+/* No shadows anywhere */
+[data-full-theme="e-ink"] .post-entry {
+  box-shadow: none;
+  border: none;
+  border-bottom: 0.5px solid var(--border);
+  border-radius: 0;
+}
+[data-full-theme="e-ink"] .theme-picker-dropdown {
+  box-shadow: none;
+}
+/* Dotted link underlines */
+[data-full-theme="e-ink"] .post-content a {
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-underline-offset: 3px;
+  box-shadow: none;
+}
+/* Hairline borders */
+[data-full-theme="e-ink"] blockquote {
+  border-inline-start: 0.5px solid var(--secondary);
+}
+/* Hidden reading progress (too flashy for e-ink) */
+[data-full-theme="e-ink"] .reading-progress {
+  display: none;
+}
+
+/* ============================================
+   Theme: Cyberpunk
+   Neon dark, futuristic, scanlines
+   ============================================ */
+[data-full-theme="cyberpunk"] {
+  --radius: 0px;
+  --gap: 20px;
+  --content-gap: 18px;
+  --main-width: 760px;
+}
+[data-full-theme="cyberpunk"] body,
+[data-full-theme="cyberpunk"] .post-content {
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 15px;
+  line-height: 1.7;
+}
+[data-full-theme="cyberpunk"] h1,
+[data-full-theme="cyberpunk"] h2,
+[data-full-theme="cyberpunk"] h3,
+[data-full-theme="cyberpunk"] h4,
+[data-full-theme="cyberpunk"] h5,
+[data-full-theme="cyberpunk"] h6,
+[data-full-theme="cyberpunk"] .logo a,
+[data-full-theme="cyberpunk"] .post-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+[data-full-theme="cyberpunk"][data-theme="light"] {
+  --theme: #e8eaf0;
+  --entry: #dde0e8;
+  --primary: #1a1030;
+  --secondary: #4a3a6a;
+  --tertiary: #c0bcd0;
+  --content: #221840;
+  --code-block-bg: #1a1030;
+  --code-bg: #d0cce0;
+  --border: #8080aa;
+}
+[data-full-theme="cyberpunk"][data-theme="dark"] {
+  --theme: #0a0a14;
+  --entry: #0e0e1e;
+  --primary: #e0e0ff;
+  --secondary: #8888cc;
+  --tertiary: #1a1a2e;
+  --content: #d0d0ee;
+  --code-block-bg: #06060e;
+  --code-bg: #12121e;
+  --border: #00ffff;
+}
+/* Neon cyan heading glow in dark mode */
+[data-full-theme="cyberpunk"][data-theme="dark"] h1,
+[data-full-theme="cyberpunk"][data-theme="dark"] h2,
+[data-full-theme="cyberpunk"][data-theme="dark"] h3 {
+  color: #00ffff;
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.5), 0 0 20px rgba(0, 255, 255, 0.2);
+}
+/* Neon pink links */
+[data-full-theme="cyberpunk"][data-theme="dark"] .post-content a {
+  color: #ff2daa;
+  box-shadow: 0 1px 0 #ff2daa;
+  text-shadow: 0 0 6px rgba(255, 45, 170, 0.3);
+}
+[data-full-theme="cyberpunk"][data-theme="light"] .post-content a {
+  color: #9b1b6b;
+  box-shadow: 0 1px 0 #9b1b6b;
+}
+/* Neon border on post entries */
+[data-full-theme="cyberpunk"][data-theme="dark"] .post-entry {
+  border: 1px solid #00ffff;
+  box-shadow: 0 0 8px rgba(0, 255, 255, 0.15), inset 0 0 8px rgba(0, 255, 255, 0.05);
+}
+[data-full-theme="cyberpunk"][data-theme="light"] .post-entry {
+  border: 1px solid #8080aa;
+}
+/* Scanline overlay in dark mode */
+[data-full-theme="cyberpunk"][data-theme="dark"] body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.08) 2px,
+    rgba(0, 0, 0, 0.08) 4px
+  );
+  z-index: 9998;
+}
+/* Blinking cursor on link hover */
+[data-full-theme="cyberpunk"] .post-content a::after {
+  content: '▌';
+  opacity: 0;
+  font-size: 0.8em;
+  margin-left: 2px;
+}
+[data-full-theme="cyberpunk"] .post-content a:hover::after {
+  animation: blink-cursor 0.8s step-end infinite;
+}
+@keyframes blink-cursor {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+/* Neon blockquote border */
+[data-full-theme="cyberpunk"][data-theme="dark"] blockquote {
+  border-inline-start: 3px solid #ff2daa;
+  box-shadow: -4px 0 8px rgba(255, 45, 170, 0.15);
+}
+
+/* ============================================
    Theme Picker Component
    ============================================ */
 .theme-picker-wrapper {

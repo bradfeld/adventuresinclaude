@@ -1,0 +1,232 @@
+{{- define "main" }}
+<article class="post-single theme-studio-page">
+  <header class="post-header">
+    <h1 class="post-title">Theme Studio</h1>
+    <p class="post-description">Customize every visual element — colors, typography, layout, and effects.</p>
+  </header>
+
+  <div class="studio-container">
+    <!-- Left Panel: Controls -->
+    <div class="studio-controls" id="studio-controls">
+
+      <!-- Presets -->
+      <section class="control-group">
+        <h3 class="control-group-title">Presets</h3>
+        <div class="preset-grid" id="preset-grid"></div>
+      </section>
+
+      <!-- Colors -->
+      <section class="control-group">
+        <h3 class="control-group-title">Colors</h3>
+        <div class="color-mode-tabs">
+          <button class="color-tab active" data-color-mode="light">Light Palette</button>
+          <button class="color-tab" data-color-mode="dark">Dark Palette</button>
+        </div>
+        <div class="color-controls" id="color-controls-light">
+          <label class="color-row"><span>Background</span><input type="color" data-var="theme" data-mode="light"></label>
+          <label class="color-row"><span>Surface</span><input type="color" data-var="entry" data-mode="light"></label>
+          <label class="color-row"><span>Primary Text</span><input type="color" data-var="primary" data-mode="light"></label>
+          <label class="color-row"><span>Secondary</span><input type="color" data-var="secondary" data-mode="light"></label>
+          <label class="color-row"><span>Muted</span><input type="color" data-var="tertiary" data-mode="light"></label>
+          <label class="color-row"><span>Content</span><input type="color" data-var="content" data-mode="light"></label>
+          <label class="color-row"><span>Code Bg</span><input type="color" data-var="code-bg" data-mode="light"></label>
+          <label class="color-row"><span>Border</span><input type="color" data-var="border" data-mode="light"></label>
+        </div>
+        <div class="color-controls" id="color-controls-dark" style="display:none">
+          <label class="color-row"><span>Background</span><input type="color" data-var="theme" data-mode="dark"></label>
+          <label class="color-row"><span>Surface</span><input type="color" data-var="entry" data-mode="dark"></label>
+          <label class="color-row"><span>Primary Text</span><input type="color" data-var="primary" data-mode="dark"></label>
+          <label class="color-row"><span>Secondary</span><input type="color" data-var="secondary" data-mode="dark"></label>
+          <label class="color-row"><span>Muted</span><input type="color" data-var="tertiary" data-mode="dark"></label>
+          <label class="color-row"><span>Content</span><input type="color" data-var="content" data-mode="dark"></label>
+          <label class="color-row"><span>Code Bg</span><input type="color" data-var="code-bg" data-mode="dark"></label>
+          <label class="color-row"><span>Border</span><input type="color" data-var="border" data-mode="dark"></label>
+        </div>
+      </section>
+
+      <!-- Typography -->
+      <section class="control-group">
+        <h3 class="control-group-title">Typography</h3>
+        <label class="control-row">
+          <span>Body Font</span>
+          <select id="body-font">
+            <option value="system-ui, sans-serif">System Default</option>
+            <option value="'Inter', sans-serif">Inter</option>
+            <option value="'DM Sans', sans-serif">DM Sans</option>
+            <option value="'Space Grotesk', sans-serif">Space Grotesk</option>
+            <option value="'IBM Plex Sans', sans-serif">IBM Plex Sans</option>
+            <option value="'Lora', serif">Lora</option>
+            <option value="'Playfair Display', serif">Playfair Display</option>
+            <option value="'JetBrains Mono', monospace">JetBrains Mono</option>
+            <option value="'IBM Plex Mono', monospace">IBM Plex Mono</option>
+          </select>
+        </label>
+        <label class="control-row">
+          <span>Heading Font</span>
+          <select id="heading-font">
+            <option value="inherit">Same as Body</option>
+            <option value="'Inter', sans-serif">Inter</option>
+            <option value="'DM Sans', sans-serif">DM Sans</option>
+            <option value="'Space Grotesk', sans-serif">Space Grotesk</option>
+            <option value="'IBM Plex Sans', sans-serif">IBM Plex Sans</option>
+            <option value="'Lora', serif">Lora</option>
+            <option value="'Playfair Display', serif">Playfair Display</option>
+            <option value="'JetBrains Mono', monospace">JetBrains Mono</option>
+          </select>
+        </label>
+        <label class="control-row">
+          <span>Code Font</span>
+          <select id="code-font">
+            <option value="'JetBrains Mono', monospace">JetBrains Mono</option>
+            <option value="'IBM Plex Mono', monospace">IBM Plex Mono</option>
+            <option value="'DM Mono', monospace">DM Mono</option>
+            <option value="'Fira Code', monospace">Fira Code</option>
+          </select>
+        </label>
+        <label class="control-row">
+          <span>Body Size <output id="body-size-val">17px</output></span>
+          <input type="range" id="body-size" min="14" max="22" value="17" step="1">
+        </label>
+        <label class="control-row">
+          <span>Line Height <output id="line-height-val">1.7</output></span>
+          <input type="range" id="line-height" min="1.4" max="2.0" value="1.7" step="0.05">
+        </label>
+        <label class="control-row">
+          <span>Heading Weight</span>
+          <select id="heading-weight">
+            <option value="400">Regular (400)</option>
+            <option value="500">Medium (500)</option>
+            <option value="600" selected>Semibold (600)</option>
+            <option value="700">Bold (700)</option>
+            <option value="800">Extra Bold (800)</option>
+          </select>
+        </label>
+      </section>
+
+      <!-- Layout -->
+      <section class="control-group">
+        <h3 class="control-group-title">Layout</h3>
+        <label class="control-row">
+          <span>Content Width <output id="content-width-val">720px</output></span>
+          <input type="range" id="content-width" min="560" max="900" value="720" step="10">
+        </label>
+        <label class="control-row">
+          <span>Gap <output id="gap-val">24px</output></span>
+          <input type="range" id="gap" min="12" max="40" value="24" step="2">
+        </label>
+        <label class="control-row">
+          <span>Content Gap <output id="content-gap-val">20px</output></span>
+          <input type="range" id="content-gap" min="12" max="36" value="20" step="2">
+        </label>
+        <label class="control-row">
+          <span>Border Radius <output id="radius-val">8px</output></span>
+          <input type="range" id="radius" min="0" max="16" value="8" step="1">
+        </label>
+      </section>
+
+      <!-- Effects -->
+      <section class="control-group">
+        <h3 class="control-group-title">Effects</h3>
+        <label class="toggle-row"><input type="checkbox" id="effect-dropcaps"><span>Drop Caps</span></label>
+        <label class="toggle-row"><input type="checkbox" id="effect-dashed-borders"><span>Dashed Borders</span></label>
+        <label class="toggle-row"><input type="checkbox" id="effect-grid-bg"><span>Grid Background</span></label>
+        <label class="toggle-row"><input type="checkbox" id="effect-text-glow"><span>Text Glow (dark mode)</span></label>
+        <label class="toggle-row"><input type="checkbox" id="effect-grayscale"><span>Grayscale Images</span></label>
+        <label class="control-row">
+          <span>Section Breaks</span>
+          <select id="effect-section-break">
+            <option value="default">Line (default)</option>
+            <option value="asterisks">* * *</option>
+            <option value="bar">Thick Bar</option>
+            <option value="none">Hidden</option>
+          </select>
+        </label>
+        <label class="control-row">
+          <span>Link Style</span>
+          <select id="effect-link-style">
+            <option value="default">Underline (default)</option>
+            <option value="dotted">Dotted</option>
+            <option value="thick">Thick Underline</option>
+            <option value="highlight">Highlight</option>
+          </select>
+        </label>
+        <label class="control-row">
+          <span>Blockquote Style</span>
+          <select id="effect-blockquote-style">
+            <option value="default">Left Border (default)</option>
+            <option value="dashed">Dashed Border</option>
+            <option value="pull-quote">Pull Quote (centered)</option>
+            <option value="italic">Italic Only</option>
+          </select>
+        </label>
+      </section>
+
+      <!-- Export -->
+      <section class="control-group">
+        <h3 class="control-group-title">Export & Share</h3>
+        <div class="export-buttons">
+          <button class="export-btn" id="copy-css-btn">Copy CSS</button>
+          <button class="export-btn" id="share-url-btn">Share URL</button>
+          <button class="export-btn" id="export-json-btn">Export JSON</button>
+          <button class="export-btn" id="import-json-btn">Import JSON</button>
+          <input type="file" id="import-json-input" accept=".json" style="display:none">
+        </div>
+        <div class="export-feedback" id="export-feedback"></div>
+      </section>
+    </div>
+
+    <!-- Right Panel: Live Preview -->
+    <div class="studio-preview" id="studio-preview">
+      <div class="preview-content">
+        <h1>The Quick Brown Fox</h1>
+        <p>This is a sample paragraph showing how your theme affects body text. The quick brown fox jumps over the lazy dog. Good typography makes reading effortless, while poor typography creates friction between the reader and the content.</p>
+
+        <h2>A Second-Level Heading</h2>
+        <p>Here is another paragraph with a <a href="#">sample link</a> to see how links appear in your chosen theme. Notice how the font family, size, and line height interact to create the overall reading rhythm.</p>
+
+        <blockquote>
+          <p>This is a blockquote. It should stand out from the surrounding text while remaining readable and visually connected to the overall design.</p>
+        </blockquote>
+
+        <h3>Code Example</h3>
+        <pre><code>function greet(name) {
+  const message = `Hello, ${name}!`;
+  console.log(message);
+  return message;
+}</code></pre>
+
+        <ul>
+          <li>First item in an unordered list</li>
+          <li>Second item with more detail</li>
+          <li>Third item to show spacing</li>
+        </ul>
+
+        <hr>
+
+        <div class="preview-post-entry post-entry">
+          <header class="entry-header"><h2><a href="#">Sample Post Entry Card</a></h2></header>
+          <section class="entry-content"><p>This shows how post cards look on the homepage and archive pages. The border radius, shadows, and spacing all come from your theme settings.</p></section>
+          <footer class="entry-footer"><span>2 min read</span></footer>
+        </div>
+
+        <div class="preview-tags" style="margin-top:1.5em">
+          <a href="#" class="tag-link" style="display:inline-block;padding:4px 12px;border:1px solid var(--border);border-radius:var(--radius);font-size:0.85em;margin:2px;color:var(--secondary)">claude-code</a>
+          <a href="#" class="tag-link" style="display:inline-block;padding:4px 12px;border:1px solid var(--border);border-radius:var(--radius);font-size:0.85em;margin:2px;color:var(--secondary)">themes</a>
+          <a href="#" class="tag-link" style="display:inline-block;padding:4px 12px;border:1px solid var(--border);border-radius:var(--radius);font-size:0.85em;margin:2px;color:var(--secondary)">css</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+{{ $studioCSS := resources.Get "css/extended/theme-studio.css" }}
+{{ if $studioCSS }}
+<style>{{ $studioCSS.Content | safeCSS }}</style>
+{{ end }}
+
+{{ $studioJS := resources.Get "js/theme-studio.js" }}
+{{ if $studioJS }}
+<script>{{ $studioJS.Content | safeJS }}</script>
+{{ end }}
+
+{{- end }}{{/* end main */}}

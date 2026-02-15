@@ -27,13 +27,29 @@
     { name: 'manuscript', label: 'Manuscript', light: '#faf7f0', dark: '#1c1a16', border: '#ddd5c8' },
     { name: 'blueprint', label: 'Blueprint', light: '#f4f6fa', dark: '#0c1220', border: '#bcc6dd' },
     { name: 'amber', label: 'Amber', light: '#faf5ee', dark: '#12100a', border: '#daccb0' },
-    { name: 'claude', label: 'Claude', light: '#faf8f6', dark: '#1a1714', border: '#e0d4c8' }
+    { name: 'claude', label: 'Claude', light: '#faf8f6', dark: '#1a1714', border: '#e0d4c8' },
+    { name: 'magazine', label: 'Magazine', light: '#ffffff', dark: '#111111', border: '#d0d0d0' },
+    { name: 'brutalist', label: 'Brutalist', light: '#ffffff', dark: '#0a0a0a', border: '#000000' },
+    { name: 'e-ink', label: 'E-ink', light: '#f9f9f6', dark: '#1a1a18', border: '#cccccc' },
+    { name: 'cyberpunk', label: 'Cyberpunk', light: '#e8eaf0', dark: '#0a0a14', border: '#8080aa' },
+    { name: 'custom', label: 'Custom...', light: '#888888', dark: '#444444', border: '#888888', isCustom: true }
   ];
 
   var currentTheme = localStorage.getItem('full-theme') || 'default';
   var dropdown = document.getElementById('theme-picker-dropdown');
   var btn = document.getElementById('theme-picker-btn');
   if (!dropdown || !btn) return;
+
+  function clearCustomInlineStyles() {
+    var html = document.documentElement;
+    var cssVars = ['--theme','--entry','--primary','--secondary','--tertiary','--content','--code-block-bg','--code-bg','--border','--main-width','--gap','--content-gap','--radius'];
+    cssVars.forEach(function(v) { html.style.removeProperty(v); });
+    // Remove effect classes
+    html.className = html.className.split(' ').filter(function(c) { return c && c.indexOf('effect-') !== 0; }).join(' ');
+    // Remove custom style element
+    var customStyle = document.getElementById('custom-theme-style');
+    if (customStyle) customStyle.remove();
+  }
 
   function buildDropdown() {
     dropdown.innerHTML = '';
@@ -47,7 +63,16 @@
         '<span class="theme-label">' + t.label + '</span>' +
         '<span class="theme-check">&#10003;</span>';
       option.addEventListener('click', function() {
-        setTheme(t.name);
+        if (t.isCustom) {
+          var hasSettings = localStorage.getItem('custom-theme-settings');
+          if (hasSettings) {
+            setTheme('custom');
+          } else {
+            window.location.href = '/theme-studio/';
+          }
+        } else {
+          setTheme(t.name);
+        }
       });
       dropdown.appendChild(option);
     });
@@ -57,6 +82,26 @@
     currentTheme = name;
     localStorage.setItem('full-theme', name);
     document.documentElement.setAttribute('data-full-theme', name);
+    if (name !== 'custom') {
+      clearCustomInlineStyles();
+    } else {
+      // Re-apply custom settings from localStorage
+      try {
+        var s = JSON.parse(localStorage.getItem('custom-theme-settings'));
+        if (s) {
+          var html = document.documentElement;
+          var isDark = html.getAttribute('data-theme') === 'dark';
+          var c = isDark ? s.colors.dark : s.colors.light;
+          if (c) { for (var k in c) { if (c.hasOwnProperty(k)) html.style.setProperty('--' + k, c[k]); } }
+          if (s.layout) {
+            html.style.setProperty('--main-width', s.layout.mainWidth + 'px');
+            html.style.setProperty('--gap', s.layout.gap + 'px');
+            html.style.setProperty('--content-gap', s.layout.contentGap + 'px');
+            html.style.setProperty('--radius', s.layout.radius + 'px');
+          }
+        }
+      } catch(e) {}
+    }
     buildDropdown();
     dropdown.classList.add('hidden');
   }

@@ -1,0 +1,426 @@
+/* ============================================
+   Theme Studio — Controls & Layout
+   ============================================ */
+
+.theme-studio-page .post-header {
+  text-align: center;
+  margin-bottom: 1.5em;
+}
+.theme-studio-page .post-description {
+  color: var(--secondary);
+}
+
+.studio-container {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 24px;
+  align-items: start;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Controls Panel */
+.studio-controls {
+  position: sticky;
+  top: 80px;
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
+  padding: 16px;
+  background: color-mix(in srgb, var(--entry) 80%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+.studio-controls::-webkit-scrollbar {
+  width: 4px;
+}
+.studio-controls::-webkit-scrollbar-thumb {
+  background: var(--tertiary);
+  border-radius: 2px;
+}
+
+/* Control Groups */
+.control-group {
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+.control-group:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+.control-group-title {
+  font-size: 0.75em;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--secondary);
+  margin: 0 0 12px;
+  font-weight: 600;
+}
+
+/* Preset Grid */
+.preset-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px;
+}
+.preset-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: none;
+  color: var(--primary);
+  font-size: 12px;
+  font-family: inherit;
+  cursor: pointer;
+  text-align: left;
+}
+.preset-btn:hover {
+  background: var(--code-bg);
+}
+.preset-btn.active {
+  border-color: var(--primary);
+  background: var(--code-bg);
+  font-weight: 600;
+}
+.preset-swatch {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  border: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+.preset-swatch-dark {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 50%;
+  height: 100%;
+}
+
+/* Color Controls */
+.color-mode-tabs {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 12px;
+}
+.color-tab {
+  flex: 1;
+  padding: 6px 8px;
+  font-size: 12px;
+  font-family: inherit;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: none;
+  color: var(--secondary);
+  cursor: pointer;
+}
+.color-tab.active {
+  background: var(--code-bg);
+  color: var(--primary);
+  font-weight: 600;
+}
+.color-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 0;
+  font-size: 13px;
+  color: var(--content);
+  cursor: pointer;
+}
+.color-row input[type="color"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 28px;
+  height: 24px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: none;
+  cursor: pointer;
+  padding: 1px;
+}
+.color-row input[type="color"]::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+.color-row input[type="color"]::-webkit-color-swatch {
+  border: none;
+  border-radius: 2px;
+}
+
+/* Control Rows (selects, sliders) */
+.control-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 0;
+  font-size: 13px;
+  color: var(--content);
+  gap: 8px;
+}
+.control-row span {
+  flex-shrink: 0;
+}
+.control-row output {
+  font-size: 11px;
+  color: var(--secondary);
+  margin-left: 4px;
+}
+.control-row select {
+  max-width: 160px;
+  padding: 4px 8px;
+  font-size: 12px;
+  font-family: inherit;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: var(--entry);
+  color: var(--primary);
+}
+.control-row input[type="range"] {
+  width: 120px;
+  accent-color: var(--primary);
+}
+
+/* Toggle Rows */
+.toggle-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 0;
+  font-size: 13px;
+  color: var(--content);
+  cursor: pointer;
+}
+.toggle-row input[type="checkbox"] {
+  accent-color: var(--primary);
+}
+
+/* Export Buttons */
+.export-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+}
+.export-btn {
+  padding: 8px 12px;
+  font-size: 12px;
+  font-family: inherit;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: none;
+  color: var(--primary);
+  cursor: pointer;
+}
+.export-btn:hover {
+  background: var(--code-bg);
+}
+.export-feedback {
+  font-size: 12px;
+  color: var(--secondary);
+  margin-top: 8px;
+  min-height: 1.4em;
+  text-align: center;
+}
+
+/* Preview Panel */
+.studio-preview {
+  padding: 32px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--theme);
+  min-height: 600px;
+}
+.preview-content h1 {
+  margin-top: 0;
+}
+.preview-content pre {
+  padding: 16px;
+  border-radius: var(--radius);
+  background: var(--code-block-bg);
+  color: var(--primary);
+  overflow-x: auto;
+  font-size: 14px;
+}
+.preview-content code {
+  font-size: 14px;
+}
+.preview-content blockquote {
+  border-inline-start: 3px solid var(--secondary);
+  padding-inline-start: 1em;
+  color: var(--secondary);
+  margin: 1em 0;
+}
+.preview-post-entry {
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+.preview-post-entry h2 {
+  margin: 0 0 0.5em;
+  font-size: 1.2em;
+}
+.preview-post-entry h2 a {
+  color: var(--primary);
+  text-decoration: none;
+}
+.preview-post-entry .entry-content p {
+  margin: 0;
+  font-size: 0.9em;
+  color: var(--secondary);
+}
+.preview-post-entry .entry-footer {
+  margin-top: 0.5em;
+  font-size: 0.8em;
+  color: var(--tertiary);
+}
+
+/* Mobile Responsive */
+@media screen and (max-width: 768px) {
+  .studio-container {
+    grid-template-columns: 1fr;
+  }
+  .studio-controls {
+    position: static;
+    max-height: none;
+  }
+  .studio-preview {
+    padding: 20px;
+  }
+  .preset-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ============================================
+   Effect Classes — applied to <html> element
+   ============================================ */
+
+/* Drop Caps */
+.effect-dropcaps .post-content > p:first-of-type::first-letter,
+.effect-dropcaps .preview-content > p:first-of-type::first-letter {
+  font-size: 3.2em;
+  float: left;
+  line-height: 0.8;
+  margin-right: 0.08em;
+  margin-top: 0.07em;
+  color: var(--primary);
+  font-weight: 700;
+}
+
+/* Dashed Borders */
+.effect-dashed-borders .post-entry,
+.effect-dashed-borders .preview-post-entry {
+  border-style: dashed;
+}
+.effect-dashed-borders blockquote {
+  border-inline-start-style: dashed;
+}
+
+/* Grid Background */
+.effect-grid-bg body {
+  background-image:
+    linear-gradient(rgba(128, 128, 128, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(128, 128, 128, 0.08) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Text Glow (dark mode only) */
+[data-theme="dark"].effect-text-glow body,
+[data-theme="dark"] .effect-text-glow body {
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.06);
+}
+
+/* Grayscale Images */
+.effect-grayscale img {
+  filter: grayscale(100%);
+}
+.effect-grayscale img:hover {
+  filter: grayscale(0%);
+}
+
+/* Section Break: Asterisks */
+.effect-hr-asterisks .post-content hr,
+.effect-hr-asterisks .preview-content hr {
+  border: none;
+  text-align: center;
+  height: auto;
+  background: none;
+}
+.effect-hr-asterisks .post-content hr::before,
+.effect-hr-asterisks .preview-content hr::before {
+  content: "* * *";
+  letter-spacing: 1em;
+  color: var(--secondary);
+}
+
+/* Section Break: Bar */
+.effect-hr-bar .post-content hr,
+.effect-hr-bar .preview-content hr {
+  border: none;
+  height: 6px;
+  background: var(--primary);
+}
+
+/* Section Break: Hidden */
+.effect-hr-none .post-content hr,
+.effect-hr-none .preview-content hr {
+  display: none;
+}
+
+/* Link Style: Dotted */
+.effect-link-dotted .post-content a,
+.effect-link-dotted .preview-content a {
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-underline-offset: 3px;
+  box-shadow: none;
+}
+
+/* Link Style: Thick */
+.effect-link-thick .post-content a,
+.effect-link-thick .preview-content a {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+  box-shadow: none;
+}
+
+/* Link Style: Highlight */
+.effect-link-highlight .post-content a,
+.effect-link-highlight .preview-content a {
+  text-decoration: none;
+  box-shadow: none;
+  background: color-mix(in srgb, var(--primary) 10%, transparent);
+  padding: 1px 4px;
+  border-radius: 2px;
+}
+
+/* Blockquote: Dashed */
+.effect-bq-dashed blockquote {
+  border-inline-start-style: dashed;
+}
+
+/* Blockquote: Pull Quote */
+.effect-bq-pullquote blockquote {
+  border-inline-start: none;
+  border-top: 3px solid var(--primary);
+  border-bottom: 3px solid var(--primary);
+  padding: 1.5em 0;
+  margin: 2em 0;
+  font-size: 1.2em;
+  font-style: italic;
+  text-align: center;
+}
+
+/* Blockquote: Italic Only */
+.effect-bq-italic blockquote {
+  border-inline-start: none;
+  padding-inline-start: 0;
+  font-style: italic;
+}

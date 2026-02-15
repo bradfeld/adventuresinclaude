@@ -103,6 +103,11 @@ theme = "PaperMod"
     url = "https://adventuresinclaude.kit.com/cdea0d078b"
     weight = 35
   [[menu.main]]
+    identifier = "themes"
+    name = "Themes"
+    url = "/theme-studio/"
+    weight = 38
+  [[menu.main]]
     identifier = "about"
     name = "About"
     url = "/about/"

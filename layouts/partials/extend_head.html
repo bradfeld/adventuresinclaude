@@ -1,7 +1,38 @@
 <meta name="google-site-verification" content="P0_zXdjBQh6wnuM1WQNXmhgsVNdSBjNLUQ_7jKjelDU" />
 <!-- Theme system: FOUC prevention (must be synchronous, before body renders) -->
 <script>
-(function(){var t=localStorage.getItem('full-theme')||'default';document.documentElement.setAttribute('data-full-theme',t);})();
+(function(){
+  var h=document.documentElement,t=localStorage.getItem('full-theme')||'default';
+  h.setAttribute('data-full-theme',t);
+  if(t==='custom'){
+    try{
+      var s=JSON.parse(localStorage.getItem('custom-theme-settings'));
+      if(s){
+        var isDark=h.getAttribute('data-theme')==='dark';
+        var c=isDark?s.colors.dark:s.colors.light;
+        if(c){for(var k in c){if(c.hasOwnProperty(k))h.style.setProperty('--'+k,c[k])}}
+        if(s.layout){
+          h.style.setProperty('--main-width',s.layout.mainWidth+'px');
+          h.style.setProperty('--gap',s.layout.gap+'px');
+          h.style.setProperty('--content-gap',s.layout.contentGap+'px');
+          h.style.setProperty('--radius',s.layout.radius+'px');
+        }
+        var fx=[];
+        if(s.effects){
+          if(s.effects.dropCaps)fx.push('effect-dropcaps');
+          if(s.effects.dashedBorders)fx.push('effect-dashed-borders');
+          if(s.effects.gridBackground)fx.push('effect-grid-bg');
+          if(s.effects.textGlow)fx.push('effect-text-glow');
+          if(s.effects.grayscale)fx.push('effect-grayscale');
+          if(s.effects.sectionBreak&&s.effects.sectionBreak!=='default')fx.push('effect-hr-'+s.effects.sectionBreak);
+          if(s.effects.linkStyle&&s.effects.linkStyle!=='default')fx.push('effect-link-'+s.effects.linkStyle);
+          if(s.effects.blockquoteStyle&&s.effects.blockquoteStyle!=='default')fx.push('effect-bq-'+s.effects.blockquoteStyle);
+        }
+        if(fx.length)h.className=fx.join(' ');
+      }
+    }catch(e){}
+  }
+})();
 </script>
 <!-- Theme system: Google Fonts for all theme font families -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
