@@ -9,6 +9,7 @@ theme = "PaperMod"
   env = "production"
   description = "Building with AI - Claude Code, CompanyOS, and the future of software development"
   author = "Brad Feld"
+  favicon = "/favicon.svg"
   defaultTheme = "auto"
   ShowReadingTime = true
   ShowShareButtons = false
