@@ -90,7 +90,7 @@ The whole system is togglable because sometimes you want the clean monochrome lo
 
 ## The Numbers
 
-By the end of Sunday:
+By mid-afternoon on Sunday while watching [Memory of a Killer](https://en.wikipedia.org/wiki/Memory_of_a_Killer_(TV_series)) I'd covered plenty of ground.
 
 | Repo | Commits | Highlights |
 |------|---------|------------|
