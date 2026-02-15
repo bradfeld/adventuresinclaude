@@ -3,7 +3,7 @@ title: "Sixteen Commits and a Unicorn"
 date: 2026-02-15T15:00:00-07:00
 tags: ["claude-code", "themes", "workflow", "shipping"]
 description: "Sunday: From disaster recovery to pastel unicorns"
-draft: true
+draft: false
 ---
 
 Today was one of those days where you look up and realize you've been shipping across six different repositories all Sunday. Sixteen commits just to this blog. Thirty-plus across everything else. And somewhere in the middle, a theme called Unicorn got pastel pink cherry blossoms.
