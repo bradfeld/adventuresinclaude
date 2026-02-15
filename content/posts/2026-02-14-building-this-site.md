@@ -14,7 +14,7 @@ I wasn't ready to move [feld.com](https://feld.com) off WordPress. But the idea 
 
 I'd been writing about Claude Code and AI development on feld.com for the past few weeks. Four of my last five posts were about this stuff - [CEOS](https://feld.com/archives/2026/02/streamline-workflow-with-ceos-claude-meets-eos/), [Freshell](https://feld.com/archives/2026/02/freshell-contributing-to-open-source/), [Claude posting to WordPress](https://feld.com/archives/2026/02/claude-code-now-posts-to-this-blog/), [what I'm obsessed with](https://feld.com/archives/2026/02/tech-im-obsessed-with/). The Claude content had taken over. It deserved its own home.
 
-I already owned adventuresinclaude.ai and adventuresinclaude.com. Time to use them.
+I already owned [adventuresinclaude.ai](https://adventuresinclaude.ai) and [adventuresinclaude.com](https://adventuresinclaude.com). Time to use them.
 
 ---
 
