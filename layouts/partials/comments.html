@@ -15,4 +15,39 @@
     crossorigin="anonymous"
     async>
   </script>
+  <script>
+  // Sync Giscus comments theme with site light/dark mode
+  (function() {
+    function getGiscusTheme() {
+      var dt = document.documentElement.getAttribute('data-theme');
+      return dt === 'dark' ? 'dark' : 'light';
+    }
+
+    function setGiscusTheme(theme) {
+      var iframe = document.querySelector('iframe.giscus-frame');
+      if (!iframe) return;
+      iframe.contentWindow.postMessage(
+        { giscus: { setConfig: { theme: theme } } },
+        'https://giscus.app'
+      );
+    }
+
+    // Watch for light/dark toggle changes (PaperMod sets data-theme)
+    var observer = new MutationObserver(function(mutations) {
+      mutations.forEach(function(m) {
+        if (m.attributeName === 'data-theme') {
+          setGiscusTheme(getGiscusTheme());
+        }
+      });
+    });
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+
+    // Set initial theme once Giscus iframe loads
+    window.addEventListener('message', function(event) {
+      if (event.origin !== 'https://giscus.app') return;
+      if (!(typeof event.data === 'object' && event.data.giscus)) return;
+      setGiscusTheme(getGiscusTheme());
+    });
+  })();
+  </script>
 </div>

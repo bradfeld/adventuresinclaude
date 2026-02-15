@@ -8,6 +8,10 @@
  * 3. All 10 theme names appear in compiled CSS
  * 4. Nav menu has expected entries
  * 5. FOUC prevention script is present
+ * 6. llms.txt, robots.txt, sitemap.xml generated
+ * 7. Edit post links present
+ * 8. Google verification tag present
+ * 9. Giscus comments with theme sync
  */
 
 const { execSync } = require('child_process');
@@ -61,7 +65,8 @@ const EXPECTED_PAGES = [
   'posts/index.html',
   'tags/index.html',
   'search/index.html',
-  '404/index.html'
+  '404/index.html',
+  'archives/index.html'
 ];
 
 for (const page of EXPECTED_PAGES) {
@@ -141,7 +146,7 @@ console.log('\n5. Navigation');
 
 const homepage = fs.readFileSync(path.join(PUBLIC, 'index.html'), 'utf8');
 
-const EXPECTED_NAV = ['Posts', 'Tags', 'Search', 'Subscribe', 'Themes', 'About'];
+const EXPECTED_NAV = ['Posts', 'Tags', 'Archives', 'Search', 'Subscribe', 'Themes', 'About'];
 for (const item of EXPECTED_NAV) {
   test(`Nav contains "${item}"`, () => {
     assert.ok(homepage.includes(`>${item}<`) || homepage.includes(`> ${item} <`) || homepage.includes(item),
@@ -164,6 +169,58 @@ test('FOUC script handles custom theme', () => {
     homepage.includes('custom-theme-settings'),
     'FOUC script missing custom theme handling'
   );
+});
+
+// ── AI & SEO Outputs ─────────────────────────────────────────
+console.log('\n7. AI & SEO Outputs');
+
+test('llms.txt exists and has content', () => {
+  const llms = fs.readFileSync(path.join(PUBLIC, 'llms.txt'), 'utf8');
+  assert.ok(llms.includes('Adventures in Claude'), 'llms.txt missing site title');
+  assert.ok(llms.includes('Posts'), 'llms.txt missing Posts section');
+});
+
+test('robots.txt exists with sitemap', () => {
+  const robots = fs.readFileSync(path.join(PUBLIC, 'robots.txt'), 'utf8');
+  assert.ok(robots.includes('User-agent'), 'robots.txt missing User-agent directive');
+  assert.ok(robots.includes('sitemap.xml'), 'robots.txt missing Sitemap reference');
+});
+
+test('sitemap.xml exists', () => {
+  assert.ok(fs.existsSync(path.join(PUBLIC, 'sitemap.xml')), 'Missing sitemap.xml');
+});
+
+// ── Edit Post Links ──────────────────────────────────────────
+console.log('\n8. Edit Post Links');
+
+test('Post pages have "Suggest Changes" link', () => {
+  const post = fs.readFileSync(path.join(PUBLIC, 'posts/2026-02-14-hello-world/index.html'), 'utf8');
+  assert.ok(post.includes('Suggest Changes'), 'Missing "Suggest Changes" edit link');
+  assert.ok(post.includes('github.com/bradfeld/adventuresinclaude'), 'Edit link missing GitHub URL');
+});
+
+// ── Google Verification ──────────────────────────────────────
+console.log('\n9. Google Verification');
+
+test('Google site verification meta tag present', () => {
+  assert.ok(
+    homepage.includes('google-site-verification'),
+    'Missing Google site verification meta tag'
+  );
+});
+
+// ── Giscus Comments ──────────────────────────────────────────
+console.log('\n10. Comments Integration');
+
+test('Post pages have Giscus comments', () => {
+  const post = fs.readFileSync(path.join(PUBLIC, 'posts/2026-02-14-hello-world/index.html'), 'utf8');
+  assert.ok(post.includes('giscus.app/client.js'), 'Missing Giscus script');
+});
+
+test('Giscus theme sync script present', () => {
+  const post = fs.readFileSync(path.join(PUBLIC, 'posts/2026-02-14-hello-world/index.html'), 'utf8');
+  assert.ok(post.includes('giscus-frame'), 'Missing Giscus theme sync script');
+  assert.ok(post.includes('setConfig'), 'Missing Giscus setConfig for theme sync');
 });
 
 // ── Summary ────────────────────────────────────────────────────

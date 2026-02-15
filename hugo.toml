@@ -2,6 +2,7 @@ baseURL = "https://adventuresinclaude.ai/"
 languageCode = "en-us"
 title = "Adventures in Claude"
 theme = "PaperMod"
+enableRobotsTXT = true
 [pagination]
   pagerSize = 10
 
@@ -21,6 +22,14 @@ theme = "PaperMod"
   ShowToc = true
   TocOpen = false
   comments = true
+
+  [params.editPost]
+    URL = "https://github.com/bradfeld/adventuresinclaude/edit/main/content"
+    Text = "Suggest Changes"
+    appendFilePath = true
+
+  [params.analytics.google]
+    SiteVerificationTag = "P0_zXdjBQh6wnuM1WQNXmhgsVNdSBjNLUQ_7jKjelDU"
 
   [params.label]
     iconSVG = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="28" height="28" style="vertical-align: middle; margin-right: 6px;"><rect width="32" height="32" rx="6" fill="#1a1a2e"/><text x="3" y="24" font-family="SF Mono,Fira Code,Consolas,monospace" font-size="18" font-weight="700" fill="#e0e0e0">A</text><text x="16" y="24" font-family="SF Mono,Fira Code,Consolas,monospace" font-size="18" font-weight="700" fill="#d4a574">{</text><rect x="24" y="20" width="2" height="4" fill="#d4a574"/></svg>'
@@ -44,6 +53,8 @@ theme = "PaperMod"
   [params.cover]
     linkFullImages = true
     responsiveImages = true
+    hiddenInList = false
+    hiddenInSingle = false
 
   [params.footer]
     text = "Built with Claude Code"
@@ -93,6 +104,11 @@ theme = "PaperMod"
     url = "/tags/"
     weight = 20
   [[menu.main]]
+    identifier = "archives"
+    name = "Archives"
+    url = "/archives/"
+    weight = 25
+  [[menu.main]]
     identifier = "search"
     name = "Search"
     url = "/search/"
@@ -128,5 +144,16 @@ theme = "PaperMod"
     name = "series"
     weight = 200
 
+[mediaTypes."text/plain"]
+  suffixes = ["txt"]
+
+[outputFormats.llmstxt]
+  name = "llmstxt"
+  mediaType = "text/plain"
+  baseName = "llms"
+  isPlainText = true
+  notAlternative = true
+  permalinkable = false
+
 [outputs]
-  home = ["HTML", "RSS", "JSON"]
+  home = ["HTML", "RSS", "JSON", "llmstxt"]
