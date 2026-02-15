@@ -6,7 +6,7 @@
       if (d.count > 0) {
         var links = document.querySelectorAll('.social-icons a');
         links.forEach(function(a) {
-          if (a.href && a.href.indexOf('kit.com') !== -1) {
+          if (a.href && (a.href.indexOf('subscribe.adventuresinclaude.ai') !== -1 || a.href.indexOf('kit.com') !== -1)) {
             var span = document.createElement('span');
             span.style.cssText = 'font-size:0.65em;opacity:0.6;margin-left:-2px;vertical-align:sub;';
             span.textContent = '(' + d.count + ')';
