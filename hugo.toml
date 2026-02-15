@@ -38,6 +38,10 @@ theme = "PaperMod"
     name = "x"
     url = "https://x.com/bfeld"
 
+  [[params.socialIcons]]
+    name = "linkedin"
+    url = "https://www.linkedin.com/in/bfeld"
+
   [params.fuseOpts]
     isCaseSensitive = false
     shouldSort = true
