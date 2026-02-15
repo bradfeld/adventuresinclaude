@@ -1,0 +1,57 @@
+{{- /* Recursive printer for sections with full content */ -}}
+{{- define "llms_print_section_full" -}}
+{{- $section := .section -}}
+{{- $depth := .depth -}}
+{{- if or (gt (len $section.RegularPages) 0) (gt (len $section.Sections) 0) -}}
+{{- $hashes := strings.Repeat (add $depth 1) "#" }}
+
+{{ printf "%s %s" $hashes $section.Title }}
+
+{{- /* Pages in this section with full content */ -}}
+{{- range $p := $section.RegularPages }}
+  {{- if and (not $p.Params.searchHidden) (ne $p.Layout `archives`) (ne $p.Layout `search`) }}
+
+---
+
+# {{ $p.Title }}
+
+Source: {{ $p.Permalink }}
+
+{{ $p.Plain }}
+  {{- end -}}
+{{- end -}}
+
+{{- /* Recurse into subsections */ -}}
+{{- range $s := $section.Sections -}}
+{{- template "llms_print_section_full" (dict "section" $s "depth" (add $depth 1)) -}}
+{{- end -}}
+{{- end -}}
+{{- end -}}
+
+{{- /* Main template starts here */ -}}
+# {{ site.Title }}
+
+{{ with site.Params.description }}{{ . }}{{ end }}
+
+{{- /* Pages not in any section */ -}}
+{{- $orphans := where site.RegularPages "Section" "" -}}
+{{ if gt (len $orphans) 0 }}
+
+{{- range $p := $orphans -}}
+  {{ if and (not $p.Params.searchHidden) (ne $p.Layout `archives`) (ne $p.Layout `search`) (not $p.IsHome) }}
+
+---
+
+# {{ $p.Title }}
+
+Source: {{ $p.Permalink }}
+
+{{ $p.Plain }}
+  {{- end -}}
+{{- end -}}
+
+{{- end -}}
+
+{{- range site.Sections -}}
+{{- template "llms_print_section_full" (dict "section" . "depth" 1) -}}
+{{- end }}

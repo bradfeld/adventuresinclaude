@@ -1,0 +1,67 @@
+{{- /* Enhanced Image Render Hook with Responsive Processing */ -}}
+{{- $u := urls.Parse .Destination -}}
+{{- $src := $u.String -}}
+{{- $isPageResource := false -}}
+
+{{- /* Determine image type and get resource if available */ -}}
+{{- $img := "" -}}
+{{- if not $u.IsAbs -}}
+  {{- $path := strings.TrimPrefix "./" $u.Path -}}
+  {{- with .PageInner.Resources.Get $path -}}
+    {{- $img = . -}}
+    {{- $isPageResource = true -}}
+    {{- $src = .RelPermalink -}}
+  {{- else -}}
+    {{- with resources.Get $path -}}
+      {{- $img = . -}}
+      {{- $isPageResource = true -}}
+      {{- $src = .RelPermalink -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
+{{- /* Parse alt text for caption separator */ -}}
+{{- $altText := .Text -}}
+{{- $caption := "" -}}
+{{- if strings.Contains $altText "|caption:" -}}
+  {{- $parts := split $altText "|caption:" -}}
+  {{- $altText = index $parts 0 | strings.TrimSpace -}}
+  {{- $caption = index $parts 1 | strings.TrimSpace -}}
+{{- end -}}
+
+<figure>
+{{- if and $isPageResource $img -}}
+  {{- /* Process page resource images through Hugo Pipes */ -}}
+  {{- $webp1280 := $img.Resize "1280x webp" -}}
+  {{- $webp1024 := $img.Resize "1024x webp" -}}
+  {{- $webp768 := $img.Resize "768x webp" -}}
+  {{- $webp480 := $img.Resize "480x webp" -}}
+  {{- $placeholder := $img.Resize "20x webp" -}}
+  {{- $blurDataURL := $placeholder.Content | base64Encode -}}
+
+  <img
+    src="{{ $webp1024.RelPermalink }}"
+    srcset="{{ $webp480.RelPermalink }} 480w,
+            {{ $webp768.RelPermalink }} 768w,
+            {{ $webp1024.RelPermalink }} 1024w,
+            {{ $webp1280.RelPermalink }} 1280w"
+    sizes="(max-width: 768px) 100vw, 720px"
+    alt="{{ $altText }}"
+    {{- with .Title }} title="{{ . | transform.HTMLEscape }}"{{ end }}
+    loading="lazy"
+    decoding="async"
+    style="background-image: url('data:image/webp;base64,{{ $blurDataURL }}'); background-size: cover;">
+{{- else -}}
+  {{- /* External or static images: simple lazy loading */ -}}
+  {{- $attributes := merge .Attributes (dict "alt" $altText "src" $src "title" (.Title | transform.HTMLEscape) "loading" "lazy" "decoding" "async") -}}
+  <img
+  {{- range $k, $v := $attributes -}}
+    {{- if $v -}}
+      {{- printf " %s=%q" $k $v | safeHTMLAttr -}}
+    {{- end -}}
+  {{- end -}}>
+{{- end -}}
+{{- if $caption -}}
+  <figcaption>{{ $caption | safeHTML }}</figcaption>
+{{- end -}}
+</figure>

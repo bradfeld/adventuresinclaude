@@ -1,0 +1,27 @@
+{{- define "main" }}
+<article class="post-single">
+  <header class="post-header">
+    {{ partial "breadcrumbs.html" . }}
+    <h1 class="post-title">Series: {{ .Title }}</h1>
+    {{ with .Description }}<div class="post-description">{{ . }}</div>{{ end }}
+    <div class="post-meta" style="margin-top: 0.5em;">
+      {{ len .Pages }} parts
+    </div>
+  </header>
+
+  <div class="post-content">
+    <ol class="series-list" style="list-style: none; padding: 0; counter-reset: series;">
+      {{- range $i, $p := .Pages.ByDate }}
+      <li style="counter-increment: series; margin-bottom: 1.5em; padding-left: 2.5em; position: relative;">
+        <span style="position: absolute; left: 0; top: 0; font-size: 1.4em; font-weight: 700; color: var(--primary); opacity: 0.7;">{{ printf "%02d" (add $i 1) }}</span>
+        <h3 style="margin: 0 0 0.25em 0;"><a href="{{ $p.RelPermalink }}" style="text-decoration: none;">{{ $p.Title }}</a></h3>
+        <div style="font-size: 0.85em; color: var(--secondary);">
+          {{ $p.Date.Format "January 2, 2006" }} · {{ $p.ReadingTime }} min read
+        </div>
+        {{ with $p.Description }}<p style="margin: 0.5em 0 0; color: var(--content);">{{ . }}</p>{{ end }}
+      </li>
+      {{- end }}
+    </ol>
+  </div>
+</article>
+{{- end }}

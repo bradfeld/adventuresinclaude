@@ -1,0 +1,4 @@
+<div class="callout callout-{{ .Get "type" | default "note" }}">
+  {{ with .Get "title" }}<div class="callout-title">{{ . }}</div>{{ end }}
+  <div class="callout-content">{{ .Inner | markdownify }}</div>
+</div>

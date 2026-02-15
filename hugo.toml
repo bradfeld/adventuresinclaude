@@ -3,6 +3,8 @@ languageCode = "en-us"
 title = "Adventures in Claude"
 theme = "PaperMod"
 enableRobotsTXT = true
+enableGitInfo = true
+
 [pagination]
   pagerSize = 10
 
@@ -124,6 +126,11 @@ enableRobotsTXT = true
     url = "/theme-studio/"
     weight = 38
   [[menu.main]]
+    identifier = "reading-list"
+    name = "Reading List"
+    url = "/reading-list/"
+    weight = 39
+  [[menu.main]]
     identifier = "about"
     name = "About"
     url = "/about/"
@@ -155,5 +162,18 @@ enableRobotsTXT = true
   notAlternative = true
   permalinkable = false
 
+[outputFormats.llmsFull]
+  name = "llmsFull"
+  mediaType = "text/plain"
+  baseName = "llms-full"
+  isPlainText = true
+  notAlternative = true
+  permalinkable = false
+
 [outputs]
-  home = ["HTML", "RSS", "JSON", "llmstxt"]
+  home = ["HTML", "RSS", "JSON", "llmstxt", "llmsFull"]
+
+[sitemap]
+  changefreq = "weekly"
+  priority = 0.5
+  filename = "sitemap.xml"

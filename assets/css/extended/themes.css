@@ -920,3 +920,203 @@ noscript ~ .theme-picker-wrapper,
 .theme-picker-wrapper:has(+ noscript) {
   display: none;
 }
+
+/* ============================================
+   Callout Component
+   Colored alert/note/tip boxes with icons
+   ============================================ */
+.callout {
+  margin: 1.5em 0;
+  padding: 1em 1em 1em 3em;
+  border-radius: var(--radius);
+  border-left: 4px solid;
+  position: relative;
+  background: var(--entry);
+}
+
+.callout-title {
+  font-weight: 700;
+  margin-bottom: 0.5em;
+  color: var(--primary);
+}
+
+.callout-content {
+  color: var(--content);
+}
+
+.callout-content p:first-child {
+  margin-top: 0;
+}
+
+.callout-content p:last-child {
+  margin-bottom: 0;
+}
+
+/* Icon pseudo-element */
+.callout::before {
+  position: absolute;
+  left: 0.8em;
+  top: 1em;
+  font-size: 1.3em;
+  line-height: 1;
+}
+
+/* Note (default) - Blue/Info */
+.callout-note {
+  border-left-color: #3b82f6;
+  background: color-mix(in srgb, #3b82f6 8%, var(--entry));
+}
+.callout-note::before {
+  content: "💡";
+}
+[data-theme="dark"] .callout-note {
+  border-left-color: #60a5fa;
+  background: color-mix(in srgb, #60a5fa 8%, var(--entry));
+}
+
+/* Tip - Green */
+.callout-tip {
+  border-left-color: #10b981;
+  background: color-mix(in srgb, #10b981 8%, var(--entry));
+}
+.callout-tip::before {
+  content: "✅";
+}
+[data-theme="dark"] .callout-tip {
+  border-left-color: #34d399;
+  background: color-mix(in srgb, #34d399 8%, var(--entry));
+}
+
+/* Warning - Yellow/Amber */
+.callout-warning {
+  border-left-color: #f59e0b;
+  background: color-mix(in srgb, #f59e0b 8%, var(--entry));
+}
+.callout-warning::before {
+  content: "⚠️";
+}
+[data-theme="dark"] .callout-warning {
+  border-left-color: #fbbf24;
+  background: color-mix(in srgb, #fbbf24 8%, var(--entry));
+}
+
+/* Important - Red */
+.callout-important {
+  border-left-color: #ef4444;
+  background: color-mix(in srgb, #ef4444 8%, var(--entry));
+}
+.callout-important::before {
+  content: "❗";
+}
+[data-theme="dark"] .callout-important {
+  border-left-color: #f87171;
+  background: color-mix(in srgb, #f87171 8%, var(--entry));
+}
+
+/* Theme-specific adjustments */
+
+/* E-ink: no backgrounds, just border */
+[data-full-theme="e-ink"] .callout {
+  background: transparent;
+  border-left-width: 0.5px;
+}
+
+/* Brutalist: thick borders, no backgrounds */
+[data-full-theme="brutalist"] .callout {
+  background: transparent;
+  border-left-width: 6px;
+}
+
+/* Terminal: monospace, dashed borders */
+[data-full-theme="terminal"] .callout {
+  border-left-style: dashed;
+}
+
+/* Cyberpunk: neon glow on borders in dark mode */
+[data-full-theme="cyberpunk"][data-theme="dark"] .callout-note {
+  border-left-color: #00ffff;
+  box-shadow: -4px 0 8px rgba(0, 255, 255, 0.15);
+}
+[data-full-theme="cyberpunk"][data-theme="dark"] .callout-tip {
+  border-left-color: #00ff88;
+  box-shadow: -4px 0 8px rgba(0, 255, 136, 0.15);
+}
+[data-full-theme="cyberpunk"][data-theme="dark"] .callout-warning {
+  border-left-color: #ffdd00;
+  box-shadow: -4px 0 8px rgba(255, 221, 0, 0.15);
+}
+[data-full-theme="cyberpunk"][data-theme="dark"] .callout-important {
+  border-left-color: #ff2daa;
+  box-shadow: -4px 0 8px rgba(255, 45, 170, 0.15);
+}
+
+/* ============================================
+   Code Block Enhancements
+   Language labels, diff syntax, line numbers
+   ============================================ */
+
+/* Code block container positioning for language label */
+.highlight {
+  position: relative;
+  margin-bottom: 1.5em;
+}
+
+/* Add top padding to make room for language label */
+.highlight > pre,
+.highlight > div {
+  padding-top: 2em !important;
+}
+
+/* Language label in top-right corner */
+.highlight [data-lang]::before {
+  content: attr(data-lang);
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 2px 10px;
+  font-size: 0.7em;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--secondary);
+  opacity: 0.7;
+}
+
+/* Diff syntax highlighting */
+.highlight .language-diff .gd {
+  color: #c0392b;
+  background: rgba(192, 57, 43, 0.1);
+}
+
+.highlight .language-diff .gi {
+  color: #27ae60;
+  background: rgba(39, 174, 96, 0.1);
+}
+
+/* Subtle line numbers that don't interfere with copy */
+.highlight .ln {
+  color: var(--secondary);
+  opacity: 0.4;
+  user-select: none;
+  padding-right: 1em;
+}
+
+/* ============================================
+   TOC Enhancements
+   Sticky positioning + scroll-spy active state
+   ============================================ */
+@media (min-width: 1280px) {
+  .toc { position: sticky; top: 80px; }
+}
+.toc .inner a {
+  transition: color 0.2s, border-color 0.2s;
+  border-left: 2px solid transparent;
+  padding-left: 8px;
+}
+.toc .inner a.active {
+  color: var(--primary);
+  border-left-color: var(--primary);
+  font-weight: 500;
+}
+.toc .inner a:hover {
+  color: var(--primary);
+}

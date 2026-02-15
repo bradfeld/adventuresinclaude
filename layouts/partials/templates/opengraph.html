@@ -31,18 +31,57 @@
   {{- range .GetTerms "tags" | first 6 }}
     <meta property="article:tag" content="{{ .Page.Title | plainify }}">
   {{- end }}
+  {{- with site.Params.author }}
+    <meta property="article:author" content="{{ . }}">
+  {{- end }}
 {{- else }}
   <meta property="og:type" content="website">
 {{- end }}
 
+{{- $ogImage := "" }}
+{{- $hasImageDimensions := false }}
+{{- $imageWidth := "" }}
+{{- $imageHeight := "" }}
+
 {{- if .Params.cover.image }}
   {{- if (ne .Params.cover.relative true) }}
-<meta property="og:image" content="{{ .Params.cover.image | absURL }}">
+    {{- $ogImage = .Params.cover.image | absURL }}
   {{- else }}
-<meta property="og:image" content="{{ (path.Join .RelPermalink .Params.cover.image ) | absURL }}">
+    {{- $ogImage = (path.Join .RelPermalink .Params.cover.image) | absURL }}
+    {{- $imageResource := .Resources.GetMatch .Params.cover.image }}
+    {{- with $imageResource }}
+      {{- $hasImageDimensions = true }}
+      {{- $imageWidth = .Width }}
+      {{- $imageHeight = .Height }}
+    {{- end }}
   {{- end }}
 {{- else }}
-<meta property="og:image" content="{{ "og-default.png" | absURL }}">
+  {{- with site.Params.images }}
+    {{- $ogImage = index . 0 | absURL }}
+  {{- end }}
+{{- end }}
+
+{{- with $ogImage }}
+  <meta property="og:image" content="{{ . }}">
+  {{- if $hasImageDimensions }}
+    <meta property="og:image:width" content="{{ $imageWidth }}">
+    <meta property="og:image:height" content="{{ $imageHeight }}">
+  {{- end }}
+{{- end }}
+
+{{- if $ogImage }}
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="{{ $ogImage }}">
+{{- else }}
+  <meta name="twitter:card" content="summary">
+{{- end }}
+
+{{- with or .Title site.Title site.Params.title | plainify }}
+  <meta name="twitter:title" content="{{ . }}">
+{{- end }}
+
+{{- with or .Description .Summary site.Params.description | plainify | htmlUnescape | chomp }}
+  <meta name="twitter:description" content="{{ . }}">
 {{- end }}
 
 {{- range .GetTerms "series" }}

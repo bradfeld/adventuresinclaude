@@ -36,9 +36,15 @@
 <!-- Theme system: Google Fonts for all theme font families -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" href="https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuLyfAZ9hjQ.woff2" as="font" type="font/woff2" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Lora:wght@400;500;600;700&family=Playfair+Display:wght@400;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- Webmention endpoint for IndieWeb -->
+<link rel="webmention" href="https://webmention.io/adventuresinclaude.ai/webmention">
+<link rel="pingback" href="https://webmention.io/adventuresinclaude.ai/xmlrpc">
 <script defer src="/_vercel/insights/script.js"></script>
 <script async data-uid="cdea0d078b" src="https://adventuresinclaude.kit.com/cdea0d078b/index.js"></script>
+<!-- Service Worker Registration -->
+<script>if('serviceWorker' in navigator){navigator.serviceWorker.register('/sw.js')}</script>
 <style>
 .reading-progress {
   position: fixed;

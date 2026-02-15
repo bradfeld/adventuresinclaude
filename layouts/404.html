@@ -1,0 +1,47 @@
+{{- define "main" }}
+<article class="post-single" style="text-align: center; padding: 3em 1em;">
+  <header class="post-header">
+    <h1 class="post-title" style="font-size: 4em; margin-bottom: 0;">404</h1>
+    <div class="post-description" style="font-size: 1.2em; margin-top: 0.5em;">
+      Page not found
+    </div>
+  </header>
+
+  <div class="post-content" style="max-width: 500px; margin: 2em auto; text-align: left;">
+    <p>The page you're looking for doesn't exist. It might have been moved, or you may have followed a broken link.</p>
+
+    <div style="margin: 2em 0;">
+      <h3>Try these instead:</h3>
+      <ul style="list-style: none; padding: 0;">
+        <li style="margin-bottom: 0.75em;">
+          <a href="/" style="font-size: 1.1em;">← Back to Home</a>
+        </li>
+        <li style="margin-bottom: 0.75em;">
+          <a href="/search/" style="font-size: 1.1em;">🔍 Search the site</a>
+        </li>
+        <li style="margin-bottom: 0.75em;">
+          <a href="/posts/" style="font-size: 1.1em;">📝 Browse all posts</a>
+        </li>
+        <li style="margin-bottom: 0.75em;">
+          <a href="/archives/" style="font-size: 1.1em;">📚 View archives</a>
+        </li>
+      </ul>
+    </div>
+
+    {{- $recent := (where site.RegularPages "Section" "posts") | first 3 }}
+    {{- with $recent }}
+    <div style="margin-top: 2em; padding-top: 1.5em; border-top: 1px solid var(--border);">
+      <h3>Recent Posts</h3>
+      <ul style="padding-left: 1.2em;">
+        {{- range . }}
+        <li style="margin-bottom: 0.5em;">
+          <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+          <span style="color: var(--secondary); font-size: 0.85em;"> — {{ .Date.Format "Jan 2, 2006" }}</span>
+        </li>
+        {{- end }}
+      </ul>
+    </div>
+    {{- end }}
+  </div>
+</article>
+{{- end }}

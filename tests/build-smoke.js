@@ -8,10 +8,25 @@
  * 3. All 10 theme names appear in compiled CSS
  * 4. Nav menu has expected entries
  * 5. FOUC prevention script is present
- * 6. llms.txt, robots.txt, sitemap.xml generated
+ * 6. llms.txt, llms-full.txt, robots.txt, sitemap.xml generated
  * 7. Edit post links present
  * 8. Google verification tag present
  * 9. Giscus comments with theme sync
+ * 10. Security headers configured
+ * 11. Service worker present
+ * 12. Callout shortcode CSS
+ * 13. TOC enhancements
+ * 14. Code block enhancements
+ * 15. Reading list page
+ * 16. Series taxonomy templates
+ * 17. Enhanced RSS feed
+ * 18. Webmention endpoints
+ * 19. IndieWeb microformats
+ * 20. Font preload hints
+ * 21. Reading time calibration
+ * 22. Image render hook
+ * 23. Enhanced 404 page
+ * 24. OG meta tags
  */
 
 const { execSync } = require('child_process');
@@ -66,7 +81,8 @@ const EXPECTED_PAGES = [
   'tags/index.html',
   'search/index.html',
   '404/index.html',
-  'archives/index.html'
+  'archives/index.html',
+  'reading-list/index.html'
 ];
 
 for (const page of EXPECTED_PAGES) {
@@ -104,7 +120,6 @@ test('Contains live preview content', () => {
 });
 
 test('Contains JS controller (studio logic)', () => {
-  // Hugo minifies variable names, but string literals survive
   assert.ok(studioPage.includes('custom-theme-settings'), 'Missing theme-studio.js localStorage key');
   assert.ok(studioPage.includes('preset-grid'), 'Missing preset grid reference');
 });
@@ -112,17 +127,19 @@ test('Contains JS controller (studio logic)', () => {
 // ── Compiled CSS ──────────────────────────────────────────────
 console.log('\n4. Theme CSS');
 
-// Find the compiled stylesheet
-const cssFiles = fs.readdirSync(path.join(PUBLIC, 'assets/css'))
-  .filter(f => f.startsWith('stylesheet.') && f.endsWith('.css'));
+const cssDir = path.join(PUBLIC, 'assets/css');
+const cssFiles = fs.readdirSync(cssDir)
+  .filter(f => f.startsWith('stylesheet.') && f.endsWith('.css'))
+  .sort((a, b) => fs.statSync(path.join(cssDir, b)).size - fs.statSync(path.join(cssDir, a)).size);
 
 test('Compiled CSS file exists', () => {
   assert.ok(cssFiles.length > 0, 'No compiled CSS found in public/assets/css/');
 });
 
+let compiledCSS = '';
 if (cssFiles.length > 0) {
-  const compiledCSS = fs.readFileSync(
-    path.join(PUBLIC, 'assets/css', cssFiles[0]), 'utf8'
+  compiledCSS = fs.readFileSync(
+    path.join(cssDir, cssFiles[0]), 'utf8'
   );
 
   const THEMES_IN_CSS = [
@@ -146,7 +163,7 @@ console.log('\n5. Navigation');
 
 const homepage = fs.readFileSync(path.join(PUBLIC, 'index.html'), 'utf8');
 
-const EXPECTED_NAV = ['Posts', 'Tags', 'Archives', 'Search', 'Subscribe', 'Themes', 'About'];
+const EXPECTED_NAV = ['Posts', 'Tags', 'Archives', 'Search', 'Subscribe', 'Themes', 'Reading List', 'About'];
 for (const item of EXPECTED_NAV) {
   test(`Nav contains "${item}"`, () => {
     assert.ok(homepage.includes(`>${item}<`) || homepage.includes(`> ${item} <`) || homepage.includes(item),
@@ -180,6 +197,13 @@ test('llms.txt exists and has content', () => {
   assert.ok(llms.includes('Posts'), 'llms.txt missing Posts section');
 });
 
+test('llms-full.txt exists and has full content', () => {
+  const llmsFull = fs.readFileSync(path.join(PUBLIC, 'llms-full.txt'), 'utf8');
+  assert.ok(llmsFull.includes('Adventures in Claude'), 'llms-full.txt missing site title');
+  assert.ok(llmsFull.includes('Source:'), 'llms-full.txt missing Source links');
+  assert.ok(llmsFull.length > 1000, 'llms-full.txt seems too short for full content');
+});
+
 test('robots.txt exists with sitemap', () => {
   const robots = fs.readFileSync(path.join(PUBLIC, 'robots.txt'), 'utf8');
   assert.ok(robots.includes('User-agent'), 'robots.txt missing User-agent directive');
@@ -193,8 +217,9 @@ test('sitemap.xml exists', () => {
 // ── Edit Post Links ──────────────────────────────────────────
 console.log('\n8. Edit Post Links');
 
+const post = fs.readFileSync(path.join(PUBLIC, 'posts/2026-02-14-hello-world/index.html'), 'utf8');
+
 test('Post pages have "Suggest Changes" link', () => {
-  const post = fs.readFileSync(path.join(PUBLIC, 'posts/2026-02-14-hello-world/index.html'), 'utf8');
   assert.ok(post.includes('Suggest Changes'), 'Missing "Suggest Changes" edit link');
   assert.ok(post.includes('github.com/bradfeld/adventuresinclaude'), 'Edit link missing GitHub URL');
 });
@@ -213,14 +238,189 @@ test('Google site verification meta tag present', () => {
 console.log('\n10. Comments Integration');
 
 test('Post pages have Giscus comments', () => {
-  const post = fs.readFileSync(path.join(PUBLIC, 'posts/2026-02-14-hello-world/index.html'), 'utf8');
   assert.ok(post.includes('giscus.app/client.js'), 'Missing Giscus script');
 });
 
 test('Giscus theme sync script present', () => {
-  const post = fs.readFileSync(path.join(PUBLIC, 'posts/2026-02-14-hello-world/index.html'), 'utf8');
   assert.ok(post.includes('giscus-frame'), 'Missing Giscus theme sync script');
   assert.ok(post.includes('setConfig'), 'Missing Giscus setConfig for theme sync');
+});
+
+// ── Security Headers ─────────────────────────────────────────
+console.log('\n11. Security & Performance');
+
+test('vercel.json has security headers', () => {
+  const vercel = JSON.parse(fs.readFileSync(path.join(ROOT, 'vercel.json'), 'utf8'));
+  assert.ok(vercel.headers, 'Missing headers in vercel.json');
+  const globalHeaders = vercel.headers.find(h => h.source === '/(.*)');
+  assert.ok(globalHeaders, 'Missing global headers');
+  const headerNames = globalHeaders.headers.map(h => h.key);
+  assert.ok(headerNames.includes('X-Content-Type-Options'), 'Missing X-Content-Type-Options');
+  assert.ok(headerNames.includes('X-Frame-Options'), 'Missing X-Frame-Options');
+  assert.ok(headerNames.includes('Referrer-Policy'), 'Missing Referrer-Policy');
+});
+
+test('vercel.json has asset caching', () => {
+  const vercel = JSON.parse(fs.readFileSync(path.join(ROOT, 'vercel.json'), 'utf8'));
+  const assetHeaders = vercel.headers.find(h => h.source === '/assets/(.*)');
+  assert.ok(assetHeaders, 'Missing asset cache headers');
+  const cacheHeader = assetHeaders.headers.find(h => h.key === 'Cache-Control');
+  assert.ok(cacheHeader && cacheHeader.value.includes('immutable'), 'Missing immutable cache for assets');
+});
+
+// ── Service Worker ───────────────────────────────────────────
+console.log('\n12. Service Worker');
+
+test('Service worker file exists', () => {
+  assert.ok(fs.existsSync(path.join(PUBLIC, 'sw.js')), 'Missing sw.js');
+});
+
+test('Service worker registration in head', () => {
+  assert.ok(homepage.includes('serviceWorker'), 'Missing service worker registration');
+});
+
+// ── Callout Shortcodes ───────────────────────────────────────
+console.log('\n13. Callout Shortcodes');
+
+test('Callout shortcode template exists', () => {
+  assert.ok(
+    fs.existsSync(path.join(ROOT, 'layouts/shortcodes/callout.html')),
+    'Missing callout shortcode'
+  );
+});
+
+test('CSS contains callout styles', () => {
+  assert.ok(compiledCSS.includes('callout'), 'Missing callout CSS');
+  assert.ok(compiledCSS.includes('callout-note') || compiledCSS.includes('callout-tip'),
+    'Missing callout type styles');
+});
+
+// ── TOC Enhancements ─────────────────────────────────────────
+console.log('\n14. TOC Enhancements');
+
+test('Custom TOC partial exists', () => {
+  assert.ok(
+    fs.existsSync(path.join(ROOT, 'layouts/partials/toc.html')),
+    'Missing custom TOC partial'
+  );
+});
+
+test('CSS contains TOC sticky styles', () => {
+  assert.ok(compiledCSS.includes('sticky') || compiledCSS.includes('toc'),
+    'Missing TOC enhancement CSS');
+});
+
+// ── Code Block Enhancements ──────────────────────────────────
+console.log('\n15. Code Block Enhancements');
+
+test('CSS contains code block language label styles', () => {
+  assert.ok(compiledCSS.includes('data-lang'), 'Missing code block language label CSS');
+});
+
+// ── Reading List ─────────────────────────────────────────────
+console.log('\n16. Reading List');
+
+test('Reading list page has content', () => {
+  const rl = fs.readFileSync(path.join(PUBLIC, 'reading-list/index.html'), 'utf8');
+  assert.ok(rl.includes('Claude'), 'Reading list missing Claude section');
+  assert.ok(rl.includes('Hugo') || rl.includes('hugo'), 'Reading list missing tools');
+});
+
+// ── Series Taxonomy ──────────────────────────────────────────
+console.log('\n17. Series Taxonomy');
+
+test('Series index page exists', () => {
+  assert.ok(fs.existsSync(path.join(PUBLIC, 'series/index.html')), 'Missing series index');
+});
+
+test('Series templates exist', () => {
+  assert.ok(
+    fs.existsSync(path.join(ROOT, 'layouts/series/list.html')),
+    'Missing series list template'
+  );
+  assert.ok(
+    fs.existsSync(path.join(ROOT, 'layouts/series/terms.html')),
+    'Missing series terms template'
+  );
+});
+
+// ── Enhanced RSS ─────────────────────────────────────────────
+console.log('\n18. Enhanced RSS');
+
+test('RSS has media namespace', () => {
+  const rss = fs.readFileSync(path.join(PUBLIC, 'index.xml'), 'utf8');
+  assert.ok(rss.includes('xmlns:media'), 'RSS missing media namespace');
+});
+
+test('RSS has category tags', () => {
+  const rss = fs.readFileSync(path.join(PUBLIC, 'index.xml'), 'utf8');
+  assert.ok(rss.includes('<category>'), 'RSS missing category tags');
+});
+
+// ── Webmention & IndieWeb ────────────────────────────────────
+console.log('\n19. Webmention & IndieWeb');
+
+test('Webmention endpoint in head', () => {
+  assert.ok(homepage.includes('webmention.io'), 'Missing webmention endpoint');
+});
+
+test('Post has h-entry microformat', () => {
+  assert.ok(post.includes('h-entry'), 'Missing h-entry class on post');
+});
+
+test('Post has p-name on title', () => {
+  assert.ok(post.includes('p-name'), 'Missing p-name class');
+});
+
+test('Post has e-content on body', () => {
+  assert.ok(post.includes('e-content'), 'Missing e-content class');
+});
+
+test('Post has webmention display section', () => {
+  assert.ok(post.includes('webmention-list'), 'Missing webmention display');
+});
+
+// ── Font Preload ─────────────────────────────────────────────
+console.log('\n20. Font Preload');
+
+test('Font preload hint in head', () => {
+  assert.ok(homepage.includes('rel=preload') && homepage.includes('font/woff2'),
+    'Missing font preload hint');
+});
+
+// ── Enhanced 404 ─────────────────────────────────────────────
+console.log('\n21. Enhanced 404');
+
+test('404 has custom layout with navigation', () => {
+  const page404 = fs.readFileSync(path.join(PUBLIC, '404/index.html'), 'utf8');
+  assert.ok(page404.includes('/search/'), '404 missing search link');
+  assert.ok(page404.includes('/posts/'), '404 missing posts link');
+});
+
+// ── OG Meta Tags ─────────────────────────────────────────────
+console.log('\n22. OpenGraph Meta');
+
+test('Posts have OG meta tags', () => {
+  assert.ok(post.includes('og:title'), 'Missing og:title');
+  assert.ok(post.includes('og:description'), 'Missing og:description');
+});
+
+test('Posts have Twitter card meta', () => {
+  assert.ok(post.includes('twitter:card'), 'Missing twitter:card');
+});
+
+test('Posts have article metadata', () => {
+  assert.ok(post.includes('article:author'), 'Missing article:author');
+});
+
+// ── Image Render Hook ────────────────────────────────────────
+console.log('\n23. Image Processing');
+
+test('Custom image render hook exists', () => {
+  assert.ok(
+    fs.existsSync(path.join(ROOT, 'layouts/_default/_markup/render-image.html')),
+    'Missing custom image render hook'
+  );
 });
 
 // ── Summary ────────────────────────────────────────────────────

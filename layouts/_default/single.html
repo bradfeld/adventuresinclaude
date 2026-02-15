@@ -1,9 +1,9 @@
 {{- define "main" }}
 
-<article class="post-single">
+<article class="post-single h-entry">
   <header class="post-header">
     {{ partial "breadcrumbs.html" . }}
-    <h1 class="post-title entry-hint-parent">
+    <h1 class="post-title entry-hint-parent p-name">
       {{ .Title }}
       {{- if .Draft }}
       <span class="entry-hint" title="Draft">
@@ -27,6 +27,9 @@
       {{- partial "post_canonical.html" . -}}
     </div>
     {{- end }}
+    <a class="p-author h-card" href="https://adventuresinclaude.ai/about/" rel="author" style="display:none;">Brad Feld</a>
+    <time class="dt-published" datetime="{{ .PublishDate.Format "2006-01-02T15:04:05-07:00" }}" style="display:none;">{{ .PublishDate.Format "2006-01-02" }}</time>
+    <a class="u-url" href="{{ .Permalink }}" style="display:none;">{{ .Permalink }}</a>
   </header>
   {{- $isHidden := (.Param "cover.hiddenInSingle") | default (.Param "cover.hidden") | default false }}
   {{- partial "cover.html" (dict "cxt" . "IsSingle" true "isHidden" $isHidden) }}
@@ -35,7 +38,7 @@
   {{- end }}
 
   {{- if .Content }}
-  <div class="post-content">
+  <div class="post-content e-content">
     {{- if not (.Param "disableAnchoredHeadings") }}
     {{- partial "anchored_headings.html" .Content -}}
     {{- else }}{{ .Content }}{{ end }}
@@ -70,6 +73,67 @@
       {{- end }}
     </ul>
   </div>
+  {{- end }}
+
+  {{- if .IsPage }}
+  <div class="webmentions" id="webmentions" style="margin-top: 2em; padding-top: 1.5em; border-top: 1px solid var(--border);">
+    <h3 style="margin-bottom: 0.75em;">Webmentions</h3>
+    <div id="webmention-list" style="color: var(--secondary); font-size: 0.9em;">Loading...</div>
+  </div>
+  <script>
+  (function() {
+    var target = encodeURIComponent(window.location.href.replace(/\/$/, ''));
+    fetch('https://webmention.io/api/mentions.jf2?target=' + target + '&per-page=50')
+      .then(function(r) { return r.json(); })
+      .then(function(data) {
+        var el = document.getElementById('webmention-list');
+        if (!data.children || data.children.length === 0) {
+          el.innerHTML = '<p style="color:var(--secondary);font-size:0.9em;">No webmentions yet. Share this post on your site and it will appear here.</p>';
+          return;
+        }
+        var likes = data.children.filter(function(m) { return m['wm-property'] === 'like-of'; });
+        var reposts = data.children.filter(function(m) { return m['wm-property'] === 'repost-of'; });
+        var replies = data.children.filter(function(m) { return m['wm-property'] === 'in-reply-to'; });
+        var mentions = data.children.filter(function(m) { return m['wm-property'] === 'mention-of'; });
+        var html = '';
+        if (likes.length > 0) {
+          html += '<div style="margin-bottom:1em;"><strong>' + likes.length + ' like' + (likes.length > 1 ? 's' : '') + '</strong>';
+          html += '<div style="display:flex;flex-wrap:wrap;gap:4px;margin-top:4px;">';
+          likes.forEach(function(l) {
+            if (l.author && l.author.photo) {
+              html += '<a href="' + (l.author.url || '#') + '" title="' + (l.author.name || '') + '"><img src="' + l.author.photo + '" alt="' + (l.author.name || '') + '" style="width:32px;height:32px;border-radius:50%;"></a>';
+            }
+          });
+          html += '</div></div>';
+        }
+        if (reposts.length > 0) {
+          html += '<div style="margin-bottom:1em;"><strong>' + reposts.length + ' repost' + (reposts.length > 1 ? 's' : '') + '</strong></div>';
+        }
+        var allReplies = replies.concat(mentions);
+        if (allReplies.length > 0) {
+          html += '<div>';
+          allReplies.forEach(function(r) {
+            html += '<div style="margin-bottom:1em;padding:0.75em;border:1px solid var(--border);border-radius:var(--radius);">';
+            if (r.author) {
+              html += '<div style="display:flex;align-items:center;gap:8px;margin-bottom:0.5em;">';
+              if (r.author.photo) html += '<img src="' + r.author.photo + '" style="width:24px;height:24px;border-radius:50%;">';
+              html += '<a href="' + (r.author.url || '#') + '" style="font-weight:500;">' + (r.author.name || 'Anonymous') + '</a>';
+              html += '</div>';
+            }
+            if (r.content && r.content.text) {
+              html += '<p style="margin:0;font-size:0.9em;">' + r.content.text.substring(0, 300) + (r.content.text.length > 300 ? '...' : '') + '</p>';
+            }
+            html += '</div>';
+          });
+          html += '</div>';
+        }
+        el.innerHTML = html || '<p style="color:var(--secondary);">No webmentions yet.</p>';
+      })
+      .catch(function() {
+        document.getElementById('webmention-list').innerHTML = '<p style="color:var(--secondary);">No webmentions yet.</p>';
+      });
+  })();
+  </script>
   {{- end }}
 
   {{- if (.Param "comments") }}
