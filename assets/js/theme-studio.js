@@ -101,7 +101,7 @@
     layout: { mainWidth: 720, gap: 24, contentGap: 20, radius: 8 },
     effects: {
       dropCaps: false, dashedBorders: false, gridBackground: false,
-      textGlow: false, grayscale: false, colorAccents: false,
+      textGlow: false, grayscale: false, colorAccents: false, stickyToc: false,
       sectionBreak: 'default', linkStyle: 'default', blockquoteStyle: 'default'
     }
   };
@@ -213,7 +213,7 @@
     // Reset effects
     state.effects = {
       dropCaps: false, dashedBorders: false, gridBackground: false,
-      textGlow: false, grayscale: false, colorAccents: false,
+      textGlow: false, grayscale: false, colorAccents: false, stickyToc: false,
       sectionBreak: 'default', linkStyle: 'default', blockquoteStyle: 'default'
     };
     syncControlsFromState();
@@ -296,6 +296,7 @@
     bindCheckbox('effect-text-glow', function(v) { state.effects.textGlow = v; });
     bindCheckbox('effect-grayscale', function(v) { state.effects.grayscale = v; });
     bindCheckbox('effect-color-accents', function(v) { state.effects.colorAccents = v; });
+    bindCheckbox('effect-sticky-toc', function(v) { state.effects.stickyToc = v; });
 
     bindSelect('effect-section-break', function(v) { state.effects.sectionBreak = v; });
     bindSelect('effect-link-style', function(v) { state.effects.linkStyle = v; });
@@ -365,6 +366,7 @@
     if (state.effects.textGlow) effectClasses.push('effect-text-glow');
     if (state.effects.grayscale) effectClasses.push('effect-grayscale');
     if (state.effects.colorAccents) effectClasses.push('effect-color-accents');
+    if (state.effects.stickyToc) effectClasses.push('effect-sticky-toc');
     if (state.effects.sectionBreak !== 'default') effectClasses.push('effect-hr-' + state.effects.sectionBreak);
     if (state.effects.linkStyle !== 'default') effectClasses.push('effect-link-' + state.effects.linkStyle);
     if (state.effects.blockquoteStyle !== 'default') effectClasses.push('effect-bq-' + state.effects.blockquoteStyle);
@@ -407,6 +409,7 @@
     setCheckbox('effect-text-glow', state.effects.textGlow);
     setCheckbox('effect-grayscale', state.effects.grayscale);
     setCheckbox('effect-color-accents', state.effects.colorAccents);
+    setCheckbox('effect-sticky-toc', state.effects.stickyToc);
     setSelectValue('effect-section-break', state.effects.sectionBreak);
     setSelectValue('effect-link-style', state.effects.linkStyle);
     setSelectValue('effect-blockquote-style', state.effects.blockquoteStyle);

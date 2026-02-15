@@ -1363,11 +1363,8 @@ noscript ~ .theme-picker-wrapper,
 
 /* ============================================
    TOC Enhancements
-   Sticky positioning + scroll-spy active state
+   Scroll-spy active state (sticky is togglable via Theme Studio)
    ============================================ */
-@media (min-width: 1280px) {
-  .toc { position: sticky; top: 80px; }
-}
 .toc .inner a {
   transition: color 0.2s, border-color 0.2s;
   border-left: 2px solid transparent;

@@ -425,6 +425,14 @@
   font-style: italic;
 }
 
+/* Sticky TOC (wide screens only) */
+@media (min-width: 1280px) {
+  .effect-sticky-toc .toc {
+    position: sticky;
+    top: 80px;
+  }
+}
+
 /* ============================================
    Color Accents — uses --accent-1..4 from themes.css
    Applies theme-specific accent colors to UI elements
