@@ -18,6 +18,69 @@
     .catch(function() {});
 })();
 </script>
+<!-- Theme Picker JS -->
+<script>
+(function() {
+  var THEMES = [
+    { name: 'default', label: 'Default', light: '#ffffff', dark: '#1d1e20', border: '#eeeeee' },
+    { name: 'terminal', label: 'Terminal', light: '#f0f0e8', dark: '#0a0e0a', border: '#b8c0b0' },
+    { name: 'manuscript', label: 'Manuscript', light: '#faf7f0', dark: '#1c1a16', border: '#ddd5c8' },
+    { name: 'blueprint', label: 'Blueprint', light: '#f4f6fa', dark: '#0c1220', border: '#bcc6dd' },
+    { name: 'amber', label: 'Amber', light: '#faf5ee', dark: '#12100a', border: '#daccb0' },
+    { name: 'claude', label: 'Claude', light: '#faf8f6', dark: '#1a1714', border: '#e0d4c8' }
+  ];
+
+  var currentTheme = localStorage.getItem('full-theme') || 'default';
+  var dropdown = document.getElementById('theme-picker-dropdown');
+  var btn = document.getElementById('theme-picker-btn');
+  if (!dropdown || !btn) return;
+
+  function buildDropdown() {
+    dropdown.innerHTML = '';
+    THEMES.forEach(function(t) {
+      var option = document.createElement('button');
+      option.className = 'theme-option' + (t.name === currentTheme ? ' active' : '');
+      option.setAttribute('data-theme-name', t.name);
+      option.innerHTML =
+        '<span class="theme-preview" style="background:' + t.light + ';border:1px solid ' + t.border + '">' +
+        '<span class="theme-preview-dark" style="background:' + t.dark + '"></span></span>' +
+        '<span class="theme-label">' + t.label + '</span>' +
+        '<span class="theme-check">&#10003;</span>';
+      option.addEventListener('click', function() {
+        setTheme(t.name);
+      });
+      dropdown.appendChild(option);
+    });
+  }
+
+  function setTheme(name) {
+    currentTheme = name;
+    localStorage.setItem('full-theme', name);
+    document.documentElement.setAttribute('data-full-theme', name);
+    buildDropdown();
+    dropdown.classList.add('hidden');
+  }
+
+  buildDropdown();
+
+  btn.addEventListener('click', function(e) {
+    e.stopPropagation();
+    dropdown.classList.toggle('hidden');
+  });
+
+  document.addEventListener('click', function(e) {
+    if (!dropdown.contains(e.target) && e.target !== btn) {
+      dropdown.classList.add('hidden');
+    }
+  });
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      dropdown.classList.add('hidden');
+    }
+  });
+})();
+</script>
 {{ if .IsPage }}
 <div class="reading-progress" id="reading-progress"></div>
 <script>

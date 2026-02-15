@@ -1,0 +1,414 @@
+/* ============================================
+   Multi-Theme System for Adventures in Claude
+   6 themes x 2 modes = 12 color palettes
+   ============================================ */
+
+/* Default theme: no overrides needed — PaperMod's theme-vars.css is the baseline */
+
+/* ============================================
+   Theme: Terminal
+   Monospace, green phosphor CRT aesthetic
+   ============================================ */
+[data-full-theme="terminal"] {
+  --radius: 0px;
+  --gap: 20px;
+  --content-gap: 16px;
+  --main-width: 760px;
+}
+[data-full-theme="terminal"] body,
+[data-full-theme="terminal"] .post-content {
+  font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', 'Cascadia Code', monospace;
+  font-size: 16px;
+  line-height: 1.7;
+  letter-spacing: 0.02em;
+}
+[data-full-theme="terminal"] .post-title,
+[data-full-theme="terminal"] .logo a {
+  font-family: 'JetBrains Mono', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+[data-full-theme="terminal"] h1,
+[data-full-theme="terminal"] h2,
+[data-full-theme="terminal"] h3,
+[data-full-theme="terminal"] h4 {
+  font-family: 'JetBrains Mono', monospace;
+}
+[data-full-theme="terminal"][data-theme="light"] {
+  --theme: #f0f0e8;
+  --entry: #e8e8df;
+  --primary: #1a3a1a;
+  --secondary: #4a6a4a;
+  --tertiary: #c0c8b8;
+  --content: #1e3e1e;
+  --code-block-bg: #1a1a1a;
+  --code-bg: #d8ddd0;
+  --border: #b8c0b0;
+}
+[data-full-theme="terminal"][data-theme="dark"] {
+  --theme: #0a0e0a;
+  --entry: #0f150f;
+  --primary: #33ff33;
+  --secondary: #22aa22;
+  --tertiary: #1a3a1a;
+  --content: #2bda2b;
+  --code-block-bg: #0c120c;
+  --code-bg: #112211;
+  --border: #1a3a1a;
+}
+[data-full-theme="terminal"][data-theme="dark"] body {
+  text-shadow: 0 0 6px rgba(51, 255, 51, 0.15);
+}
+[data-full-theme="terminal"] .post-entry {
+  border-style: dashed;
+}
+[data-full-theme="terminal"] blockquote {
+  border-inline-start-style: dashed;
+}
+
+/* ============================================
+   Theme: Manuscript
+   Serif, bookish, typeset paper feel
+   ============================================ */
+[data-full-theme="manuscript"] {
+  --radius: 4px;
+  --gap: 28px;
+  --content-gap: 24px;
+  --main-width: 660px;
+}
+[data-full-theme="manuscript"] body,
+[data-full-theme="manuscript"] .post-content {
+  font-family: 'Lora', 'Georgia', 'Times New Roman', serif;
+  font-size: 19px;
+  line-height: 1.8;
+}
+[data-full-theme="manuscript"] h1,
+[data-full-theme="manuscript"] h2,
+[data-full-theme="manuscript"] h3,
+[data-full-theme="manuscript"] h4,
+[data-full-theme="manuscript"] h5,
+[data-full-theme="manuscript"] h6,
+[data-full-theme="manuscript"] .logo a,
+[data-full-theme="manuscript"] .post-title {
+  font-family: 'Playfair Display', 'Georgia', serif;
+}
+[data-full-theme="manuscript"][data-theme="light"] {
+  --theme: #faf7f0;
+  --entry: #f5f1e8;
+  --primary: #2c2416;
+  --secondary: #6b5f4f;
+  --tertiary: #d4cbbe;
+  --content: #3a3228;
+  --code-block-bg: #2a2520;
+  --code-bg: #eee8dc;
+  --border: #ddd5c8;
+}
+[data-full-theme="manuscript"][data-theme="dark"] {
+  --theme: #1c1a16;
+  --entry: #2a2722;
+  --primary: #e8e0d0;
+  --secondary: #a09080;
+  --tertiary: #3e3a34;
+  --content: #d8d0c0;
+  --code-block-bg: #252220;
+  --code-bg: #332e28;
+  --border: #3e3a34;
+}
+[data-full-theme="manuscript"] .post-content > p:first-of-type::first-letter {
+  font-family: 'Playfair Display', serif;
+  font-size: 3.2em;
+  float: left;
+  line-height: 0.8;
+  margin-right: 0.08em;
+  margin-top: 0.07em;
+  color: var(--primary);
+}
+[data-full-theme="manuscript"] .post-content hr {
+  border: none;
+  text-align: center;
+  height: auto;
+  background: none;
+}
+[data-full-theme="manuscript"] .post-content hr::before {
+  content: "* * *";
+  letter-spacing: 1em;
+  color: var(--secondary);
+}
+
+/* ============================================
+   Theme: Blueprint
+   Technical drawing, blue-tinted, grid lines
+   ============================================ */
+[data-full-theme="blueprint"] {
+  --radius: 2px;
+  --gap: 24px;
+  --content-gap: 20px;
+  --main-width: 740px;
+}
+[data-full-theme="blueprint"] body,
+[data-full-theme="blueprint"] .post-content {
+  font-family: 'Inter', 'Helvetica Neue', 'Arial', sans-serif;
+  font-size: 17px;
+  line-height: 1.65;
+}
+[data-full-theme="blueprint"] h1,
+[data-full-theme="blueprint"] h2,
+[data-full-theme="blueprint"] h3,
+[data-full-theme="blueprint"] h4,
+[data-full-theme="blueprint"] h5,
+[data-full-theme="blueprint"] h6,
+[data-full-theme="blueprint"] .logo a,
+[data-full-theme="blueprint"] .post-title {
+  font-family: 'Space Grotesk', 'Inter', sans-serif;
+  font-weight: 600;
+}
+[data-full-theme="blueprint"][data-theme="light"] {
+  --theme: #f4f6fa;
+  --entry: #edf0f7;
+  --primary: #1a2744;
+  --secondary: #4a5a7a;
+  --tertiary: #c4cce0;
+  --content: #212d4a;
+  --code-block-bg: #1a2038;
+  --code-bg: #dce2f0;
+  --border: #bcc6dd;
+}
+[data-full-theme="blueprint"][data-theme="dark"] {
+  --theme: #0c1220;
+  --entry: #111a2e;
+  --primary: #c8d8f0;
+  --secondary: #7088b0;
+  --tertiary: #1e2a44;
+  --content: #b0c4e0;
+  --code-block-bg: #0e1628;
+  --code-bg: #162040;
+  --border: #1e2a44;
+}
+[data-full-theme="blueprint"][data-theme="light"] body {
+  background-image:
+    linear-gradient(rgba(180, 195, 220, 0.15) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(180, 195, 220, 0.15) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+[data-full-theme="blueprint"][data-theme="dark"] body {
+  background-image:
+    linear-gradient(rgba(60, 80, 120, 0.12) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(60, 80, 120, 0.12) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+[data-full-theme="blueprint"] .post-entry {
+  border-left: 3px solid var(--secondary);
+}
+
+/* ============================================
+   Theme: Amber
+   Warm amber CRT monitor, retro computing
+   ============================================ */
+[data-full-theme="amber"] {
+  --radius: 6px;
+  --gap: 24px;
+  --content-gap: 20px;
+  --main-width: 720px;
+}
+[data-full-theme="amber"] body,
+[data-full-theme="amber"] .post-content {
+  font-family: 'IBM Plex Sans', 'Helvetica Neue', sans-serif;
+  font-size: 17px;
+  line-height: 1.7;
+}
+[data-full-theme="amber"] code,
+[data-full-theme="amber"] pre code {
+  font-family: 'IBM Plex Mono', monospace;
+}
+[data-full-theme="amber"] h1,
+[data-full-theme="amber"] h2,
+[data-full-theme="amber"] h3,
+[data-full-theme="amber"] h4,
+[data-full-theme="amber"] h5,
+[data-full-theme="amber"] h6,
+[data-full-theme="amber"] .logo a,
+[data-full-theme="amber"] .post-title {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 600;
+}
+[data-full-theme="amber"][data-theme="light"] {
+  --theme: #faf5ee;
+  --entry: #f4ede2;
+  --primary: #3a2a12;
+  --secondary: #8a6a3a;
+  --tertiary: #dcc8a0;
+  --content: #42301a;
+  --code-block-bg: #2a2018;
+  --code-bg: #eee4d0;
+  --border: #daccb0;
+}
+[data-full-theme="amber"][data-theme="dark"] {
+  --theme: #12100a;
+  --entry: #1a1610;
+  --primary: #ffb830;
+  --secondary: #c08820;
+  --tertiary: #2e2418;
+  --content: #e8a828;
+  --code-block-bg: #141008;
+  --code-bg: #1e1a10;
+  --border: #2e2418;
+}
+[data-full-theme="amber"][data-theme="dark"] body {
+  text-shadow: 0 0 8px rgba(255, 184, 48, 0.1);
+}
+
+/* ============================================
+   Theme: Claude
+   Anthropic-inspired, terracotta accents
+   ============================================ */
+[data-full-theme="claude"] {
+  --radius: 12px;
+  --gap: 28px;
+  --content-gap: 22px;
+  --main-width: 720px;
+}
+[data-full-theme="claude"] body,
+[data-full-theme="claude"] .post-content {
+  font-family: 'DM Sans', 'Helvetica Neue', sans-serif;
+  font-size: 18px;
+  line-height: 1.7;
+}
+[data-full-theme="claude"] code,
+[data-full-theme="claude"] pre code {
+  font-family: 'DM Mono', 'JetBrains Mono', monospace;
+}
+[data-full-theme="claude"] h1,
+[data-full-theme="claude"] h2,
+[data-full-theme="claude"] h3,
+[data-full-theme="claude"] h4,
+[data-full-theme="claude"] h5,
+[data-full-theme="claude"] h6,
+[data-full-theme="claude"] .logo a,
+[data-full-theme="claude"] .post-title {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600;
+}
+[data-full-theme="claude"][data-theme="light"] {
+  --theme: #faf8f6;
+  --entry: #f5f0ec;
+  --primary: #1a1410;
+  --secondary: #6b5c50;
+  --tertiary: #ddd0c4;
+  --content: #2a221c;
+  --code-block-bg: #1e1a16;
+  --code-bg: #f0e8e0;
+  --border: #e0d4c8;
+}
+[data-full-theme="claude"][data-theme="dark"] {
+  --theme: #1a1714;
+  --entry: #262220;
+  --primary: #ece4da;
+  --secondary: #a09080;
+  --tertiary: #3a3430;
+  --content: #ddd4c8;
+  --code-block-bg: #201c18;
+  --code-bg: #2e2a26;
+  --border: #3a3430;
+}
+[data-full-theme="claude"] .post-content a {
+  color: #c4704a;
+  box-shadow: 0 1px 0 #c4704a;
+}
+[data-full-theme="claude"][data-theme="dark"] .post-content a {
+  color: #e8906a;
+  box-shadow: 0 1px 0 #e8906a;
+}
+
+/* ============================================
+   Theme Picker Component
+   ============================================ */
+.theme-picker-wrapper {
+  position: relative;
+  display: inline-flex;
+  margin: auto 4px;
+}
+#theme-picker-btn {
+  font-size: 22px;
+  cursor: pointer;
+  padding: 4px;
+  color: var(--primary);
+  background: none;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+}
+#theme-picker-btn svg {
+  stroke: var(--primary);
+}
+.theme-picker-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--entry);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 6px 0;
+  min-width: 180px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  z-index: 100;
+}
+.theme-picker-dropdown.hidden {
+  display: none;
+}
+.theme-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 8px 14px;
+  cursor: pointer;
+  color: var(--primary);
+  background: none;
+  border: none;
+  font-size: 14px;
+  text-align: left;
+  font-family: inherit;
+}
+.theme-option:hover {
+  background: var(--code-bg);
+}
+.theme-preview {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+.theme-preview-dark {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 50%;
+  height: 100%;
+}
+.theme-label {
+  flex: 1;
+}
+.theme-check {
+  opacity: 0;
+  color: var(--secondary);
+  font-size: 12px;
+}
+.theme-option.active .theme-check {
+  opacity: 1;
+}
+@media screen and (max-width: 768px) {
+  .theme-picker-dropdown {
+    left: auto;
+    right: -10px;
+    transform: none;
+  }
+}
+/* Hide picker when JS is disabled */
+noscript ~ .theme-picker-wrapper,
+.theme-picker-wrapper:has(+ noscript) {
+  display: none;
+}
