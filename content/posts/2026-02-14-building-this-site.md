@@ -59,10 +59,4 @@ One command to capture. One command to aggregate. One command to ship. Everythin
 
 The thing that struck me most about this process wasn't the speed - though going from zero to a live blog in one session is genuinely fast. It was the quality of the brainstorming. Claude didn't just say "use Hugo." It asked what mattered to me, presented options with real tradeoffs, made recommendations with reasoning, and built a design that integrated with my existing tools.
 
-That's not "vibe coding." That's collaborative design with an AI that understands my workflow because it's been working inside it for weeks.
-
----
-
-This post was also written in that same session - by Claude, in my voice, using a voice profile it applies automatically. I'll keep iterating on the site. But the foundation is solid, and I'm writing this from the tool I'm writing about. That feels right.
-
 Subscribe via [RSS](/index.xml) to follow along. The source is always [on GitHub](https://github.com/bradfeld/adventuresinclaude).
