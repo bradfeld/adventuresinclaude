@@ -6,7 +6,7 @@ ShowBreadCrumbs: false
 
 I'm Brad Feld. I've been playing with technology since I got an Apple ][ for my bar mitzvah. I've co-founded a handful of companies including [Techstars](https://www.techstars.com/), been a VC investor for 30 years, and have been blogging at [feld.com](https://feld.com) for over 20 years. I've also written a bunch [books about entrepreneurship](https://feld.com/books).
 
-This site is where I write about building with AI - specifically Claude Code, the tool I use every day to build software. I'm the co-founder and very part time CTO of [IntensityMagic](https://intensitymagic.com), where we're building a multi-product SaaS platform with a two-person team and a lot of AI.
+This site is where I write about building with AI - specifically Claude Code, the tool I use every day to build software. I'm the co-founder and very part-time CTO of [IntensityMagic](https://intensitymagic.com), where we're building a multi-product SaaS platform with a two-person team and a lot of AI.
 
 Topics you'll find here:
 
