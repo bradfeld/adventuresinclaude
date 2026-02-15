@@ -48,7 +48,7 @@ The repo is public at [github.com/bradfeld/adventuresinclaude](https://github.co
 
 Here's what the publishing workflow looks like now:
 
-- Throughout the day, `/note` captures things I learn or discover
+- Throughout the day, `/note` captures things I learn or discover - and Claude automatically logs its own insight blocks to the same daily notes file as it works
 - At the end of the day (or whenever), `/blog-draft` aggregates those notes into a post
 - I edit the draft
 - `/blog-publish` commits it, pushes to GitHub, Vercel auto-deploys, Kit emails subscribers
