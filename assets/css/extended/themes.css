@@ -828,6 +828,201 @@
 }
 
 /* ============================================
+   Theme: Crazytown
+   Rainbow chaos, animated gradients, party mode
+   ============================================ */
+[data-full-theme="crazytown"] {
+  --radius: 16px;
+  --gap: 24px;
+  --content-gap: 20px;
+  --main-width: 760px;
+}
+[data-full-theme="crazytown"] body,
+[data-full-theme="crazytown"] .post-content {
+  font-family: 'Space Grotesk', 'DM Sans', sans-serif;
+  font-size: 17px;
+  line-height: 1.7;
+}
+[data-full-theme="crazytown"] h1,
+[data-full-theme="crazytown"] h2,
+[data-full-theme="crazytown"] h3,
+[data-full-theme="crazytown"] h4,
+[data-full-theme="crazytown"] h5,
+[data-full-theme="crazytown"] h6,
+[data-full-theme="crazytown"] .logo a,
+[data-full-theme="crazytown"] .post-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 800;
+}
+[data-full-theme="crazytown"] code,
+[data-full-theme="crazytown"] pre code {
+  font-family: 'JetBrains Mono', monospace;
+}
+/* Light palette — white base, rainbow accents */
+[data-full-theme="crazytown"][data-theme="light"] {
+  --theme: #fffef8;
+  --entry: #fff8f0;
+  --primary: #1a1a2e;
+  --secondary: #555577;
+  --tertiary: #f0e8ff;
+  --content: #2a2a40;
+  --code-block-bg: #1a1a2e;
+  --code-bg: #f5f0ff;
+  --border: #e0d0ff;
+}
+/* Dark palette — deep space, neon rainbow */
+[data-full-theme="crazytown"][data-theme="dark"] {
+  --theme: #0a0a14;
+  --entry: #12121e;
+  --primary: #f0f0ff;
+  --secondary: #aaaacc;
+  --tertiary: #1e1e30;
+  --content: #e0e0f0;
+  --code-block-bg: #08080e;
+  --code-bg: #16162a;
+  --border: #2a2a44;
+}
+
+/* Rainbow gradient headings */
+[data-full-theme="crazytown"] h1,
+[data-full-theme="crazytown"] .post-title {
+  background: linear-gradient(90deg, #ff0000, #ff8800, #ffff00, #00cc44, #0088ff, #8800ff, #ff00aa);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: rainbow-shift 4s linear infinite;
+}
+[data-full-theme="crazytown"] h2 {
+  background: linear-gradient(90deg, #ff00aa, #ff0000, #ff8800, #ffff00, #00cc44, #0088ff, #8800ff);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: rainbow-shift 5s linear infinite;
+}
+[data-full-theme="crazytown"] h3 {
+  background: linear-gradient(90deg, #0088ff, #8800ff, #ff00aa, #ff0000, #ff8800, #ffff00, #00cc44);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: rainbow-shift 6s linear infinite;
+}
+@keyframes rainbow-shift {
+  0% { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
+
+/* Rainbow links */
+[data-full-theme="crazytown"] .post-content a {
+  background: linear-gradient(90deg, #ff0000, #ff8800, #ffff00, #00cc44, #0088ff, #8800ff);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: rainbow-shift 3s linear infinite;
+  box-shadow: none;
+  text-decoration: underline;
+  text-decoration-color: #8800ff;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 2px;
+}
+[data-full-theme="crazytown"] .post-content a:hover {
+  text-decoration-color: #ff0000;
+}
+
+/* Rainbow gradient border on post entries */
+[data-full-theme="crazytown"] .post-entry {
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  position: relative;
+  overflow: visible;
+}
+[data-full-theme="crazytown"] .post-entry::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: calc(var(--radius) + 2px);
+  background: linear-gradient(135deg, #ff0000, #ff8800, #ffff00, #00cc44, #0088ff, #8800ff, #ff00aa, #ff0000);
+  background-size: 300% 300%;
+  animation: gradient-rotate 4s ease infinite;
+  z-index: -1;
+}
+@keyframes gradient-rotate {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Rainbow reading progress bar */
+[data-full-theme="crazytown"] .reading-progress {
+  background: linear-gradient(90deg, #ff0000, #ff8800, #ffff00, #00cc44, #0088ff, #8800ff, #ff00aa);
+  height: 4px;
+}
+
+/* Rainbow blockquote border */
+[data-full-theme="crazytown"] blockquote {
+  border-image: linear-gradient(180deg, #ff0000, #ff8800, #ffff00, #00cc44, #0088ff, #8800ff) 1;
+  border-inline-start-width: 4px;
+  border-inline-start-style: solid;
+}
+
+/* Rainbow code block accent */
+[data-full-theme="crazytown"] .highlight {
+  border-left: 3px solid;
+  border-image: linear-gradient(180deg, #ff0000, #8800ff) 1;
+}
+
+/* Rainbow tag pills */
+[data-full-theme="crazytown"][data-theme="light"] .post-tags a {
+  background: linear-gradient(135deg, #fff0f0, #fff8e0, #f0fff0, #f0f0ff, #fff0ff);
+  border-color: #e0c0ff;
+}
+[data-full-theme="crazytown"][data-theme="dark"] .post-tags a {
+  background: linear-gradient(135deg, #1e1018, #1e1a10, #101e10, #10101e, #1e101e);
+  border-color: #2a2044;
+}
+
+/* Rainbow selection highlight */
+[data-full-theme="crazytown"] ::selection {
+  background: #ff00aa;
+  color: #ffffff;
+}
+
+/* Animated rainbow body border (top + bottom bars) */
+[data-full-theme="crazytown"] body::before,
+[data-full-theme="crazytown"] body::after {
+  content: '';
+  position: fixed;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, #ff0000, #ff8800, #ffff00, #00cc44, #0088ff, #8800ff, #ff00aa, #ff0000);
+  background-size: 200% auto;
+  animation: rainbow-shift 3s linear infinite;
+  z-index: 9999;
+}
+[data-full-theme="crazytown"] body::before { top: 0; }
+[data-full-theme="crazytown"] body::after { bottom: 0; }
+
+/* Logo gets rainbow treatment too */
+[data-full-theme="crazytown"] .logo a {
+  background: linear-gradient(90deg, #ff0000, #ff8800, #ffff00, #00cc44, #0088ff, #8800ff, #ff00aa);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: rainbow-shift 4s linear infinite;
+}
+
+/* Cyberpunk-style callout borders in crazytown */
+[data-full-theme="crazytown"] .callout-note { border-left-color: #0088ff; }
+[data-full-theme="crazytown"] .callout-tip { border-left-color: #00cc44; }
+[data-full-theme="crazytown"] .callout-warning { border-left-color: #ff8800; }
+[data-full-theme="crazytown"] .callout-important { border-left-color: #ff0000; }
+
+/* ============================================
    Theme Picker Component
    ============================================ */
 .theme-picker-wrapper {
