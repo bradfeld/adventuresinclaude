@@ -828,199 +828,201 @@
 }
 
 /* ============================================
-   Theme: Crazytown
-   Rainbow chaos, animated gradients, party mode
+   Theme: Unicorn
+   Dreamy pastel gradients, whimsical and soft
+   Palette: Cherry Blossom Pink, Apricot, Blond,
+            Tea Green, Powder Blue, Lavender Gray
    ============================================ */
-[data-full-theme="crazytown"] {
+[data-full-theme="unicorn"] {
   --radius: 16px;
   --gap: 24px;
   --content-gap: 20px;
-  --main-width: 760px;
+  --main-width: 740px;
 }
-[data-full-theme="crazytown"] body,
-[data-full-theme="crazytown"] .post-content {
-  font-family: 'Space Grotesk', 'DM Sans', sans-serif;
+[data-full-theme="unicorn"] body,
+[data-full-theme="unicorn"] .post-content {
+  font-family: 'Quicksand', 'DM Sans', sans-serif;
   font-size: 17px;
-  line-height: 1.7;
+  line-height: 1.75;
 }
-[data-full-theme="crazytown"] h1,
-[data-full-theme="crazytown"] h2,
-[data-full-theme="crazytown"] h3,
-[data-full-theme="crazytown"] h4,
-[data-full-theme="crazytown"] h5,
-[data-full-theme="crazytown"] h6,
-[data-full-theme="crazytown"] .logo a,
-[data-full-theme="crazytown"] .post-title {
-  font-family: 'Space Grotesk', sans-serif;
-  font-weight: 800;
+[data-full-theme="unicorn"] h1,
+[data-full-theme="unicorn"] h2,
+[data-full-theme="unicorn"] h3,
+[data-full-theme="unicorn"] h4,
+[data-full-theme="unicorn"] h5,
+[data-full-theme="unicorn"] h6,
+[data-full-theme="unicorn"] .logo a,
+[data-full-theme="unicorn"] .post-title {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
 }
-[data-full-theme="crazytown"] code,
-[data-full-theme="crazytown"] pre code {
+[data-full-theme="unicorn"] code,
+[data-full-theme="unicorn"] pre code {
   font-family: 'JetBrains Mono', monospace;
 }
-/* Light palette — white base, rainbow accents */
-[data-full-theme="crazytown"][data-theme="light"] {
-  --theme: #fffef8;
-  --entry: #fff8f0;
-  --primary: #1a1a2e;
-  --secondary: #555577;
-  --tertiary: #f0e8ff;
-  --content: #2a2a40;
-  --code-block-bg: #1a1a2e;
-  --code-bg: #f5f0ff;
-  --border: #e0d0ff;
+/* Light palette — soft pink-white base, pastel accents */
+[data-full-theme="unicorn"][data-theme="light"] {
+  --theme: #FFF8F9;
+  --entry: #FFF2F5;
+  --primary: #3A2D3D;
+  --secondary: #7A6B80;
+  --tertiary: #F3EDF7;
+  --content: #4A3D50;
+  --code-block-bg: #3A2D3D;
+  --code-bg: #FFF0F3;
+  --border: #E8D8EE;
 }
-/* Dark palette — deep space, neon rainbow */
-[data-full-theme="crazytown"][data-theme="dark"] {
-  --theme: #0a0a14;
-  --entry: #12121e;
-  --primary: #f0f0ff;
-  --secondary: #aaaacc;
-  --tertiary: #1e1e30;
-  --content: #e0e0f0;
-  --code-block-bg: #08080e;
-  --code-bg: #16162a;
-  --border: #2a2a44;
+/* Dark palette — deep plum base, soft pastels */
+[data-full-theme="unicorn"][data-theme="dark"] {
+  --theme: #1A141E;
+  --entry: #221A28;
+  --primary: #F5DDE2;
+  --secondary: #A898B0;
+  --tertiary: #2E2434;
+  --content: #E8D0D8;
+  --code-block-bg: #14101A;
+  --code-bg: #1E162A;
+  --border: #3A2E44;
 }
 
-/* Rainbow gradient headings */
-[data-full-theme="crazytown"] h1,
-[data-full-theme="crazytown"] .post-title {
-  background: linear-gradient(90deg, #ff0000, #ff8800, #ffff00, #00cc44, #0088ff, #8800ff, #ff00aa);
+/* Pastel gradient headings — dreamy slow drift */
+[data-full-theme="unicorn"] h1,
+[data-full-theme="unicorn"] .post-title {
+  background: linear-gradient(90deg, #FBB9C5, #FDD0B1, #F9EFC7, #C3EDBF, #B8DFE6, #C5BBDE, #FBB9C5);
   background-size: 200% auto;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: rainbow-shift 4s linear infinite;
+  animation: pastel-drift 8s linear infinite;
 }
-[data-full-theme="crazytown"] h2 {
-  background: linear-gradient(90deg, #ff00aa, #ff0000, #ff8800, #ffff00, #00cc44, #0088ff, #8800ff);
+[data-full-theme="unicorn"] h2 {
+  background: linear-gradient(90deg, #C5BBDE, #FBB9C5, #FDD0B1, #F9EFC7, #C3EDBF, #B8DFE6, #C5BBDE);
   background-size: 200% auto;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: rainbow-shift 5s linear infinite;
+  animation: pastel-drift 10s linear infinite;
 }
-[data-full-theme="crazytown"] h3 {
-  background: linear-gradient(90deg, #0088ff, #8800ff, #ff00aa, #ff0000, #ff8800, #ffff00, #00cc44);
+[data-full-theme="unicorn"] h3 {
+  background: linear-gradient(90deg, #B8DFE6, #C5BBDE, #FBB9C5, #FDD0B1, #F9EFC7, #C3EDBF, #B8DFE6);
   background-size: 200% auto;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: rainbow-shift 6s linear infinite;
+  animation: pastel-drift 12s linear infinite;
 }
-@keyframes rainbow-shift {
+@keyframes pastel-drift {
   0% { background-position: 0% center; }
   100% { background-position: 200% center; }
 }
 
-/* Rainbow links */
-[data-full-theme="crazytown"] .post-content a {
-  background: linear-gradient(90deg, #ff0000, #ff8800, #ffff00, #00cc44, #0088ff, #8800ff);
+/* Pastel gradient links */
+[data-full-theme="unicorn"] .post-content a {
+  background: linear-gradient(90deg, #FBB9C5, #C5BBDE, #B8DFE6, #C3EDBF, #FDD0B1, #FBB9C5);
   background-size: 200% auto;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: rainbow-shift 3s linear infinite;
+  animation: pastel-drift 6s linear infinite;
   box-shadow: none;
   text-decoration: underline;
-  text-decoration-color: #8800ff;
+  text-decoration-color: #C5BBDE;
   text-underline-offset: 3px;
   text-decoration-thickness: 2px;
 }
-[data-full-theme="crazytown"] .post-content a:hover {
-  text-decoration-color: #ff0000;
+[data-full-theme="unicorn"] .post-content a:hover {
+  text-decoration-color: #FBB9C5;
 }
 
-/* Rainbow gradient border on post entries */
-[data-full-theme="crazytown"] .post-entry {
+/* Pastel gradient border on post entries */
+[data-full-theme="unicorn"] .post-entry {
   border: 2px solid transparent;
   background-clip: padding-box;
   position: relative;
   overflow: visible;
 }
-[data-full-theme="crazytown"] .post-entry::before {
+[data-full-theme="unicorn"] .post-entry::before {
   content: '';
   position: absolute;
   inset: -2px;
   border-radius: calc(var(--radius) + 2px);
-  background: linear-gradient(135deg, #ff0000, #ff8800, #ffff00, #00cc44, #0088ff, #8800ff, #ff00aa, #ff0000);
+  background: linear-gradient(135deg, #FBB9C5, #FDD0B1, #F9EFC7, #C3EDBF, #B8DFE6, #C5BBDE, #FBB9C5);
   background-size: 300% 300%;
-  animation: gradient-rotate 4s ease infinite;
+  animation: pastel-rotate 6s ease infinite;
   z-index: -1;
 }
-@keyframes gradient-rotate {
+@keyframes pastel-rotate {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
 
-/* Rainbow reading progress bar */
-[data-full-theme="crazytown"] .reading-progress {
-  background: linear-gradient(90deg, #ff0000, #ff8800, #ffff00, #00cc44, #0088ff, #8800ff, #ff00aa);
+/* Pastel reading progress bar */
+[data-full-theme="unicorn"] .reading-progress {
+  background: linear-gradient(90deg, #FBB9C5, #FDD0B1, #F9EFC7, #C3EDBF, #B8DFE6, #C5BBDE);
   height: 4px;
 }
 
-/* Rainbow blockquote border */
-[data-full-theme="crazytown"] blockquote {
-  border-image: linear-gradient(180deg, #ff0000, #ff8800, #ffff00, #00cc44, #0088ff, #8800ff) 1;
+/* Pastel blockquote border */
+[data-full-theme="unicorn"] blockquote {
+  border-image: linear-gradient(180deg, #FBB9C5, #FDD0B1, #F9EFC7, #C3EDBF, #B8DFE6, #C5BBDE) 1;
   border-inline-start-width: 4px;
   border-inline-start-style: solid;
 }
 
-/* Rainbow code block accent */
-[data-full-theme="crazytown"] .highlight {
+/* Pastel code block accent */
+[data-full-theme="unicorn"] .highlight {
   border-left: 3px solid;
-  border-image: linear-gradient(180deg, #ff0000, #8800ff) 1;
+  border-image: linear-gradient(180deg, #FBB9C5, #C5BBDE) 1;
 }
 
-/* Rainbow tag pills */
-[data-full-theme="crazytown"][data-theme="light"] .post-tags a {
-  background: linear-gradient(135deg, #fff0f0, #fff8e0, #f0fff0, #f0f0ff, #fff0ff);
-  border-color: #e0c0ff;
+/* Pastel tag pills */
+[data-full-theme="unicorn"][data-theme="light"] .post-tags a {
+  background: linear-gradient(135deg, #FFF0F2, #FFF4E8, #FAFCE8, #E8FAF0, #E8F4F8, #F0EAF6);
+  border-color: #E0D0E8;
 }
-[data-full-theme="crazytown"][data-theme="dark"] .post-tags a {
-  background: linear-gradient(135deg, #1e1018, #1e1a10, #101e10, #10101e, #1e101e);
-  border-color: #2a2044;
-}
-
-/* Rainbow selection highlight */
-[data-full-theme="crazytown"] ::selection {
-  background: #ff00aa;
-  color: #ffffff;
+[data-full-theme="unicorn"][data-theme="dark"] .post-tags a {
+  background: linear-gradient(135deg, #2A1E24, #2A221A, #22241A, #1A241E, #1A2226, #221E28);
+  border-color: #3A2E44;
 }
 
-/* Animated rainbow body border (top + bottom bars) */
-[data-full-theme="crazytown"] body::before,
-[data-full-theme="crazytown"] body::after {
+/* Soft pink selection highlight */
+[data-full-theme="unicorn"] ::selection {
+  background: #FBB9C5;
+  color: #3A2D3D;
+}
+
+/* Animated pastel body border (top + bottom bars) */
+[data-full-theme="unicorn"] body::before,
+[data-full-theme="unicorn"] body::after {
   content: '';
   position: fixed;
   left: 0;
   width: 100%;
   height: 3px;
-  background: linear-gradient(90deg, #ff0000, #ff8800, #ffff00, #00cc44, #0088ff, #8800ff, #ff00aa, #ff0000);
+  background: linear-gradient(90deg, #FBB9C5, #FDD0B1, #F9EFC7, #C3EDBF, #B8DFE6, #C5BBDE, #FBB9C5);
   background-size: 200% auto;
-  animation: rainbow-shift 3s linear infinite;
+  animation: pastel-drift 6s linear infinite;
   z-index: 9999;
 }
-[data-full-theme="crazytown"] body::before { top: 0; }
-[data-full-theme="crazytown"] body::after { bottom: 0; }
+[data-full-theme="unicorn"] body::before { top: 0; }
+[data-full-theme="unicorn"] body::after { bottom: 0; }
 
-/* Logo gets rainbow treatment too */
-[data-full-theme="crazytown"] .logo a {
-  background: linear-gradient(90deg, #ff0000, #ff8800, #ffff00, #00cc44, #0088ff, #8800ff, #ff00aa);
+/* Logo gets pastel gradient too */
+[data-full-theme="unicorn"] .logo a {
+  background: linear-gradient(90deg, #FBB9C5, #FDD0B1, #F9EFC7, #C3EDBF, #B8DFE6, #C5BBDE, #FBB9C5);
   background-size: 200% auto;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: rainbow-shift 4s linear infinite;
+  animation: pastel-drift 8s linear infinite;
 }
 
-/* Cyberpunk-style callout borders in crazytown */
-[data-full-theme="crazytown"] .callout-note { border-left-color: #0088ff; }
-[data-full-theme="crazytown"] .callout-tip { border-left-color: #00cc44; }
-[data-full-theme="crazytown"] .callout-warning { border-left-color: #ff8800; }
-[data-full-theme="crazytown"] .callout-important { border-left-color: #ff0000; }
+/* Pastel callout borders */
+[data-full-theme="unicorn"] .callout-note { border-left-color: #B8DFE6; }
+[data-full-theme="unicorn"] .callout-tip { border-left-color: #C3EDBF; }
+[data-full-theme="unicorn"] .callout-warning { border-left-color: #FDD0B1; }
+[data-full-theme="unicorn"] .callout-important { border-left-color: #FBB9C5; }
 
 /* ============================================
    Theme Picker Component
