@@ -24,7 +24,7 @@ theme = "PaperMod"
 
   [[params.socialIcons]]
     name = "email"
-    url = "https://adventuresinclaude.kit.com/cdea0d078b"
+    url = "https://subscribe.adventuresinclaude.ai/cdea0d078b"
 
   [[params.socialIcons]]
     name = "rss"
@@ -66,7 +66,7 @@ theme = "PaperMod"
   [[menu.main]]
     identifier = "subscribe"
     name = "Subscribe"
-    url = "https://adventuresinclaude.kit.com/cdea0d078b"
+    url = "https://subscribe.adventuresinclaude.ai/cdea0d078b"
     weight = 35
   [[menu.main]]
     identifier = "about"
