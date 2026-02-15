@@ -2,7 +2,8 @@ baseURL = "https://adventuresinclaude.ai/"
 languageCode = "en-us"
 title = "Adventures in Claude"
 theme = "PaperMod"
-paginate = 10
+[pagination]
+  pagerSize = 10
 
 [params]
   env = "production"
