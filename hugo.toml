@@ -119,7 +119,7 @@ enableGitInfo = true
     identifier = "subscribe"
     name = "Subscribe"
     url = "https://subscribe.adventuresinclaude.ai"
-    weight = 35
+    weight = 45
   [[menu.main]]
     identifier = "themes"
     name = "Themes"
