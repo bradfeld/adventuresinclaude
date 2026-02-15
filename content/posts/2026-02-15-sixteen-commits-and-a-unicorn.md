@@ -36,9 +36,7 @@ Plus an AI sentiment analysis feature for media mention imports - when you paste
 
 ## The Freshell Detour
 
-Freshell, the open-source terminal companion I've been contributing to, got some love too. **FRE-32** created shared WebSocket protocol types - extracting message type definitions into a shared module so the client and server speak the same typed language. **FRE-33** followed up with a `looksLikePath` deduplication refactor.
-
-The fun one was making local file paths clickable. When Freshell displays a file path in the terminal, it now opens directly in your editor tab. Small feature, big quality-of-life improvement.
+Freshell, the open-source terminal companion I've been contributing to, got some love too. **FRE-32** created shared WebSocket protocol types - extracting message type definitions into a shared module so the client and server speak the same typed language. **FRE-33** followed up with a `looksLikePath` deduplication refactor. 
 
 ---
 
