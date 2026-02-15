@@ -35,24 +35,14 @@
   <meta property="og:type" content="website">
 {{- end }}
 
-{{- if .Params.cover.image -}}
+{{- if .Params.cover.image }}
   {{- if (ne .Params.cover.relative true) }}
-    <meta property="og:image" content="{{ .Params.cover.image | absURL }}">
-  {{- else}}
-    <meta property="og:image" content="{{ (path.Join .RelPermalink .Params.cover.image ) | absURL }}">
-  {{- end}}
-{{- else }}
-  {{- with partial "_funcs/get-page-images" . }}
-    {{- range . | first 6 }}
-      <meta property="og:image" content="{{ .Permalink }}">
-    {{- end }}
+<meta property="og:image" content="{{ .Params.cover.image | absURL }}">
   {{- else }}
-    {{- with site.Params.images }}
-      {{- range . | first 1 }}
-        <meta property="og:image" content="{{ . | absURL }}">
-      {{- end }}
-    {{- end }}
+<meta property="og:image" content="{{ (path.Join .RelPermalink .Params.cover.image ) | absURL }}">
   {{- end }}
+{{- else }}
+<meta property="og:image" content="{{ "og-default.png" | absURL }}">
 {{- end }}
 
 {{- range .GetTerms "series" }}
