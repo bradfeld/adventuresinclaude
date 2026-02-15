@@ -23,6 +23,10 @@ theme = "PaperMod"
     Content = "Notes from building with AI - Claude Code, CompanyOS, open source, and the craft of software development."
 
   [[params.socialIcons]]
+    name = "email"
+    url = "https://adventuresinclaude.kit.com/cdea0d078b"
+
+  [[params.socialIcons]]
     name = "rss"
     url = "/index.xml"
 
@@ -59,6 +63,11 @@ theme = "PaperMod"
     name = "Search"
     url = "/search/"
     weight = 30
+  [[menu.main]]
+    identifier = "subscribe"
+    name = "Subscribe"
+    url = "https://adventuresinclaude.kit.com/cdea0d078b"
+    weight = 35
   [[menu.main]]
     identifier = "about"
     name = "About"
