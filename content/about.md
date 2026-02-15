@@ -17,4 +17,4 @@ Topics you'll find here:
 
 The source for this site is [on GitHub](https://github.com/bradfeld/adventuresinclaude). It's built with Hugo and PaperMod, deployed on Vercel, and the entire content pipeline - from note capture to publishing - runs through Claude Code.
 
-Subscribe via [RSS](/index.xml) to follow along.
+Subscribe via [RSS](https://adventuresinclaude.ai/index.xml) to follow along.

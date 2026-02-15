@@ -23,4 +23,4 @@ While I still have plenty of investing responsibilities, my current obsession is
 
 ---
 
-The source for this site is [on GitHub](https://github.com/bradfeld/adventuresinclaude). Subscribe via [RSS](/index.xml) to follow along.
+The source for this site is [on GitHub](https://github.com/bradfeld/adventuresinclaude). Subscribe via [RSS](https://adventuresinclaude.ai/index.xml) to follow along.
