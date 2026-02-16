@@ -13,7 +13,8 @@ Hugo static blog at adventuresinclaude.ai.
 
 ## Commands
 
-- `/blog-publish` - Publish a post (voice check, commit, push, deploy)
+- `/blog-publish` - Publish a post (voice check, commit, push, deploy, LinkedIn)
+- `/linkedin-setup` - Configure or refresh LinkedIn API credentials (60-day token)
 
 ## Post Format
 
@@ -34,7 +35,7 @@ Content in markdown...
 1. `/note` captures insights throughout the day (global command)
 2. `/blog-draft` aggregates notes into a post draft (global command)
 3. Edit the draft in `content/posts/`
-4. `/blog-publish` commits, pushes, and reports deployment
+4. `/blog-publish` commits, pushes, deploys, and posts to LinkedIn
 
 ## Deployment
 
@@ -70,6 +71,14 @@ workflow:
   labels:
     auto_detect: false
 ```
+
+## LinkedIn Integration
+
+- **API**: LinkedIn REST Posts API (`/rest/posts`) with `Linkedin-Version: 202501`
+- **Post type**: Article (link preview card with title, description)
+- **Credentials**: `LINKEDIN_ACCESS_TOKEN` and `LINKEDIN_PERSON_URN` in `.env.local`
+- **Token expiry**: 60 days — run `/linkedin-setup` to refresh
+- **Non-blocking**: LinkedIn failures never block blog publishing
 
 ## Voice
 
