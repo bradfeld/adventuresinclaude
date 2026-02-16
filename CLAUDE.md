@@ -49,6 +49,28 @@ hugo server -D --port 4000    # Dev server with drafts, port 4000
 hugo --minify                  # Production build
 ```
 
+## Workflow Profile
+
+```yaml
+workflow:
+  base_branch: main
+  direct_to_main: true
+  investigation: light
+  plan_approval: auto
+  user_testing: skip
+  quality_gates: []
+  review:
+    triage: false
+    max_level: NONE
+  ship:
+    method: direct_push
+    target: main
+    linear_status: "Done"
+    deploy_hint: "Push to main triggers Vercel auto-deploy"
+  labels:
+    auto_detect: false
+```
+
 ## Voice
 
 Apply Brad's voice profile from `~/.claude/voice/voice-profile.md` when writing or editing posts.
