@@ -9,11 +9,13 @@
 .header-social-icons {
   display: inline-flex;
   align-items: center;
+  gap: 0;
   margin: auto 4px;
 }
 .header-social-icons a {
   display: inline-flex;
-  padding: 4px;
+  align-items: center;
+  padding: 6px 3px;
   color: var(--primary);
 }
 .header-social-icons a svg {

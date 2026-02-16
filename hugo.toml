@@ -13,6 +13,7 @@ enableGitInfo = true
   description = "Building with AI - Claude Code, CompanyOS, and the future of software development"
   author = "Brad Feld"
   defaultTheme = "auto"
+  disableSpecial1stPost = true
   ShowReadingTime = true
   ShowShareButtons = true
   ShareButtons = ["x", "linkedin"]
