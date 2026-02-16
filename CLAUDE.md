@@ -13,7 +13,8 @@ Hugo static blog at adventuresinclaude.ai.
 
 ## Commands
 
-- `/blog-publish` - Publish a post (voice check, commit, push, deploy, LinkedIn)
+- `/blogaic-post` - Publish a post (voice check, commit, push, deploy, LinkedIn)
+- `/blogaic-draft` - Aggregate daily notes into a blog post draft
 - `/linkedin-setup` - Configure or refresh LinkedIn API credentials (60-day token)
 
 ## Post Format
@@ -33,9 +34,9 @@ Content in markdown...
 ## Content Pipeline
 
 1. `/note` captures insights throughout the day (global command)
-2. `/blog-draft` aggregates notes into a post draft (global command)
+2. `/blogaic-draft` aggregates notes into a post draft
 3. Edit the draft in `content/posts/`
-4. `/blog-publish` commits, pushes, deploys, and posts to LinkedIn
+4. `/blogaic-post` commits, pushes, deploys, and posts to LinkedIn
 
 ## Deployment
 

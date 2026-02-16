@@ -16,7 +16,7 @@ allowed-tools:
 
 # /linkedin-setup - Configure LinkedIn API Access
 
-One-time setup (refresh every 60 days) for LinkedIn auto-posting from `/blog-publish`.
+One-time setup (refresh every 60 days) for LinkedIn auto-posting from `/blogaic-post`.
 
 ## Usage
 
@@ -203,7 +203,7 @@ Display:
   Token saved to: ~/Code/adventuresinclaude/.env.local
   Token expires: ~60 days from now
 
-When your token expires, `/blog-publish` will show:
+When your token expires, `/blogaic-post` will show:
   "LinkedIn: Failed — Token expired. Run /linkedin-setup to re-authorize"
 
 Just run /linkedin-setup again to refresh.
