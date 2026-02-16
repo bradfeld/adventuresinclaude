@@ -1,6 +1,6 @@
 ---
 title: "Hello World"
-date: 2026-02-14
+date: 2026-02-14T10:00:00-07:00
 tags: ["claude-code", "ai", "meta"]
 description: "Why this site exists and what you'll find here"
 draft: false

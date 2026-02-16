@@ -5,6 +5,12 @@
 
 /* Default theme: no overrides needed — PaperMod's theme-vars.css is the baseline */
 
+/* Fix: Remove excessive min-height on home info section */
+.first-entry.home-info {
+  min-height: auto;
+  margin: var(--gap) 0;
+}
+
 /* Default accent colors (overridden per theme below) */
 :root {
   --accent-1: #3b82f6;
