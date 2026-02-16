@@ -70,6 +70,17 @@
                 </button>
                 {{- end }}
 
+                {{- with site.Params.socialIcons }}
+                <div class="header-social-icons">
+                    {{- range . }}
+                    <a href="{{ trim .url " " | safeURL }}" target="_blank" rel="noopener noreferrer me"
+                        title="{{ (.title | default .name) | title }}">
+                        {{ partial "svg.html" . }}
+                    </a>
+                    {{- end }}
+                </div>
+                {{- end }}
+
                 {{- if (not site.Params.disableLangToggle) }}
                     {{- $lang := .Lang}}
                     {{- $separator := or $label_text (not site.Params.disableThemeToggle)}}

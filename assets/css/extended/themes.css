@@ -5,10 +5,23 @@
 
 /* Default theme: no overrides needed — PaperMod's theme-vars.css is the baseline */
 
-/* Fix: Remove excessive min-height on home info section */
-.first-entry.home-info {
-  min-height: auto;
-  margin: var(--gap) 0;
+/* Header social icons — inline with theme toggle */
+.header-social-icons {
+  display: inline-flex;
+  align-items: center;
+  margin: auto 4px;
+}
+.header-social-icons a {
+  display: inline-flex;
+  padding: 4px;
+  color: var(--primary);
+}
+.header-social-icons a svg {
+  height: 18px;
+  width: 18px;
+}
+.header-social-icons a:hover {
+  color: var(--secondary);
 }
 
 /* Default accent colors (overridden per theme below) */

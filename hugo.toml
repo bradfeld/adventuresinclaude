@@ -60,10 +60,6 @@ enableGitInfo = true
   [params.footer]
     text = "Built with Claude Code"
 
-  [params.homeInfoParams]
-    Title = "Adventures in Claude"
-    Content = "Notes from my adventures with Claude Code"
-
   [[params.socialIcons]]
     name = "rss"
     url = "/index.xml"
