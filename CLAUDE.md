@@ -13,9 +13,10 @@ Hugo static blog at adventuresinclaude.ai.
 
 ## Commands
 
-- `/blogaic-post` - Publish a post (voice check, commit, push, deploy, LinkedIn)
+- `/blogaic-post` - Publish a post (voice check, commit, push, deploy, LinkedIn, X)
 - `/blogaic-draft` - Aggregate daily notes into a blog post draft
 - `/linkedin-setup` - Configure or refresh LinkedIn API credentials (60-day token)
+- `/x-setup` - Configure X (Twitter) API credentials for auto-posting
 
 ## Post Format
 
@@ -36,7 +37,7 @@ Content in markdown...
 1. `/note` captures insights throughout the day (global command)
 2. `/blogaic-draft` aggregates notes into a post draft
 3. Edit the draft in `content/posts/`
-4. `/blogaic-post` commits, pushes, deploys, and posts to LinkedIn
+4. `/blogaic-post` commits, pushes, deploys, and posts to LinkedIn + X
 
 ## Deployment
 
@@ -80,6 +81,15 @@ workflow:
 - **Credentials**: `LINKEDIN_ACCESS_TOKEN` and `LINKEDIN_PERSON_URN` in `.env.local`
 - **Token expiry**: 60 days — run `/linkedin-setup` to refresh
 - **Non-blocking**: LinkedIn failures never block blog publishing
+
+## X (Twitter) Integration
+
+- **API**: X API v2 (`POST https://api.x.com/2/tweets`) with OAuth 1.0a signing
+- **Post format**: Title + link + hashtags (within 280 char limit)
+- **Credentials**: `X_API_KEY`, `X_API_SECRET`, `X_ACCESS_TOKEN`, `X_ACCESS_TOKEN_SECRET` in `.env.local`
+- **Auth note**: Free tier requires OAuth 1.0a (OAuth 2.0 requires Basic tier at $100/month)
+- **Rate limit**: ~500 posts/month on free tier
+- **Non-blocking**: X failures never block blog publishing
 
 ## Voice
 
