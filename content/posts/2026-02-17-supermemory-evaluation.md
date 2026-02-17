@@ -46,13 +46,11 @@ The comparison comes down to three things.
 
 *Team memory.* This is the one genuine gap. Supermemory maintains separate personal and team memory containers. My current system has no shared memory layer between Claude sessions. When I figure out that `ALTER ROLE SET` replaces instead of appends (which caused a production outage), Daniel's sessions don't automatically learn that. He'd have to read my MEMORY.md or hit the same problem himself.
 
-But we're a two-person company. We share the same rules files, the same skills, the same CLAUDE.md configurations. That's not the same as semantic team memory - it's structured and explicit rather than organic - but it covers most of what we need.
-
 ---
 
 I'm not going to use Supermemory.
 
-The current system works. It's self-contained, it's version-controlled, it's customized to my workflow. Supermemory solves real problems - context injection, semantic search, team memory - but I've already solved most of them differently. The one thing I genuinely don't have (shared memory) isn't painful enough at two people to justify adding a vendor dependency and a monthly subscription.
+The current system works. It's self-contained, it's version-controlled, and it's customized to my workflow. Supermemory solves real problems - context injection, semantic search, and team memory - but I've already solved most of them differently. The one thing I genuinely don't have (shared memory) isn't painful enough to justify adding a vendor dependency and a monthly subscription.
 
 If Supermemory were free and self-hosted, I'd experiment with it. The semantic search layer on top of my existing memories would be interesting. But wrapping my session data through a startup's API - even one that [scored 81.6% on LongMemEval](https://supermemory.ai/blog/we-added-supermemory-to-claude-code-its-insanely-powerful-now/) versus 40-60% for standard RAG - introduces a dependency I don't need for the value it provides.
 
