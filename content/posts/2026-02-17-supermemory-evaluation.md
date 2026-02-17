@@ -12,9 +12,9 @@ So I spent some time figuring out whether Supermemory would add anything to what
 
 ---
 
-Here's what Supermemory does. When you start a Claude Code session, the plugin fetches relevant memories from their API and injects them into context. While you work, it automatically captures your tool usage - edits, file writes, bash commands, task spawns - and stores them as structured memories. You get `super-search` to query past work and `super-save` to manually flag something important.
+Here's what Supermemory does. When you start a Claude Code session, the plugin fetches relevant memories from their API and injects them into context. While you work, it automatically captures your tool usage - edits, file writes, bash commands, and task spawns - and stores them as structured memories. You get `super-search` to query past work and `super-save` to manually flag something important.
 
-The interesting bit is what they call "signal extraction." Instead of capturing everything (which would be noisy), you can configure keywords - "remember," "architecture," "decision," "bug" - and it only captures turns that match. The system also maintains separate personal and team memory containers.
+The interesting bit is what they call "signal extraction." Instead of capturing everything (which would be noisy), you can configure keywords - "remember," "architecture," "decision," and "bug" - and it only captures turns that match. The system also maintains separate personal and team memory containers.
 
 It requires a Pro plan at $19/month. The [Claude Code integration docs](https://supermemory.ai/docs/integrations/claude-code) describe the full setup - API key, shell profile changes, per-project config files.
 
@@ -32,7 +32,7 @@ I run Claude Code across eight parallel worktrees with a custom memory infrastru
 
 - *Skills and rules* - about 30 structured expertise files that teach Claude specific workflows, conventions, and patterns. These live in `~/.claude/skills/` and `~/.claude/rules/`.
 
-- *Session files* that persist workflow state within a ticket lifecycle - what step I'm on, what's been done, what's blocked.
+- *Session files* that persist workflow state within a ticket lifecycle - what step I'm on, what's been done, and what's blocked.
 
 All of it is file-based. All of it is version-controlled. No third-party dependency. The MEMORY.md files are symlinked across all eight worktrees so every Claude session starts with the same institutional knowledge.
 
