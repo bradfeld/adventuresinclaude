@@ -91,6 +91,10 @@ workflow:
 - **Rate limit**: ~500 posts/month on free tier
 - **Non-blocking**: X failures never block blog publishing
 
+## Commit After Edits (CRITICAL)
+
+**When you edit any file in this repo, commit and push immediately.** Don't leave edits as uncommitted local modifications. This is a direct-to-main repo where push triggers Vercel auto-deploy. If multiple edits happen in the same turn, batch them into one commit. Use `git -C ~/Code/adventuresinclaude` for cross-repo commits (when working from a magic worktree).
+
 ## Voice
 
 Apply Brad's voice profile from `~/.claude/voice/voice-profile.md` when writing or editing posts.
