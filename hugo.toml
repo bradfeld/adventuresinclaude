@@ -127,6 +127,11 @@ enableGitInfo = true
     url = "/reading-list/"
     weight = 39
   [[menu.main]]
+    identifier = "community"
+    name = "Community"
+    url = "/community/"
+    weight = 35
+  [[menu.main]]
     identifier = "about"
     name = "About"
     url = "/about/"
