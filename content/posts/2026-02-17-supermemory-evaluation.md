@@ -3,7 +3,7 @@ title: "Evaluating Supermemory for Claude Code"
 date: 2026-02-17T10:00:00-07:00
 tags: ["memory", "claude-code", "infrastructure", "tools"]
 description: "Does a paid memory API add value when you've already built a custom memory system for Claude Code?"
-draft: true
+draft: false
 ---
 
 I found [Supermemory](https://supermemory.ai/) while browsing tool announcements last week. "Universal Memory API for AI apps" - and they have a [Claude Code plugin](https://github.com/supermemoryai/claude-supermemory). My first thought was that this solves a real problem. My second thought was that I've already built a solution to this problem.
@@ -16,7 +16,7 @@ Here's what Supermemory does. When you start a Claude Code session, the plugin f
 
 The interesting bit is what they call "signal extraction." Instead of capturing everything (which would be noisy), you can configure keywords - "remember," "architecture," "decision," and "bug" - and it only captures turns that match. The system also maintains separate personal and team memory containers.
 
-It requires a Pro plan at $19/month. The [Claude Code integration docs](https://supermemory.ai/docs/integrations/claude-code) describe the full setup - API key, shell profile changes, per-project config files.
+It requires a Pro plan at $19/month. The [Claude Code integration docs](https://supermemory.ai/docs/integrations/claude-code) describe the full setup - API key, shell profile changes, and per-project config files.
 
 ---
 
