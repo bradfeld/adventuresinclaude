@@ -93,10 +93,12 @@ def fetch_topic_posts(topic_id: int) -> list[dict]:
     posts_data = post_stream.get("posts", [])
 
     for post in posts_data:
+        # Topic endpoint returns cooked (HTML) but not raw; use cooked
+        content = post.get("raw", "") or post.get("cooked", "")
         posts.append({
             "id": post["id"],
             "username": post.get("username", ""),
-            "raw": post.get("raw", "") or post.get("cooked", ""),
+            "content": content,
             "topic_id": topic_id,
             "topic_title": data.get("title", ""),
             "post_number": post.get("post_number", 1),
@@ -118,10 +120,11 @@ def fetch_topic_posts(topic_id: int) -> list[dict]:
             if extra_resp.status_code == 200:
                 extra_posts = extra_resp.json().get("post_stream", {}).get("posts", [])
                 for post in extra_posts:
+                    content = post.get("raw", "") or post.get("cooked", "")
                     posts.append({
                         "id": post["id"],
                         "username": post.get("username", ""),
-                        "raw": post.get("raw", "") or post.get("cooked", ""),
+                        "content": content,
                         "topic_id": topic_id,
                         "topic_title": data.get("title", ""),
                         "post_number": post.get("post_number", 1),
@@ -154,6 +157,11 @@ Classify each project into one of three tiers:
 - active_experiments: Actively being built or prototyped.
 - explorations: Early-stage ideas, one-off tries.
 
+If the posts include a URL for the project (website, GitHub repo, App Store
+link, etc.), include it in the "url" field. Only include URLs that belong to
+the project itself — not links to articles, documentation, or other people's
+projects. Prefer the primary/canonical URL (product website > GitHub > App Store).
+
 Return a JSON object:
 {
   "projects": [
@@ -162,7 +170,8 @@ Return a JSON object:
       "description": "One-sentence description",
       "tier": "products_and_tools|active_experiments|explorations",
       "confidence": 0.0-1.0,
-      "source_posts": [1, 3]  // indices of the posts where mentioned
+      "url": "https://example.com or null if no URL found",
+      "source_posts": [1, 3]
     }
   ]
 }
@@ -178,7 +187,7 @@ def extract_projects_batch(member: str, posts: list[dict]) -> list[dict]:
     post_texts = []
     for i, post in enumerate(posts):
         topic_info = f" (topic: {post['topic_title']})" if post.get("topic_title") else ""
-        post_texts.append(f"--- Post {i}{topic_info} ---\n{post['raw'][:2000]}")
+        post_texts.append(f"--- Post {i}{topic_info} ---\n{post['content'][:2000]}")
 
     combined = "\n\n".join(post_texts)
 
@@ -224,8 +233,13 @@ def extract_projects_batch(member: str, posts: list[dict]) -> list[dict]:
                 url = f"{DISCOURSE_URL}/t/{post['topic_id']}/{post['post_number']}"
                 links.append(f"[Post]({url})")
 
+        proj_url = p.get("url") or ""
+        if proj_url == "null":
+            proj_url = ""
+
         extracted.append({
             "name": p["name"],
+            "url": proj_url,
             "member": f"@{member}",
             "description": p["description"],
             "tier": p["tier"],
@@ -280,8 +294,10 @@ def render_wiki_post(all_projects: list[dict]) -> str:
         sections.append("| Project | Member | Description | Links |")
         sections.append("|---------|--------|-------------|-------|")
         for entry in tiers.get(tier_key, []):
+            proj_url = entry.get("url", "")
+            proj_cell = f"[{entry['name']}]({proj_url})" if proj_url else entry["name"]
             sections.append(
-                f"| {entry['name']} | {entry['member']} | "
+                f"| {proj_cell} | {entry['member']} | "
                 f"{entry['description']} | {entry['links']} |"
             )
         sections.append("")

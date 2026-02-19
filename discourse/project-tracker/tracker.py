@@ -106,6 +106,11 @@ Classify each project into one of three tiers:
 - explorations: Early-stage ideas, one-off tries. Signals: "playing with",
   "thinking about", "tried", "noodling on".
 
+If the post includes a URL for the project (website, GitHub repo, App Store
+link, etc.), include it in the "url" field. Only include URLs that belong to
+the project itself — not links to articles, documentation, or other people's
+projects. Prefer the primary/canonical URL (product website > GitHub > App Store).
+
 Return a JSON object with this exact structure:
 {
   "projects": [
@@ -113,7 +118,8 @@ Return a JSON object with this exact structure:
       "name": "ProjectName",
       "description": "One-sentence description of what it does",
       "tier": "products_and_tools|active_experiments|explorations",
-      "confidence": 0.0-1.0
+      "confidence": 0.0-1.0,
+      "url": "https://example.com or null if no URL found"
     }
   ]
 }
@@ -212,15 +218,36 @@ def parse_wiki_tables(content: str) -> dict[str, list[dict]]:
 
         # Parse table rows (skip header and separator)
         match = TABLE_ROW_RE.match(stripped)
-        if match and match.group("project") != "Project":
+        if match and match.group("project").strip() not in ("Project", "[Project]"):
+            proj_cell = match.group("project").strip()
+            proj_name, proj_url = parse_project_cell(proj_cell)
             tiers[current_tier].append({
-                "project": match.group("project").strip(),
+                "project": proj_name,
+                "url": proj_url,
                 "member": match.group("member").strip(),
                 "description": match.group("description").strip(),
                 "links": match.group("links").strip(),
             })
 
     return tiers
+
+
+PROJECT_LINK_RE = re.compile(r"^\[([^\]]+)\]\(([^)]+)\)$")
+
+
+def parse_project_cell(cell: str) -> tuple[str, str]:
+    """Parse a project cell, returning (name, url). URL is empty if plain text."""
+    match = PROJECT_LINK_RE.match(cell.strip())
+    if match:
+        return match.group(1), match.group(2)
+    return cell.strip(), ""
+
+
+def render_project_cell(name: str, url: str) -> str:
+    """Render a project name, optionally as a markdown link."""
+    if url:
+        return f"[{name}]({url})"
+    return name
 
 
 def normalize_name(name: str) -> str:
@@ -241,6 +268,10 @@ def merge_projects(
         name_norm = normalize_name(proj["name"])
         member = f"@{proj['member']}" if not proj["member"].startswith("@") else proj["member"]
 
+        proj_url = proj.get("url") or ""
+        if proj_url == "null":
+            proj_url = ""
+
         # Check for existing entry (same project + member)
         found = False
         for entry in existing.get(tier, []):
@@ -250,6 +281,9 @@ def merge_projects(
                 # Update description if new one is longer (more detailed)
                 if len(proj["description"]) > len(entry["description"]):
                     entry["description"] = proj["description"]
+                # Add project URL if we don't have one yet
+                if proj_url and not entry.get("url"):
+                    entry["url"] = proj_url
                 # Append link if not already present
                 if post_url and post_url not in entry["links"]:
                     if entry["links"]:
@@ -270,6 +304,8 @@ def merge_projects(
                     if normalize_name(entry["project"]) == name_norm and entry_member == proj_member:
                         found = True
                         # Don't change tier — that's a member decision
+                        if proj_url and not entry.get("url"):
+                            entry["url"] = proj_url
                         if post_url and post_url not in entry["links"]:
                             if entry["links"]:
                                 entry["links"] += f", [Post]({post_url})"
@@ -282,6 +318,7 @@ def merge_projects(
         if not found:
             existing.setdefault(tier, []).append({
                 "project": proj["name"],
+                "url": proj_url,
                 "member": member,
                 "description": proj["description"],
                 "links": f"[Post]({post_url})" if post_url else "",
@@ -315,8 +352,9 @@ def render_wiki_post(tiers: dict[str, list[dict]]) -> str:
         sections.append("| Project | Member | Description | Links |")
         sections.append("|---------|--------|-------------|-------|")
         for entry in tiers.get(tier_key, []):
+            proj_cell = render_project_cell(entry["project"], entry.get("url", ""))
             sections.append(
-                f"| {entry['project']} | {entry['member']} | "
+                f"| {proj_cell} | {entry['member']} | "
                 f"{entry['description']} | {entry['links']} |"
             )
         sections.append("")
