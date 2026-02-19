@@ -2,7 +2,7 @@
 title: "Documentation Catches the Second Occurrence. Automation Prevents the Third."
 date: 2026-02-18T21:00:00-07:00
 description: "I asked Claude Code to review my own usage patterns over the last two months. The retrospective surfaced eight root causes that each appeared three or more times."
-draft: true
+draft: false
 tags: ["claude-code", "retrospective", "automation", "workflow"]
 ---
 
