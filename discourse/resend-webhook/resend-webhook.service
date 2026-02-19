@@ -1,0 +1,13 @@
+[Unit]
+Description=Resend Inbound Email Webhook Bridge
+After=network.target docker.service
+
+[Service]
+Type=simple
+EnvironmentFile=/etc/resend-webhook.env
+ExecStart=/usr/bin/python3 /opt/resend-webhook.py
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

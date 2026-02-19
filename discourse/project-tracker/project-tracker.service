@@ -1,0 +1,14 @@
+[Unit]
+Description=AIC Project Tracker
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/project-tracker
+EnvironmentFile=/opt/project-tracker/.env
+ExecStart=/opt/project-tracker/venv/bin/python3 /opt/project-tracker/tracker.py
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
