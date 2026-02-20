@@ -10,7 +10,7 @@ Claude Code shipped a `/insights` command recently. I typed it in and waited. A 
 
 The numbers: 1,397 messages across 114 sessions. 150 hours of compute time. 91 commits. 435 files touched. 28,509 lines added, 970 removed.
 
-I ran 77 parallel session overlaps during the week - moments where multiple Claude Code instances were working simultaneously in different worktrees. 27% of my total messages happened during these overlaps. The multi-worktree setup I built for the Magic Platform monorepo - eight worktrees, each on its own branch - is finally getting used the way I designed it.
+I ran 77 parallel session overlaps during the week - moments where multiple Claude Code instances were working simultaneously in different worktrees. 27% of my total messages happened during these overlaps. The multi-worktree setup I built for the Magic Platform monorepo - eight worktrees, each on its own branch - is getting used the way I designed it.
 
 ---
 
