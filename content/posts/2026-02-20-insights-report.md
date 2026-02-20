@@ -14,7 +14,12 @@ I ran 77 parallel session overlaps during the week - moments where multiple Clau
 
 ---
 
-The report classified my sessions into five areas. Software development and ticket chains dominated with about 20 sessions - implementing Linear tickets across multiple projects, TypeScript changes, code reviews, multi-file edits. Deployment and DevOps workflows took 10 sessions. Content creation and publishing got 8. Community and communication management got 7. Infrastructure and hardware setup got 5.
+The report classified my sessions into five areas. 
+* Software development and ticket chains dominated with about 20 sessions - implementing Linear tickets across multiple projects,
+* TypeScript changes, code reviews, multi-file edits.
+* Deployment and DevOps workflows took 10 sessions.
+* Content creation and publishing got 8.
+* Community and communication management got 7. Infrastructure and hardware setup got 5.
 
 The tool usage stats tell the real story. Bash was the top tool at 2,230 calls. But the second and fourth most used tools were TaskUpdate (1,116) and TaskCreate (489). That's 1,605 combined calls for task management - Claude spawning and managing sub-agents on my behalf, running parallel code reviews, quality gates, and multi-file changes.
 
