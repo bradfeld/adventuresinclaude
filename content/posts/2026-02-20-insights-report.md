@@ -1,5 +1,5 @@
 ---
-title: "114 Sessions, 91 Commits, and One Accidentally Committed Secret"
+title: "A Week of Claude Code Insights"
 date: 2026-02-20T22:30:00-07:00
 description: "Claude Code's /insights command analyzed a week of my usage. 1,397 messages, 150 hours of compute, and a brutally honest breakdown of where things go wrong."
 draft: false
