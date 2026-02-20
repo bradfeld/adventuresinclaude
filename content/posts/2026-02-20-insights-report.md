@@ -6,7 +6,7 @@ draft: false
 tags: ["claude-code", "insights", "workflow", "automation"]
 ---
 
-Claude Code shipped a `/insights` command this week. I typed it in and waited. A few minutes later I had a full breakdown of my usage over the previous seven days.
+Claude Code shipped a `/insights` command recently. I typed it in and waited. A few minutes later I had a full breakdown of my usage over the previous seven days.
 
 The numbers: 1,397 messages across 114 sessions. 150 hours of compute time. 91 commits. 435 files touched. 28,509 lines added, 970 removed.
 
