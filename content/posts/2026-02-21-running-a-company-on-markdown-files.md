@@ -26,18 +26,18 @@ The "skills only" constraint was deliberate. CoWork's approach is to build an or
 
 There are twelve skills:
 
-- **co-comms** - Email drafting and sending with per-sender voice profiles
-- **co-support** - Full Help Scout lifecycle: triage, respond, tag, escalate, close
-- **co-search** - Fan out a query across Linear, Gmail, Help Scout, Notion, Sentry, and Google Drive simultaneously
-- **co-l10-prep** - Collect scorecard metrics before the weekly [EOS](https://www.eosworldwide.com/) L10 meeting
-- **co-launch** - Manage product launch cohorts, participants, and messaging
-- **co-feedback** - Aggregate user feedback from multiple sources into patterns
-- **co-ops** - Decision logging and company conventions
-- **co-calendar** - Scheduling that challenges whether you actually need a meeting
-- **co-meetings** - Pull notes from [Granola](https://www.granola.so/) after meetings happen
-- **co-content** - Marketing copy with distinct brand voices per product
-- **co-secrets** - Secrets management operations
-- **co-five-whys** - Root cause analysis using guided discovery
+- **co-comms** - Draft, review, and send email. Detects who's sending via `git config`, loads their voice profile, calibrates tone from recent emails to the same recipient, persists every draft to disk so it survives context compaction, and can save to Gmail Drafts for later review. Sending requires explicit approval - any edit resets the gate.
+- **co-support** - Run the full Help Scout support lifecycle. Search conversations, read threads, triage by priority, draft replies, add internal notes, tag, and close - all without opening the Help Scout UI. Tags, templates, and auto-tagging rules live as YAML config files in the repo.
+- **co-search** - Fan out a single query across Linear, Gmail, Help Scout, Notion, Sentry, and Google Drive in parallel. Route to relevant sources using keyword detection - billing queries hit Help Scout and Stripe, bug reports hit Sentry and Linear - then deduplicate results across systems.
+- **co-l10-prep** - Collect eight scorecard metrics before the weekly [EOS](https://www.eosworldwide.com/) L10 meeting. Run parallel SQL queries against Supabase and Linear API calls to pull active users, open bugs, resolved issues, waitlist numbers, and CompanyOS usage stats into a single formatted table.
+- **co-launch** - Manage product launch cohorts from creation through completion. Track participants through a lifecycle - added, invited, active, feedback submitted, and completed - with timestamp tracking at each stage. Delegate message drafting to co-comms and scheduling to Vercel cron.
+- **co-feedback** - Aggregate user feedback from Linear tickets, Marker.io visual bug reports, and Help Scout conversations into patterns. Categorize by theme, identify recurring issues, and produce summaries for product decisions. Token-budgeted to avoid context overflow on large queries.
+- **co-ops** - Log decisions and look up company conventions. Each entry records what was decided, the rationale, who led it, which products it affects, and when to revisit. Search the full decision history when someone asks "what's our policy on X?"
+- **co-calendar** - Schedule meetings, but challenge whether the meeting is needed first. Default to async. When a meeting is justified, check availability, create an agenda, and set it to 30 minutes. No meetings without an agenda, and anyone can cancel if the topic can be handled async.
+- **co-meetings** - Pull meeting content from [Granola](https://www.granola.so/) after meetings happen. Retrieve AI-generated summaries, user notes, full transcripts, and action items. Boundary with co-calendar is clean: calendar handles before the meeting, meetings handles after.
+- **co-content** - Create marketing content with distinct brand voice profiles per product. Each product has its own tone - empowering for AuthorMagic, trustworthy and clear for MedicareMagic, and encouraging for MyHealthMagic. Get outline approval before writing full content.
+- **co-secrets** - Store, rotate, and validate API keys and credentials through GCP Secret Manager. Self-describing JSON format so sync scripts know which environment variables to generate. Shows commands for the user to execute rather than running destructive operations directly.
+- **co-five-whys** - Run root cause analysis using Toyota's Five Whys combined with guided discovery. Ask "why?" iteratively, never answer for the user, reflect back what you hear, and stop when you hit something actionable. End with questions, not solutions.
 
 Each one is a markdown file. The skill tells Claude what to do, in what order, with what guardrails. Claude's existing capabilities - tool use, MCP connections, context management - handle the execution. The skill just provides the playbook.
 
@@ -45,9 +45,9 @@ Each one is a markdown file. The skill tells Claude what to do, in what order, w
 
 Every skill must work without MCP servers connected. No API access at all. This sounds like an edge case, but it's actually a design forcing function. When you require a skill to work without external systems, you separate the thinking from the API calls.
 
-Take co-l10-prep. With MCP, it runs parallel SQL queries and API calls to pull metrics automatically. Without MCP, it prompts me conversationally for each number and still produces the same formatted scorecard table. The intelligence - knowing which metrics matter, how to format them, what the targets are - lives in the markdown. The API calls are just data retrieval.
+Take co-support. With MCP, it searches Help Scout conversations, reads full threads, drafts replies, and sends them through the REST API. Without MCP, I paste the customer's message into the conversation and co-support still triages it, categorizes the issue, drafts a response in the right tone, and formats it as copy-ready text I can paste into Help Scout myself. The intelligence - knowing how to triage, what tone to use, when to escalate - lives in the markdown. The API calls are just plumbing.
 
-This is where CoWork's architecture breaks down. If the orchestration layer can't reach its APIs, nothing works. With skills-only, the worst case is that I type the data instead of the system fetching it. The skill still runs. The output is identical.
+This is where CoWork's architecture breaks down. If the orchestration layer can't reach its APIs, nothing works. With skills-only, the worst case is that I copy and paste instead of the system sending directly. The skill still runs. The output is identical.
 
 ---
 
@@ -55,8 +55,7 @@ The hardest lesson came from an email.
 
 Early on, co-comms drafted a message and sent it without waiting for approval. The email was fine - nothing embarrassing - but the principle was wrong. An AI system sent a real email to a real person on my behalf without my explicit sign-off.
 
-I added a hard gate. The user must say "send" or "approve" after seeing the final draft. Any edit - even fixing a typo - resets the approval. You see the updated version, then approve again. This rule is enforced at two levels: in the skill definition itself, and in a separate `co-protected-workflows.md` rule that applies globally. Belt and suspenders.
-
+I added a hard gate. The user must say "send" or "approve" after seeing the final draft. Any edit - even fixing a typo - resets the approval. You see the updated version, then approve again. This rule is enforced at two levels: in the skill definition itself, and in a separate `co-protected-workflows.md` rule that applies globally.
 The broader principle: anything irreversible gets an explicit approval loop. Sending emails, closing support tickets, posting to external services. Claude can draft, analyze, recommend, and prepare all day long. But the moment something leaves the building, a human says yes.
 
 ---
@@ -78,13 +77,13 @@ You say "check the support queue" and co-support loads. You say "draft a reply t
 
 CompanyOS measures itself. Every skill invocation fires a Claude Code hook that logs the event to a database table - who used it, which skill, when. This happens silently via a bash script that always exits 0 so it never blocks Claude Code.
 
-Then, when co-l10-prep collects scorecard metrics for the weekly meeting, one of the metrics is "CompanyOS Tasks Completed via Claude." The system that runs the business reports on how much it's running the business. The telemetry loop closes.
+Then, when co-feedback runs a weekly pattern analysis, it pulls from that same table to show which skills are being used and how often. The system that runs the business reports on how much it's running the business. The telemetry loop closes.
 
 ---
 
 The whole thing is about 2,000 lines of markdown across twelve skill files, five commands, two agents, and a handful of rules. It connects to eight external systems through MCP servers - Linear, Gmail, Google Calendar, Help Scout, Notion, Sentry, Stripe, and Granola. The database footprint is four tables.
 
-The skills-only bet has held up. No orchestration engine. No workflow runtime. No separate UI. Just markdown files that give Claude Code the domain knowledge to run business operations, deployed through the same tool I already use to build software. CoWork showed me what I wanted. Claude Code skills showed me how to actually get there.
+The skills-only bet has held up. No orchestration engine. No workflow runtime. No separate UI. Just markdown files that give Claude Code the domain knowledge to run business operations, deployed through the same tool I already use to build software. CoWork showed me what I wanted. Claude Code got me there.
 
 ---
 
