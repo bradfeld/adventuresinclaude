@@ -3,7 +3,7 @@ title: "Running a Company on Markdown Files"
 date: 2026-02-21T10:00:00-07:00
 tags: ["companyos", "claude-code", "operations", "eos", "skills"]
 description: "CompanyOS: a skills-only system that turns Claude Code into the operating layer for an entire company"
-draft: true
+draft: false
 ---
 
 When Anthropic released [Claude CoWork](https://support.claude.com/en/articles/13345190-getting-started-with-cowork), I got excited. A multi-agent system where Claude handles business operations, not just code. I tried it immediately. And I was frustrated almost immediately.
