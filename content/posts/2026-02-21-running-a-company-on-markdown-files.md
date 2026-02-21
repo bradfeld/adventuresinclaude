@@ -56,7 +56,7 @@ The hardest lesson came from an email.
 Early on, co-comms drafted a message and sent it without waiting for approval. The email was fine - nothing embarrassing - but the principle was wrong. An AI system sent a real email to a real person on my behalf without my explicit sign-off.
 
 I added a hard gate. The user must say "send" or "approve" after seeing the final draft. Any edit - even fixing a typo - resets the approval. You see the updated version, then approve again. This rule is enforced at two levels: in the skill definition itself, and in a separate `co-protected-workflows.md` rule that applies globally.
-The broader principle: anything irreversible gets an explicit approval loop. Sending emails, closing support tickets, posting to external services. Claude can draft, analyze, recommend, and prepare all day long. But the moment something leaves the building, a human says yes.
+The broader principle: anything irreversible gets an explicit approval loop. Sending emails, closing support tickets, posting to external services. Claude can draft, analyze, recommend, and prepare all day long. But the moment something needs to leave the virtual building, a human needs to say yes.
 
 ---
 
