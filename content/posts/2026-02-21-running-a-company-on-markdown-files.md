@@ -6,7 +6,7 @@ description: "CompanyOS: a skills-only system that turns Claude Code into the op
 draft: true
 ---
 
-When Anthropic released [Claude CoWork](https://www.anthropic.com/research/claude-cowork), I got excited. A multi-agent system where Claude handles business operations, not just code. I tried it immediately. And I was frustrated almost immediately.
+When Anthropic released [Claude CoWork](https://support.claude.com/en/articles/13345190-getting-started-with-cowork), I got excited. A multi-agent system where Claude handles business operations, not just code. I tried it immediately. And I was frustrated almost immediately.
 
 The UI was limited. The workflows were rigid. And the biggest problem - it had no overlap with Claude Code. I was already spending my entire day in Claude Code across eight parallel worktrees, building and shipping software. CoWork wanted me to context-switch into a separate web interface to do operations. That's the wrong direction. I wanted operations to come to me, in the tool I was already using.
 
