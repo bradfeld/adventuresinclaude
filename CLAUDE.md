@@ -91,6 +91,15 @@ workflow:
 - **Rate limit**: ~500 posts/month on free tier
 - **Non-blocking**: X failures never block blog publishing
 
+## Comment Notifications
+
+Giscus comments are GitHub Discussions on `bradfeld/adventuresinclaude`. Notifications use GitHub's native system:
+
+- **Watch**: Repo is watched (`subscribed: true`) — GitHub emails on new discussion comments
+- **Reply**: Reply directly to the GitHub notification email to post a response
+- **Settings**: Configure at [github.com/settings/notifications](https://github.com/settings/notifications) — ensure "Discussions" is enabled under email preferences
+- **GitHub email**: `brad@feld.com`
+
 ## Commit After Edits (CRITICAL)
 
 **When you edit any file in this repo, commit and push immediately.** Don't leave edits as uncommitted local modifications. This is a direct-to-main repo where push triggers Vercel auto-deploy. If multiple edits happen in the same turn, batch them into one commit. Use `git -C ~/Code/adventuresinclaude` for cross-repo commits (when working from a magic worktree).
