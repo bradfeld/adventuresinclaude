@@ -4,7 +4,7 @@ ShowReadingTime: false
 ShowBreadCrumbs: false
 ---
 
-Adventures in Claude has an invite-only community for retired entrepreneurs and coders who are playing with Claude and building things with AI.
+Adventures in Claude has an invite-only community for anyone playing with Claude Code and building things with AI.
 
 ## What We Do
 
@@ -26,4 +26,4 @@ The community runs on [Discourse](https://community.adventuresinclaude.ai), whic
 
 ## Join
 
-The community is invite-only. If you're a retired entrepreneur or coder who's actively experimenting with Claude, [email me](mailto:brad@intensitymagic.com) to request an invite. Tell me a bit about what you're building or exploring.
+The community is invite-only. If you are actively experimenting with Claude Code, [email me](mailto:brad@intensitymagic.com) to request an invite. Tell me a bit about what you're building or exploring.
