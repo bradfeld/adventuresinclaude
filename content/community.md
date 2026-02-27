@@ -23,6 +23,8 @@ The community runs on [Discourse](https://community.adventuresinclaude.ai), whic
 - **Projects** - Show and tell for things you're building
 - **Tips & Techniques** - What you've figured out that others should know
 - **Discussion** - Everything else about AI, coding, and building
+- **Member Blogs** - Blog posts from community members, auto-syndicated from their RSS feeds
+- **Meta** - About the community itself - feedback, suggestions, and how things work
 
 ## Join
 
