@@ -51,6 +51,12 @@ DISCOURSE_HEADERS = {
 
 client = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
 
+
+def sanitize_field(s: str) -> str:
+    """Strip pipe characters from text fields to prevent Discourse markdown table corruption."""
+    return s.replace("|", "-").strip()
+
+
 # ---------------------------------------------------------------------------
 # Discourse API — fetch all posts
 # ---------------------------------------------------------------------------
@@ -238,10 +244,10 @@ def extract_projects_batch(member: str, posts: list[dict]) -> list[dict]:
             proj_url = ""
 
         extracted.append({
-            "name": p["name"],
+            "name": sanitize_field(p["name"]),
             "url": proj_url,
             "member": f"@{member}",
-            "description": p["description"],
+            "description": sanitize_field(p["description"]),
             "tier": p["tier"],
             "confidence": p.get("confidence", 0.7),
             "links": ", ".join(links) if links else "",

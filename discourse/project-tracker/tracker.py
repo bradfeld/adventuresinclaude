@@ -133,6 +133,11 @@ mention of "I tried X" with no detail is low confidence.
 client = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
 
 
+def sanitize_field(s: str) -> str:
+    """Strip pipe characters from text fields to prevent Discourse markdown table corruption."""
+    return s.replace("|", "-").strip()
+
+
 def extract_projects(post_content: str, member_username: str) -> list[dict]:
     """Extract project mentions from a post using Claude."""
     message = client.messages.create(
@@ -280,7 +285,7 @@ def merge_projects(
             if normalize_name(entry["project"]) == name_norm and entry_member == proj_member:
                 # Update description if new one is longer (more detailed)
                 if len(proj["description"]) > len(entry["description"]):
-                    entry["description"] = proj["description"]
+                    entry["description"] = sanitize_field(proj["description"])
                 # Add project URL if we don't have one yet
                 if proj_url and not entry.get("url"):
                     entry["url"] = proj_url
@@ -317,10 +322,10 @@ def merge_projects(
 
         if not found:
             existing.setdefault(tier, []).append({
-                "project": proj["name"],
+                "project": sanitize_field(proj["name"]),
                 "url": proj_url,
                 "member": member,
-                "description": proj["description"],
+                "description": sanitize_field(proj["description"]),
                 "links": f"[Post]({post_url})" if post_url else "",
             })
             added.append(proj)
@@ -428,7 +433,10 @@ def post_update_reply(added: list[dict], post_url: str) -> None:
 def verify_webhook(body: bytes, signature: str) -> bool:
     """Verify Discourse webhook signature."""
     if not DISCOURSE_WEBHOOK_SECRET:
-        return True  # No secret configured, skip verification
+        # WARNING: Webhook auth is disabled — all POST requests to /webhook will
+        # be accepted without signature verification. Set DISCOURSE_WEBHOOK_SECRET
+        # in the .env file on the droplet to enable authentication.
+        return True
     expected = hmac.new(
         DISCOURSE_WEBHOOK_SECRET.encode(),
         body,
