@@ -60,4 +60,4 @@ The setup is one command: `./setup.sh` symlinks skills and rules into `~/.claude
 
 The whole thing is about 40 markdown files, a handful of Edge Functions, and a setup script. No runtime. No server. No framework to maintain. The skills are version-controlled, code-reviewed, and deployed the same way I deploy code - because they *are* code. They just happen to be written in English.
 
-If you're using Claude Code and want to try something similar, start with one skill. Pick the business task you do most often - sending a particular kind of email, triaging feedback, preparing for a meeting - and write the instructions in a markdown file. Put it in `~/.claude/skills/`. That's it. You now have CompanyOS v0.1.
+I'm starting to extend this to other companies. If you're interested in being a very early user, [send me an email](mailto:brad@intensitymagic.com).
